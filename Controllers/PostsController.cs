@@ -57,10 +57,11 @@ namespace MVCBlog.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,BlogId,Title,Content,Image,Created,Updated,IsPublished")] Post post)
+        public async Task<IActionResult> Create([Bind("Id,BlogId,Title,Abstract,Body,Slug,Content,Image,Created,Updated,IsPublished")] Post post)
         {
             if (ModelState.IsValid)
             {
+                post.Created = DateTimeOffset.Now;
                 _context.Add(post);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -91,7 +92,7 @@ namespace MVCBlog.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,BlogId,Title,Content,Image,Created,Updated,IsPublished")] Post post)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,BlogId,Title,Abstract,Body,Slug,Content,Image,Created,Updated,IsPublished")] Post post)
         {
             if (id != post.Id)
             {
