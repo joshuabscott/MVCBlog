@@ -16,9 +16,10 @@ namespace MVCBlog.Models
         //Describe the things that a blog post have
 
         public string Title { get; set; }
-        public string Abstract { get; }
-        public string Body { get; }
+        public string Abstract { get; set; }
+        public string Body { get; set; }
 
+        public string Slug { get; set; }
 
         public string Content { get; set; }
         public byte[] Image { get; set; }
