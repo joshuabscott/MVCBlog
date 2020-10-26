@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MVCBlog.Data;
 using MVCBlog.Models;
+using MVCBlog.Utilities;
 
 namespace MVCBlog.Controllers
 {
@@ -68,6 +69,20 @@ namespace MVCBlog.Controllers
             ViewData["BlogId"] = new SelectList(_context.Blogs, "Id", "Id");
             return View();
         }
+
+
+
+        var ImageHelper = new ImageHelper();
+        if (post.Image != null)
+            {
+            ViewDatga["Image"] = ImageHelper.GetImage(post);
+            }
+        return View(post);
+        
+
+
+
+
 
         // POST: Posts/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 

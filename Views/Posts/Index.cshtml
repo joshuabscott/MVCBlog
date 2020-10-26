@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Index";
+    //var ImageHelper = new ImageHelper[];
 }
 
 <h1>Index</h1>
@@ -48,6 +49,7 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
+
             <td>
                 @Html.DisplayFor(modelItem => item.Title)
             </td>
@@ -56,6 +58,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Body)
+            </td>
+            <td>
+                <img src="@MVCBlog.Utilities.ImageHelper.GetImage(item)" />
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Slug)

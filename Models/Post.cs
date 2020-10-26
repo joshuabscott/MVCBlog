@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -21,13 +22,20 @@ namespace MVCBlog.Models
 
         public string Slug { get; set; }
 
+        
         public string Content { get; set; }
-        public byte[] Image { get; set; }
+        public byte[] Image { set;
+            get{
+                return "";
+            }
+        }
+
         public DateTimeOffset Created { get; set; }
         public DateTimeOffset? Updated { get; set; }
         // In Microsoft doc this is public type type
 
         public bool IsPublished { get; set; }
+
         public virtual Blog Blog { get; set; }
         //In Microsoft doc this is public  list<Type> Types
         public virtual ICollection<Comment> Comments { get; set; }
@@ -41,6 +49,8 @@ namespace MVCBlog.Models
             Comments = new HashSet<Comment>();
             Tags = new HashSet<Tag>();
         }
+
+        public 
         #endregion
 
         #region Navigation
