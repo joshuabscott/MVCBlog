@@ -36,7 +36,6 @@ namespace MVCBlog.Controllers
             return View("Index", await posts.ToListAsync());
         }
 
-
         // GET: Posts
         public async Task<IActionResult> Index()
         {
@@ -64,13 +63,19 @@ namespace MVCBlog.Controllers
         }
 
         // GET: Posts/Create
-        public IActionResult Create()
-        {
-            ViewData["BlogId"] = new SelectList(_context.Blogs, "Id", "Id");
-            return View();
+        public IActionResult Create(int? id)
+        { 
+            if (id = null)
+            {
+                return NotFound();
+            }
+            var model = new Post() { BlogId = (int)id };
+            return View(model);
         }
-
-
+        //{
+        //    ViewData["BlogId"] = new SelectList(_context.Blogs, "Id", "Id");
+        //    return View();
+        //}
 
         var ImageHelper = new ImageHelper();
         if (post.Image != null)
@@ -78,24 +83,20 @@ namespace MVCBlog.Controllers
             ViewDatga["Image"] = ImageHelper.GetImage(post);
             }
         return View(post);
-        
-
-
-
-
 
         // POST: Posts/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,BlogId,Title,Abstract,Body,Slug,Content,Image,Created,Updated,IsPublished")] Post post)
+        public async Task<IActionResult> Create([Bind("Id,BlogId,Title,Abstract,Body,IsPublished")] Post post)
         {
             if (ModelState.IsValid)
             {
+                post.Created = DateTimeOffset.Now;
                 _context.Add(post);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Index));
             }
             ViewData["BlogId"] = new SelectList(_context.Blogs, "Id", "Id", post.BlogId);
             return View(post);
@@ -105,7 +106,7 @@ namespace MVCBlog.Controllers
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
-            {
+        {
                 return NotFound();
             }
 
