@@ -19,10 +19,27 @@ namespace MVCBlog.Controllers
             _context = context;
         }
 
+        public async Task<IActionResult> ShowPosts(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var blog = await _context.Blogs.FindAsync(id);
+            if (posts == null)
+            {
+                return NotFound();
+            }
+            var posts = _context.Posts.Where(p => p.BlogId == id);       //Linking posts to blog topic
+            return View("Index", await posts.ToListAsync());
+        }
+
+
         // GET: Posts
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Post.Include(p => p.Blog);
+            var applicationDbContext = _context.Posts.Include(p => p.Blog);
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -34,7 +51,7 @@ namespace MVCBlog.Controllers
                 return NotFound();
             }
 
-            var post = await _context.Post
+            var post = await _context.Posts
                 .Include(p => p.Blog)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (post == null)
@@ -48,7 +65,7 @@ namespace MVCBlog.Controllers
         // GET: Posts/Create
         public IActionResult Create()
         {
-            ViewData["BlogId"] = new SelectList(_context.Blog, "Id", "Id");
+            ViewData["BlogId"] = new SelectList(_context.Blogs, "Id", "Id");
             return View();
         }
 
@@ -61,12 +78,11 @@ namespace MVCBlog.Controllers
         {
             if (ModelState.IsValid)
             {
-                post.Created = DateTimeOffset.Now;
                 _context.Add(post);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["BlogId"] = new SelectList(_context.Blog, "Id", "Id", post.BlogId);
+            ViewData["BlogId"] = new SelectList(_context.Blogs, "Id", "Id", post.BlogId);
             return View(post);
         }
 
@@ -78,12 +94,12 @@ namespace MVCBlog.Controllers
                 return NotFound();
             }
 
-            var post = await _context.Post.FindAsync(id);
+            var post = await _context.Posts.FindAsync(id);
             if (post == null)
             {
                 return NotFound();
             }
-            ViewData["BlogId"] = new SelectList(_context.Blog, "Id", "Id", post.BlogId);
+            ViewData["BlogId"] = new SelectList(_context.Blogs, "Id", "Id", post.BlogId);
             return View(post);
         }
 
@@ -119,7 +135,7 @@ namespace MVCBlog.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["BlogId"] = new SelectList(_context.Blog, "Id", "Id", post.BlogId);
+            ViewData["BlogId"] = new SelectList(_context.Blogs, "Id", "Id", post.BlogId);
             return View(post);
         }
 
@@ -131,7 +147,7 @@ namespace MVCBlog.Controllers
                 return NotFound();
             }
 
-            var post = await _context.Post
+            var post = await _context.Posts
                 .Include(p => p.Blog)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (post == null)
@@ -147,15 +163,15 @@ namespace MVCBlog.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var post = await _context.Post.FindAsync(id);
-            _context.Post.Remove(post);
+            var post = await _context.Posts.FindAsync(id);
+            _context.Posts.Remove(post);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool PostExists(int id)
         {
-            return _context.Post.Any(e => e.Id == id);
+            return _context.Posts.Any(e => e.Id == id);
         }
     }
 }

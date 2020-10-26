@@ -22,7 +22,7 @@ namespace MVCBlog.Controllers
         // GET: Tags
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Tag.Include(t => t.Post);
+            var applicationDbContext = _context.Tags.Include(t => t.Post);
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -34,7 +34,7 @@ namespace MVCBlog.Controllers
                 return NotFound();
             }
 
-            var tag = await _context.Tag
+            var tag = await _context.Tags
                 .Include(t => t.Post)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (tag == null)
@@ -48,7 +48,7 @@ namespace MVCBlog.Controllers
         // GET: Tags/Create
         public IActionResult Create()
         {
-            ViewData["PostId"] = new SelectList(_context.Post, "Id", "Id");
+            ViewData["PostId"] = new SelectList(_context.Posts, "Id", "Id");
             return View();
         }
 
@@ -65,7 +65,7 @@ namespace MVCBlog.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["PostId"] = new SelectList(_context.Post, "Id", "Id", tag.PostId);
+            ViewData["PostId"] = new SelectList(_context.Posts, "Id", "Id", tag.PostId);
             return View(tag);
         }
 
@@ -77,12 +77,12 @@ namespace MVCBlog.Controllers
                 return NotFound();
             }
 
-            var tag = await _context.Tag.FindAsync(id);
+            var tag = await _context.Tags.FindAsync(id);
             if (tag == null)
             {
                 return NotFound();
             }
-            ViewData["PostId"] = new SelectList(_context.Post, "Id", "Id", tag.PostId);
+            ViewData["PostId"] = new SelectList(_context.Posts, "Id", "Id", tag.PostId);
             return View(tag);
         }
 
@@ -118,7 +118,7 @@ namespace MVCBlog.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["PostId"] = new SelectList(_context.Post, "Id", "Id", tag.PostId);
+            ViewData["PostId"] = new SelectList(_context.Posts, "Id", "Id", tag.PostId);
             return View(tag);
         }
 
@@ -130,7 +130,7 @@ namespace MVCBlog.Controllers
                 return NotFound();
             }
 
-            var tag = await _context.Tag
+            var tag = await _context.Tags
                 .Include(t => t.Post)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (tag == null)
@@ -146,15 +146,15 @@ namespace MVCBlog.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var tag = await _context.Tag.FindAsync(id);
-            _context.Tag.Remove(tag);
+            var tag = await _context.Tags.FindAsync(id);
+            _context.Tags.Remove(tag);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool TagExists(int id)
         {
-            return _context.Tag.Any(e => e.Id == id);
+            return _context.Tags.Any(e => e.Id == id);
         }
     }
 }

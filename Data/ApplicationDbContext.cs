@@ -13,9 +13,9 @@ namespace MVCBlog.Data
             : base(options)
         {
         }
-        public DbSet<MVCBlog.Models.Blog> Blog { get; set; }
-        public DbSet<MVCBlog.Models.Comment> Comment { get; set; }
-        public DbSet<MVCBlog.Models.Post> Post { get; set; }
-        public DbSet<MVCBlog.Models.Tag> Tag { get; set; }
+        public DbSet<MVCBlog.Models.Blog> Blogs { get; set; }
+        public DbSet<MVCBlog.Models.Comment> Comments { get; set; }
+        public DbSet<MVCBlog.Models.Post> Posts { get; set; }
+        public DbSet<MVCBlog.Models.Tag> Tags { get; set; }
     }
 }

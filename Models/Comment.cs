@@ -18,12 +18,14 @@ namespace MVCBlog.Models
         public DateTimeOffset Created { get; set; }
         public DateTimeOffset? Updated { get; set; }
 
-        public virtual Post Post { get; set; }
-        public virtual BlogUser BlogUser { get; set; }
 
         #endregion
 
         #region Navigation
+
+        public virtual Post Post { get; set; }
+        public virtual BlogUser BlogUser { get; set; }
+
         #endregion
     }
 }

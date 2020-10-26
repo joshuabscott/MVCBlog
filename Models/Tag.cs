@@ -14,7 +14,7 @@ namespace MVCBlog.Models
         public int Id { get; set; }
         public int PostId { get; set; }
         public string Name { get; set; }
-        public Post Post { get; set; }
+        public virtual Post Post { get; set; }
         #endregion
 
         #region Navigation
