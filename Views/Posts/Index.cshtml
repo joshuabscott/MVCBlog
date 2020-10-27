@@ -1,4 +1,6 @@
-﻿@model IEnumerable<MVCBlog.Models.Post>
+﻿@using MVCBlog.Utilities
+@using MVCBlog.Models
+@model IEnumerable<Post>
 
 @{
     ViewData["Title"] = "Index";
@@ -14,21 +16,26 @@
     <thead>
         <tr>
             <th>
+                Image
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Title)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Abstract)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Body)
+                @Html.DisplayNameFor(model =>model.Body)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Created)
             </th>
+
             <th>
                 @Html.DisplayNameFor(model => model.Blog)
             </th>
-            <th></th>
+            <th>
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -42,10 +49,10 @@
                 @Html.DisplayFor(modelItem => item.Abstract)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Body)
+                @Html.Raw(item.Body)
             </td>
             <td>
-                <img src="@MVCBlog.Utilities.ImageHelper.GetImage(item)" />
+                <img class="img-fluid rounded" src="@ImageHelper.GetImage(item)" />
             </td>
            
             <td>

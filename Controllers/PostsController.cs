@@ -63,10 +63,10 @@ namespace MVCBlog.Controllers
         }
 
         // GET: Posts/Create
-        public IActionResult Create(int? id)
+        public IActionResult Create(int? id);
             var newPost = new Post()
             {
-                BlogId = (int)id;
+                BlogId = (int)id};
             }
             return View(newPost);
         //{ 
