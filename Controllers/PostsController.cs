@@ -64,17 +64,23 @@ namespace MVCBlog.Controllers
 
         // GET: Posts/Create
         public IActionResult Create(int? id)
-        { 
-            if (id = null)
+            var newPost = new Post()
             {
-                return NotFound();
+                BlogId = (int)id;
             }
-            var model = new Post() { BlogId = (int)id };
-            return View(model);
-        }
+            return View(newPost);
+        //{ 
+        //    if (id = null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    var model = new Post() { BlogId = (int)id };
+        //    return View(model);
+        //}
         //{
         //    ViewData["BlogId"] = new SelectList(_context.Blogs, "Id", "Id");
-        //    return View();
+        //     var newpost = new Post {BlogId = (int)id};
+        //    return View(newpost);
         //}
 
         var ImageHelper = new ImageHelper();

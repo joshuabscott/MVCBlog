@@ -10,12 +10,12 @@ namespace MVCBlog.Utilities
 {
     public class ImageHelper
     {
-        public static string class GetImage(Post post)
+        public static string GetImage(Post post)
         {
         var binary = Convert.ToBase64String(post.Image);
         var ext = Path.GetExtension(post.FileName);
         string imageDataURL = $"data:image/{ext};base64,{binary}";
-        return imageDAtaUrl;
+        return imageDataURL;
         }
     }
     

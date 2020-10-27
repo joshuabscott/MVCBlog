@@ -11,11 +11,11 @@ namespace MVCBlog.Models
     {
         #region BlogUser
         [Required]
-        [StringLength(50)]
+        [StringLength(40)]
         public string FirstName { get; set; }
 
         [Required]
-        [StringLength(50)]
+        [StringLength(40)]
         public string LastName { get; set; }
 
         public string DisplayName { get; set; }

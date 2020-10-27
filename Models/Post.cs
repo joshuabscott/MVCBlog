@@ -8,6 +8,7 @@ namespace MVCBlog.Models
 {
     public class Post
     {
+        //Keys
         #region Keys 
         public int Id { get; set; }
         public int BlogId { get; set; }

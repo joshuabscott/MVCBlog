@@ -15,9 +15,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Name)
             </th>
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.URL)
-            </th>
+            </th>*@
             <th></th>
         </tr>
     </thead>
@@ -27,11 +27,12 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.URL)
-            </td>
+            </td>*@
             <td>
-                <a asp-controller="Posts" asp-action="ShowPosts" asp-route-id="@item.Id">Show Posts</a> |
+                <a asp-controller="Posts" asp-action="BlogPosts" asp-route-id="@item.Id">Blog Posts</a> |
+                @*<a asp-controller="Posts" asp-action="ShowPosts" asp-route-id="@item.Id">Show Posts</a> |*@
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
