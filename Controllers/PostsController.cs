@@ -42,7 +42,11 @@ namespace MVCBlog.Controllers
             var applicationDbContext = _context.Posts.Include(p => p.Blog);
             return View(await applicationDbContext.ToListAsync());
         }
-
+        /// <summary>
+        /// //////////////////////////////////////////////////////////////////////////////////////////////////
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         // GET: Posts/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -61,7 +65,11 @@ namespace MVCBlog.Controllers
 
             return View(post);
         }
-
+        /// <summary>
+        /// //////////////////////////////////////////////////////////////////////////////////////////////////
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         // GET: Posts/Create
         public IActionResult Create(int? id) {
             var newPost = new Post()

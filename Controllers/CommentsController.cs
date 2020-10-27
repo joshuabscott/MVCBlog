@@ -53,7 +53,11 @@ namespace MVCBlog.Controllers
             ViewData["PostId"] = new SelectList(_context.Posts, "Id", "Id");
             return View();
         }
-
+        /// <summary>
+        /// /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// </summary>
+        /// <param name="comment"></param>
+        /// <returns></returns>
         // POST: Comments/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -71,7 +75,11 @@ namespace MVCBlog.Controllers
             ViewData["PostId"] = new SelectList(_context.Posts, "Id", "Id", comment.PostId);
             return View(comment);
         }
-
+        /// <summary>
+        /// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         // GET: Comments/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
