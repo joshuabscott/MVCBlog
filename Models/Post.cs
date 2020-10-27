@@ -17,6 +17,7 @@ namespace MVCBlog.Models
         #region Post Properties
         //Describe the things that a blog post have
 
+        public string FileName { get; set; }
         public string Title { get; set; }
         public string Abstract { get; set; }
         public string Body { get; set; }
@@ -25,11 +26,9 @@ namespace MVCBlog.Models
 
         
         public string Content { get; set; }
-        public byte[] Image { set;
-            get{
-                return "";
-            }
-        }
+        public byte[] Image { get; set; }
+         
+        
 
         public DateTimeOffset Created { get; set; }
         public DateTimeOffset? Updated { get; set; }
@@ -51,10 +50,11 @@ namespace MVCBlog.Models
             Tags = new HashSet<Tag>();
         }
 
-        public 
+       
         #endregion
 
         #region Navigation
+
         #endregion
     }
 }

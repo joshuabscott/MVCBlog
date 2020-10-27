@@ -28,11 +28,11 @@ namespace MVCBlog.Controllers
             }
 
             var blog = await _context.Blogs.FindAsync(id);
+            var posts = _context.Posts.Where(p => p.BlogId == id);       //Linking posts to blog topic
             if (posts == null)
             {
                 return NotFound();
             }
-            var posts = _context.Posts.Where(p => p.BlogId == id);       //Linking posts to blog topic
             return View("Index", await posts.ToListAsync());
         }
 
@@ -63,12 +63,15 @@ namespace MVCBlog.Controllers
         }
 
         // GET: Posts/Create
-        public IActionResult Create(int? id);
+        public IActionResult Create(int? id) {
             var newPost = new Post()
             {
-                BlogId = (int)id};
-            }
+                BlogId = (int)id };
+
             return View(newPost);
+        }
+    
+
         //{ 
         //    if (id = null)
         //    {
@@ -83,12 +86,12 @@ namespace MVCBlog.Controllers
         //    return View(newpost);
         //}
 
-        var ImageHelper = new ImageHelper();
-        if (post.Image != null)
-            {
-            ViewDatga["Image"] = ImageHelper.GetImage(post);
-            }
-        return View(post);
+        ////var ImageHelper = new ImageHelper();
+        //if (post.Image != null)
+        //    {
+        //    ViewDatga["Image"] = ImageHelper.GetImage(post);
+        //    }
+        //return View(post);
 
         // POST: Posts/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
