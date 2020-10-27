@@ -28,8 +28,6 @@ namespace MVCBlog.Models
         public string Content { get; set; }
         public byte[] Image { get; set; }
          
-        
-
         public DateTimeOffset Created { get; set; }
         public DateTimeOffset? Updated { get; set; }
         // In Microsoft doc this is public type type
@@ -45,7 +43,6 @@ namespace MVCBlog.Models
         // // var post = new Post();
         public Post()
         {
-
             Comments = new HashSet<Comment>();
             Tags = new HashSet<Tag>();
         }

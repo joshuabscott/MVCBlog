@@ -4,7 +4,9 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Internal;
 using Microsoft.Extensions.Logging;
+using MVCBlog.Data;
 using MVCBlog.Models;
 
 namespace MVCBlog.Controllers
@@ -12,15 +14,17 @@ namespace MVCBlog.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly ApplicationDbContext _context;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, ApplicationDbContext context)
         {
             _logger = logger;
+            _context = context;
         }
 
         public IActionResult Index()
         {
-            return View();
+            return View(_context.Posts.Where(p => p.IsPublished).OrderByDescending(p => p.Created).ToList());
         }
 
         public IActionResult Privacy()
