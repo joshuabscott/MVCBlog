@@ -34,6 +34,7 @@
     <link rel="stylesheet" href="~/css/skin/skin-1.css" />
     <!-- /Bootstrap CSS Done-->
     <link href="~/css/bootstrap.css" rel="stylesheet" />
+   
 </head>
 
 
@@ -73,10 +74,10 @@
                                         <a href="C:\Users\admin\source\repos\MVCBlog\Views\Home\Index.cshtml">Start <i class="fa fa-chevron-down"></i></a>
                                         <ul class="sub-menu">
                                             @*<li><a href="index.html">Home 01</a></li>
-                                              <li><a href="index-2.html">Home 02</a></li>
-                                            <li><a href="index-3.html">Home 03</a></li>
-                                            <li><a href="index-4.html">Home 04</a></li>
-                                            <li><a href="index-5.html">Home 05</a></li>*@
+                                                  <li><a href="index-2.html">Home 02</a></li>
+                                                <li><a href="index-3.html">Home 03</a></li>
+                                                <li><a href="index-4.html">Home 04</a></li>
+                                                <li><a href="index-5.html">Home 05</a></li>*@
                                         </ul>
                                     </li>
 
@@ -611,7 +612,16 @@
     <script src="~/js/custom.js"></script><!-- CUSTOM FUCTIONS  -->
     <script src="~/js/dz.carousel.js"></script><!-- SORTCODE FUCTIONS -->
     <script src="~/js/dz.ajax.js"></script><!-- CONTACT JS  -->
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script><!-- TinyMCE RichTeckEditor  -->
     <!-- Done switching script and links -->
+
+    <!-- /Tinymce Done-->
+    <script src="//cdn.tiny.cloud/1/3lwulzgbibotwwht2k2991x7r701wvjdbqxtg24b43c6z3sk/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>
+        tinymce.init({
+            selector: '#Body'
+        });
+    </script>
 
     @RenderSection("Scripts", required: false)
 </body>

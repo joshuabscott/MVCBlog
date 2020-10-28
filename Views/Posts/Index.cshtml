@@ -43,6 +43,9 @@
         <tr>
 
             <td>
+                @Html.DisplayFor(modelItem => item.Blog.Id)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Title)
             </td>
             <td>
@@ -54,7 +57,7 @@
             <td>
                 <img class="img-fluid rounded" src="@ImageHelper.GetImage(item)" />
             </td>
-           
+
             <td>
                 @Html.DisplayFor(modelItem => item.Created)
             </td>

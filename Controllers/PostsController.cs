@@ -70,6 +70,10 @@ namespace MVCBlog.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
+        /// 
+
+
+
         // GET: Posts/Create
         public IActionResult Create(int? id) {
             var newPost = new Post()
