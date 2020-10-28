@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -26,6 +27,7 @@ namespace MVCBlog.Controllers
         }
 
         // GET: Blogs/Details/5
+        [AllowAnonymous]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -43,7 +45,10 @@ namespace MVCBlog.Controllers
             return View(blog);
         }
 
+        /// /////////////////////////////////////////////////////////////////////////////////////////////////
+
         // GET: Blogs/Create
+        [Authorize(Roles = "Admin, Moderator")]
         public IActionResult Create()
         {
             return View();
@@ -66,6 +71,7 @@ namespace MVCBlog.Controllers
         }
 
         // GET: Blogs/Edit/5
+        [Authorize(Roles = "Admin, Moderator")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -117,6 +123,7 @@ namespace MVCBlog.Controllers
         }
 
         // GET: Blogs/Delete/5
+        [Authorize(Roles = "Admin, Moderator")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -135,6 +142,7 @@ namespace MVCBlog.Controllers
         }
 
         // POST: Blogs/Delete/5
+        [Authorize(Roles = "Admin, Moderator")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

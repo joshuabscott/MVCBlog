@@ -46,18 +46,8 @@ namespace MVCBlog.Controllers
             return View(comment);
         }
 
-        // GET: Comments/Create
-        public IActionResult Create()
-        {
-            ViewData["BlogUserId"] = new SelectList(_context.Users, "Id", "Id");
-            ViewData["PostId"] = new SelectList(_context.Posts, "Id", "Id");
-            return View();
-        }
-        /// <summary>
-        /// /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        /// </summary>
-        /// <param name="comment"></param>
-        /// <returns></returns>
+        /// ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+ 
         // POST: Comments/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -67,19 +57,24 @@ namespace MVCBlog.Controllers
         {
             if (ModelState.IsValid)
             {
+                var email = HttpContext.User.Identity.Name;
+                var BlogUser = _context.Users.FirstOrDefault(uint => uint.Email == email).Id;
+
+                comment.Created = DateTimeOffset.Now;
+                comment.Updated = DateTimeOffset.Now;
+                comment.Content = userComment;
+                comment.BlogUserId = bloguserid;
+
                 _context.Add(comment);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Details", "Posts", new { id = comment.PostId});
             }
-            ViewData["BlogUserId"] = new SelectList(_context.Users, "Id", "Id", comment.BlogUserId);
-            ViewData["PostId"] = new SelectList(_context.Posts, "Id", "Id", comment.PostId);
+            //ViewData["BlogUserId"] = new SelectList(_context.Users, "Id", "Id", comment.BlogUserId);
+            //ViewData["PostId"] = new SelectList(_context.Posts, "Id", "Id", comment.PostId);
             return View(comment);
         }
-        /// <summary>
         /// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+        
         // GET: Comments/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {

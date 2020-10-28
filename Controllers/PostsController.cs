@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -30,7 +31,7 @@ namespace MVCBlog.Controllers
             }
 
             var blog = await _context.Blogs.FindAsync(id);
-            var posts = _context.Posts.Where(p => p.BlogId == id);       //Linking posts to blog topic
+            var posts = _context.Posts.Where(p => p.BlogId == id);  //Linking posts to blog topic
             if (posts == null)
             {
                 return NotFound();
@@ -44,11 +45,9 @@ namespace MVCBlog.Controllers
             var applicationDbContext = _context.Posts.Include(p => p.Blog);
             return View(await applicationDbContext.ToListAsync());
         }
-        /// <summary>
+       
         /// //////////////////////////////////////////////////////////////////////////////////////////////////
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+        
         // GET: Posts/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -59,23 +58,22 @@ namespace MVCBlog.Controllers
 
             var post = await _context.Posts
                 .Include(p => p.Blog)
+                .Include(p => p.Comments)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (post == null)
             {
                 return NotFound();
             }
-
+            // for each comment load BlogUser.
+            foreach(var comment in post.Comments.ToList())
+            {
+                comment.BlogUser = await _context.Users.FindAsync(comment.BlogUserId);
+            }
             return View(post);
         }
-        /// <summary>
+       
         /// //////////////////////////////////////////////////////////////////////////////////////////////////
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        /// 
-
-
-
+       
         // GET: Posts/Create
         public IActionResult Create(int? id)
         {
@@ -100,51 +98,35 @@ namespace MVCBlog.Controllers
             }
             return View();
         }
-        //    var newPost = new Post()
-        //    BlogId = (int)id };
-
-        //return View(newPost);
-
-
-
-    //{ 
-    //    if (id = null)
-    //    {
-    //        return NotFound();
-    //    }
-    //    var model = new Post() { BlogId = (int)id };
-    //    return View(model);
-    //}
-    //{
-    //    ViewData["BlogId"] = new SelectList(_context.Blogs, "Id", "Id");
-    //     var newpost = new Post {BlogId = (int)id};
-    //    return View(newpost);
-    //}
-
-    ////var ImageHelper = new ImageHelper();
-    //if (post.Image != null)
-    //    {
-    //    ViewDatga["Image"] = ImageHelper.GetImage(post);
-    //    }
-    //return View(post);
-
+        
     // POST: Posts/Create
     // To protect from overposting attacks, enable the specific properties you want to bind to, for 
     // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,BlogId,Title,Abstract,Body,IsPublished")] Post post)
-        {
-            if (ModelState.IsValid)
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Create([Bind("Id,BlogId,Title,Abstract,Body,IsPublished")] Post post)
+    {
+        if (ModelState.IsValid)
             {
                 post.Created = DateTimeOffset.Now;
+                post.Created = DateTimeOffset.Now;
+                post.Slug = Regex.Replace(post.Title.ToLower(), @"\s", "-");
+                //Image to DataVBase
+                if(ImageHelper != null)
+                {
+                    var imageHelper = new ImageHelper();
+                    imageHelper.WriteImage(post, image);
+                }
+
                 _context.Add(post);
                 await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Index));
+
             }
-            ViewData["BlogId"] = new SelectList(_context.Blogs, "Id", "Id", post.BlogId);
+            ViewData["BlogId"] = new SelectList(_context.Blogs, "Id", "Name", post.BlogId);
             return View(post);
         }
+
 
         // GET: Posts/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -159,8 +141,12 @@ namespace MVCBlog.Controllers
             {
                 return NotFound();
             }
-            ViewData["BlogId"] = new SelectList(_context.Blogs, "Id", "Id", post.BlogId);
-            return View(post);
+            ViewData["BlogName"] = blog.Name;
+            ViewData["BlogId"] = blog.Id;
+
+            var blogPosts = await _context.Posts.Where(p => p.BlogId == blog.Id).ToListAsync();
+            //ViewData["BlogId"] = new SelectList(_context.Blogs, "Id", "Id", post.BlogId);
+            return View(blogPosts);
         }
 
         // POST: Posts/Edit/5
@@ -168,7 +154,7 @@ namespace MVCBlog.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,BlogId,Title,Abstract,Body,Slug,Content,Image,Created,Updated,IsPublished")] Post post)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,BlogId,Title,Abstract,Body,Slug,Content,Image,Created,Updated,IsPublished,ImageDataUrl")] Post post)
         {
             if (id != post.Id)
             {
@@ -179,6 +165,7 @@ namespace MVCBlog.Controllers
             {
                 try
                 {
+                    post.Updated = DateTimeOffset.Now;
                     _context.Update(post);
                     await _context.SaveChangesAsync();
                 }
@@ -193,7 +180,7 @@ namespace MVCBlog.Controllers
                         throw;
                     }
                 }
-                //return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Index));
             }
             ViewData["BlogId"] = new SelectList(_context.Blogs, "Id", "Id", post.BlogId);
             return View(post);

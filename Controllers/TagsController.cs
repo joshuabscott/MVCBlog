@@ -48,7 +48,7 @@ namespace MVCBlog.Controllers
         // GET: Tags/Create
         public IActionResult Create()
         {
-            ViewData["PostId"] = new SelectList(_context.Posts, "Id", "Id");
+            ViewData["PostId"] = new SelectList(_context.Posts, "Id", "Title");
             return View();
         }
 
@@ -82,7 +82,7 @@ namespace MVCBlog.Controllers
             {
                 return NotFound();
             }
-            ViewData["PostId"] = new SelectList(_context.Posts, "Id", "Id", tag.PostId);
+            ViewData["PostId"] = new SelectList(_context.Posts, "Id", "Title", tag.PostId);
             return View(tag);
         }
 

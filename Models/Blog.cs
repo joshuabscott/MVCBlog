@@ -7,7 +7,6 @@ namespace MVCBlog.Models
 {
     public class Blog
     {
-
         //This is intended for categorization of posts
         #region Keys
 
@@ -20,7 +19,7 @@ namespace MVCBlog.Models
         #region Blog Properties
 
         //  public List<Post> Posts { get; set; }
-        #endregion
+
         //  public Blog()
         //  {
         //      Posts = new List<Post>();
@@ -30,7 +29,7 @@ namespace MVCBlog.Models
         //{
         //    Posts = new HashSet<Post>();
         //}
-
+        #endregion
         public virtual ICollection<Post> Posts { get; set; } = new HashSet<Post>();
 
         #region Navigation

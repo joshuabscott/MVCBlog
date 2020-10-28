@@ -13,6 +13,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MVCBlog.Models;
+using MVCBlog.Utilities;
 
 namespace MVCBlog
 {
@@ -31,16 +32,24 @@ namespace MVCBlog
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
+
             services.AddDefaultIdentity<BlogUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddControllersWithViews();
             services.AddRazorPages();
+
+            services.AddTransient<SeedHelper>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, SeedHelper)
         {
+            seedHelper.SeedRoles();
+            //CAll the SeedUsers method
+
+            //CALL the AssignRoles method
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -67,6 +76,7 @@ namespace MVCBlog
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
+            
         }
     }
 }
