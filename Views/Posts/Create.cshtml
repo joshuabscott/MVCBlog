@@ -11,15 +11,20 @@
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create" enctype="multipart/form-data">
+
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            @*<div class="form-group">
-                <label asp-for="BlogId" class="control-label"></label>
-                <select asp-for="BlogId" class ="form-control" asp-items="ViewBag.BlogId"></select>
-            </div>*@
-
+            @if (Model == null) 
+            {
+                <div class="form-group">
+                    <label asp-for="BlogId" class="control-label"></label>
+                    <select asp-for="BlogId" class ="form-control" asp-items="ViewBag.BlogId"></select>
+                </div>
+            }
+            else
             @*Hide from User*@
-            @Html.HiddenFor(model => model.BlogId);
-
+            {
+                @Html.HiddenFor(model => model.BlogId);
+            }
             <div class="form-group">
                 <label asp-for="Title" class="control-label"></label>
                 <input asp-for="Title" class="form-control" />

@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.EntityFrameworkCore;
 using MVCBlog.Data;
 using MVCBlog.Models;
@@ -75,40 +77,61 @@ namespace MVCBlog.Controllers
 
 
         // GET: Posts/Create
-        public IActionResult Create(int? id) {
-            var newPost = new Post()
+        public IActionResult Create(int? id)
+        {
+            if (id == null)
             {
-                BlogId = (int)id };
-
-            return View(newPost);
+                ViewData["BlogId"] = new SelectList(_context.Blogs, "Id", "Name");
+            }
+            else
+            {
+                var blog = _context.Blogs.Find(id);
+                if (blog == null)
+                {
+                    return NotFound();
+                }
+                var newPost = new Post()
+                {
+                    BlogId = (int)id
+                };
+                ViewData["BlogName"] = blog.Name;
+                ViewData["BlogId"] = id;
+                return View(newPost);
+            }
+            return View();
         }
-    
+        //    var newPost = new Post()
+        //    BlogId = (int)id };
 
-        //{ 
-        //    if (id = null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    var model = new Post() { BlogId = (int)id };
-        //    return View(model);
-        //}
-        //{
-        //    ViewData["BlogId"] = new SelectList(_context.Blogs, "Id", "Id");
-        //     var newpost = new Post {BlogId = (int)id};
-        //    return View(newpost);
-        //}
+        //return View(newPost);
 
-        ////var ImageHelper = new ImageHelper();
-        //if (post.Image != null)
-        //    {
-        //    ViewDatga["Image"] = ImageHelper.GetImage(post);
-        //    }
-        //return View(post);
 
-        // POST: Posts/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+
+    //{ 
+    //    if (id = null)
+    //    {
+    //        return NotFound();
+    //    }
+    //    var model = new Post() { BlogId = (int)id };
+    //    return View(model);
+    //}
+    //{
+    //    ViewData["BlogId"] = new SelectList(_context.Blogs, "Id", "Id");
+    //     var newpost = new Post {BlogId = (int)id};
+    //    return View(newpost);
+    //}
+
+    ////var ImageHelper = new ImageHelper();
+    //if (post.Image != null)
+    //    {
+    //    ViewDatga["Image"] = ImageHelper.GetImage(post);
+    //    }
+    //return View(post);
+
+    // POST: Posts/Create
+    // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+    // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+    [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,BlogId,Title,Abstract,Body,IsPublished")] Post post)
         {
