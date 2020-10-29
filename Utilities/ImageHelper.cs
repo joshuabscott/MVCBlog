@@ -19,11 +19,15 @@ namespace MVCBlog.Utilities
             byte[] imageBytes = ms.ToArray();
             ms.Close();
             ms.Dispose();
-            var binary = Convert.ToBase64String(imageBytes);
-            var ext = Path.GetExtension(post.FileName);
-            post.ImageDataUrl = $"data:image/{ext};base64,{binary}";
-           
+            
+
+        }
+        public static string DecodeImage(byte[] imageData, string fileName)
+        {
+            var binary = Convert.ToBase64String(imageData);
+            var ext = Path.GetExtension(fileName);
+            string imageDataUrl = $"data:image/{ext};base64,{binary}";
+            return imageDataUrl;
         }
     }
-    
 }

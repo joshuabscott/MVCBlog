@@ -24,6 +24,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Abstract)
             </th>
+            <th>
+                <img src="@ImageHelper.DecodeImage(Item.Image, Item.FileName)" />
+            </th>
             @*<th>
                 @Html.DisplayNameFor(model => model.Body)
             </th>*@
@@ -57,7 +60,7 @@
                 @Html.Raw(item.Body)
             </td>
             <td>
-                <img class="img-fluid rounded" src="@ImageHelper.GetImage(item)" />
+                <img class="img-fluid rounded" src="@ImageHelper.Image(item)" />
             </td>
 
             <td>

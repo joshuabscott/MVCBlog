@@ -68,7 +68,7 @@
                                     <a href="MVCBlog\Views\Home\Index.cshtml"><img src="images/logo-white.png" alt="" /></a>
                                 </div>
                                 <partial name="_LoginPartial"
-                                @await Component.InvokeAsync("TopNav")
+                                {@await Component.InvokeAsync("TopNav")}
 
                                 <ul class="nav navbar-nav">
                                     <!-- main Start -->
@@ -84,7 +84,7 @@
                                                 <li><a href="index-5.html">Home 05</a></li>*@
                                         <!--</ul>-->
                                     </li>
-                                    @if (User.IsInRole("Admin"))
+                                    {@if (User.IsInRole("Admin"))}
                                     <!-- Blogs -->
                                     <li>
                                         <a class="nav-link text-dark" asp-area="" asp-controller="Blogs" asp-action="Create">Create Blog</a>
@@ -93,7 +93,7 @@
                                             <li><a href="post-standart.html">Post Standart</a></li>
                                         </ul>*@
                                     </li>
-                                    @if (User.IsInRole("Admin"))
+                                    {@if (User.IsInRole("Admin"))}
                                     <!-- Posts -->
                                     <li>
                                         <a class="nav-link text-dark" asp-area="" asp-controller="Posts" asp-action="Create">Create Post</a>

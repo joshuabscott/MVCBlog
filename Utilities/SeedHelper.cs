@@ -53,7 +53,7 @@ namespace MVCBlog.Utilities
                 var moderator = new BlogUser()
                 {
                     Email = "JoshuaBScott@outlook.com",
-                    UserName = "JoshBScott",
+                    UserName = "JBScott",
                     FirstName = "Josh",
                     LastName = "Scott",
                     EmailConfirmed = true

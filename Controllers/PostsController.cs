@@ -31,8 +31,8 @@ namespace MVCBlog.Controllers
         [Authorize(Roles = "Admin, Moderator")]
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Posts.Include(p => p.Blog);
-            return View(await applicationDbContext.ToListAsync());
+            var posts = _context.Posts.Include(p => p.Blog);
+            return View(await posts.ToListAsync());
         }
 
         /// //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -59,6 +59,7 @@ namespace MVCBlog.Controllers
             {
                 comment.BlogUser = await _context.Users.FindAsync(comment.BlogUserId);
             }
+            ViewData["Image"] = ImageHelper.DecodeImage(post.Image, post.FileName);
             return View(post);
         }
 
@@ -107,7 +108,7 @@ namespace MVCBlog.Controllers
                 if(ImageHelper != null)
                 {
                     var imageHelper = new ImageHelper();
-                    imageHelper.GetImage(post, image);
+                    imageHelper.GetImage(post, Image);
                 }
 
                 _context.Add(post);
@@ -156,10 +157,10 @@ namespace MVCBlog.Controllers
             {
                 try
                 {
-                    if (image != null)
+                    if (Image != null)
                     {
                         var imageHelper = new ImageHelper();
-                        imageHelper.GetImage(post, image);
+                        imageHelper.GetImage(post, Image);
                     }
                     post.Updated = DateTime.Now;
                     _context.Update(post);
