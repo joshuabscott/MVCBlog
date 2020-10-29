@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MVCBlog.Data;
 using MVCBlog.Models;
+using MVCBlog.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MVCBlog.Controllers
 {

@@ -8,9 +8,14 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MVCBlog.Data;
 using MVCBlog.Models;
+using MVCBlog.Enums;
+using MVCBlog.ViewModels;
+
 
 namespace MVCBlog.Controllers
+
 {
+    [Authorize(Roles = "Admin, Moderator")]
     public class BlogsController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -27,7 +32,6 @@ namespace MVCBlog.Controllers
         }
 
         // GET: Blogs/Details/5
-        [AllowAnonymous]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -45,10 +49,7 @@ namespace MVCBlog.Controllers
             return View(blog);
         }
 
-        /// /////////////////////////////////////////////////////////////////////////////////////////////////
-
         // GET: Blogs/Create
-        [Authorize(Roles = "Admin, Moderator")]
         public IActionResult Create()
         {
             return View();
@@ -59,7 +60,8 @@ namespace MVCBlog.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,URL")] Blog blog)
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> Create([Bind("Id,Name,Url")] Blog blog)
         {
             if (ModelState.IsValid)
             {
@@ -71,7 +73,6 @@ namespace MVCBlog.Controllers
         }
 
         // GET: Blogs/Edit/5
-        [Authorize(Roles = "Admin, Moderator")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -92,7 +93,7 @@ namespace MVCBlog.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,URL")] Blog blog)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Url")] Blog blog)
         {
             if (id != blog.Id)
             {
@@ -123,7 +124,6 @@ namespace MVCBlog.Controllers
         }
 
         // GET: Blogs/Delete/5
-        [Authorize(Roles = "Admin, Moderator")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -142,7 +142,6 @@ namespace MVCBlog.Controllers
         }
 
         // POST: Blogs/Delete/5
-        [Authorize(Roles = "Admin, Moderator")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

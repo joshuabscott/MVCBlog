@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using MVCBlog.Data;
 using MVCBlog.Models;
 using MVCBlog.Enums;
+using MVCBlog.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MVCBlog.Controllers
 {
@@ -21,6 +23,7 @@ namespace MVCBlog.Controllers
         }
 
         // GET: Comments
+        [Authorize(Roles = "Admin, Moderator")]
         public async Task<IActionResult> Index()
         {
             var applicationDbContext = _context.Comments.Include(c => c.BlogUser).Include(c => c.Post);
@@ -28,6 +31,7 @@ namespace MVCBlog.Controllers
         }
 
         // GET: Comments/Details/5
+        [Authorize(Roles = "Admin, Moderator")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -47,40 +51,48 @@ namespace MVCBlog.Controllers
             return View(comment);
         }
 
-        /// ///////////////////////////////////////////////////////////////////////////////////////////////////////////
- 
+        // GET: Comments/Create
+        [Authorize(Roles = "Admin, Moderator")]
+        public IActionResult Create()
+        {
+            ViewData["AuthorId"] = new SelectList(_context.Set<BlogUser>(), "Id", "FirstName");
+            ViewData["PostId"] = new SelectList(_context.Posts, "Id", "Title");
+            return View();
+        }
+
         // POST: Comments/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind(",PostId,")] Comment comment, string userComment)
+        public async Task<IActionResult> Create([Bind("PostId")] Comment comment, string userComment)
         {
             if (ModelState.IsValid)
             {
                 var email = HttpContext.User.Identity.Name;
-                var BlogId = _context.Users.FirstOrDefault(u => u.Email == email).Id;
-                var BlogUserId = _context.Users.FirstOrDefault(u => u.Email == email);
+                var blogUserId = _context.Users.FirstOrDefault(u => u.Email == email).Id;
+                var blogUser = _context.Users.FirstOrDefault(u => u.Email == email);
                 var post = _context.Posts.FirstOrDefault(p => p.Id == comment.PostId);
 
-                comment.Created = DateTimeOffset.Now;
-                comment.Updated = DateTimeOffset.Now;
+                comment.Created = DateTime.Now;
+                comment.Updated = DateTime.Now;
                 comment.Body = userComment;
-                comment.BlogUserId = bloguserid;
-                comment.BlogUser = bloguser;
+                comment.BlogUserId = blogUserId;
+                comment.BlogUser = blogUser;
                 comment.Post = post;
 
                 _context.Add(comment);
                 await _context.SaveChangesAsync();
-                return RedirectToAction("Details", "Posts", new { id = comment.PostId});
+                //return Redirect($"~/Posts/Details/{comment.PostId}");
+                return RedirectToAction("Details", "Posts", new { id = comment.PostId });
             }
-            ViewData["BlogUserId"] = new SelectList(_context.Users, "Id", "Id", comment.BlogUserId);
+            ViewData["AuthorId"] = new SelectList(_context.Set<BlogUser>(), "Id", "Id", comment.BlogUserId);
             ViewData["PostId"] = new SelectList(_context.Posts, "Id", "Id", comment.PostId);
             return View(comment);
         }
-        /// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        
+
         // GET: Comments/Edit/5
+        [Authorize(Roles = "Admin, Moderator")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -93,8 +105,8 @@ namespace MVCBlog.Controllers
             {
                 return NotFound();
             }
-            ViewData["BlogUserId"] = new SelectList(_context.Users, "Id", "Id", comment.BlogUserId);
-            ViewData["PostId"] = new SelectList(_context.Posts, "Id", "Id", comment.PostId);
+            ViewData["AuthorId"] = new SelectList(_context.Set<BlogUser>(), "Id", "DisplayName", comment.BlogUserId);
+            ViewData["PostId"] = new SelectList(_context.Posts, "Id", "Title", comment.PostId);
             return View(comment);
         }
 
@@ -103,7 +115,8 @@ namespace MVCBlog.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,PostId,BlogUserId,Body,Created,Updated")] Comment comment)
+        [Authorize(Roles = "Admin, Moderator")]
+        public async Task<IActionResult> Edit(int id, [Bind("Id,PostId,AuthorId,Content,Created,Updated")] Comment comment)
         {
             if (id != comment.Id)
             {
@@ -131,13 +144,14 @@ namespace MVCBlog.Controllers
                 //return RedirectToAction(nameof(Index));
                 return RedirectToAction("Details", "Posts", new { id = comment.PostId });
             }
-            ViewData["BlogUserId"] = new SelectList(_context.Users, "Id", "Id", comment.BlogUserId);
+            ViewData["AuthorId"] = new SelectList(_context.Set<BlogUser>(), "Id", "Id", comment.BlogUserId);
             ViewData["PostId"] = new SelectList(_context.Posts, "Id", "Id", comment.PostId);
             //return View(comment);
             return RedirectToAction("Details", "Posts", new { id = comment.PostId });
         }
 
         // GET: Comments/Delete/5
+        [Authorize(Roles = "Admin, Moderator")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -160,6 +174,7 @@ namespace MVCBlog.Controllers
         // POST: Comments/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin, Moderator")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var comment = await _context.Comments.FindAsync(id);
