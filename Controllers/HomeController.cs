@@ -64,7 +64,8 @@ namespace MVCBlog.Controllers
             CategoryVMJS categories = new CategoryVMJS()
             {
                 Blogs = await blogs.ToListAsync(),
-                Posts = await posts.ToListAsync()
+                Posts = await posts.ToListAsync(),
+                Tags = await _context.Tag.ToListAsync()
             };
             return View("Index", categories);
         }

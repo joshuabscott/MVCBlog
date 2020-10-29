@@ -34,10 +34,11 @@ namespace MVCBlog.Controllers
             var applicationDbContext = _context.Posts.Include(p => p.Blog);
             return View(await applicationDbContext.ToListAsync());
         }
-       
+
         /// //////////////////////////////////////////////////////////////////////////////////////////////////
-        
+
         // GET: Posts/Details/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -100,7 +101,7 @@ namespace MVCBlog.Controllers
         if (ModelState.IsValid)
             {
                 post.Created = DateTimeOffset.Now;
-                post.Created = DateTimeOffset.Now;
+                post.Up = DateTimeOffset.Now;
                 post.Slug = Regex.Replace(post.Title.ToLower(), @"\s", "-");
                 //Image to DataVBase
                 if(ImageHelper != null)
