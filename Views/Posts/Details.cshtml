@@ -6,7 +6,6 @@
 
 <h1>Details</h1>
 
-
 <div class="row">
 
     <!-- Post Content Column -->
@@ -54,7 +53,8 @@
                     }
                     else
                     {
-                        <button class="btn noHover" disabled>Submit</button>
+                        @*<button class="btn noHover" disabled>Submit</button>*@
+                        <a class="btn btn-primary" asp-area="Identity" asp-page="/Account/Login">Login</a>
                     }
                 </form>
             </div>
@@ -74,15 +74,30 @@
 
                             <span style="font-size: 1rem; font-weight: 500; opacity: 0.65;">
                                 @comment.Created.ToString("MMM dd")
+
+                                @*<button class="editAnchor" onclick="ToggleEdit(@comment.Id)">Edit</button>*@
                             </span>
+
                         </h5>
-                        @comment.Content
-                        
+                        @Html.Raw(comment.Content)
+                        @*<form id="editForm-@comment.Id" class="editForm" asp-controller="Comments" asp-action="Edit" asp-route-id="@comment.Id">
+                                @Html.Hidden("Author", comment.Author)
+                                @Html.Hidden("AuthorId", comment.AuthorId)
+                                @Html.Hidden("Content", comment.Content)
+                                @Html.Hidden("Id", comment.Id)
+                                @Html.Hidden("Post", comment.Post)
+                                @Html.Hidden("PostId", Model.Id)
+                                @Html.Hidden("Created", comment.Created)
+                                @Html.Hidden("Updated", DateTime.Now)
+                                <textarea name="editedComment" class="form-control" rows="1">@Html.Raw(comment.Content)</textarea>
+                                <button class="btn btn-primary btn-sm" type="submit">Submit</button>
+                            </form>*@
                     </div>
                 </div>
             }
         </div>
-       
+        
+
     </div>
 
     <!-- Sidebar Widgets Column -->
@@ -103,7 +118,6 @@
             </div>
         </div>
 
-      
 
         <!-- Side Widget -->
         <div class="card my-4">
@@ -111,7 +125,7 @@
             <div class="card-body">
                 <div class="row pb-3">
                     <div class="col-4">
-                        <a href="https://mackenzie-weaver.netlify.app/"><img class="author_img rounded-circle" src="~/me100.png" alt="mackenzie weaver profile picture..." width="100"></a>
+                        <a href="https://mackenzie-weaver.netlify.app/" target="_blank"><img class="author_img rounded-circle" src="~/me100.png" alt="mackenzie weaver profile picture..." width="100"></a>
                     </div>
                     <div class="col">
                         <h4>Mackenzie Weaver</h4>
@@ -133,10 +147,8 @@
 
 </div>
 
-
-
-
-@*<div>
+@*<h1>Details</h1>
+    <div>
         <h4>Post</h4>
         <hr />
         <dl class="row">
@@ -153,10 +165,10 @@
                 @Html.DisplayFor(model => model.Abstract)
             </dd>
             <dt class = "col-sm-2">
-                @Html.DisplayNameFor(model => model.Body)
+                @Html.DisplayNameFor(model => model.Content)
             </dt>
             <dd class = "col-sm-10">
-                @Html.DisplayFor(model => model.Body)
+                @Html.DisplayFor(model => model.Content)
             </dd>
             <dt class = "col-sm-2">
                 @Html.DisplayNameFor(model => model.Slug)
@@ -165,10 +177,10 @@
                 @Html.DisplayFor(model => model.Slug)
             </dd>
             <dt class = "col-sm-2">
-                @Html.DisplayNameFor(model => model.Content)
+                @Html.DisplayNameFor(model => model.IsPublished)
             </dt>
             <dd class = "col-sm-10">
-                @Html.DisplayFor(model => model.Content)
+                @Html.DisplayFor(model => model.IsPublished)
             </dd>
             <dt class = "col-sm-2">
                 @Html.DisplayNameFor(model => model.Image)
@@ -189,16 +201,10 @@
                 @Html.DisplayFor(model => model.Updated)
             </dd>
             <dt class = "col-sm-2">
-                @Html.DisplayNameFor(model => model.IsPublished)
-            </dt>
-            <dd class = "col-sm-10">
-                @Html.DisplayFor(model => model.IsPublished)
-            </dd>
-            <dt class = "col-sm-2">
                 @Html.DisplayNameFor(model => model.Blog)
             </dt>
             <dd class = "col-sm-10">
-                @Html.DisplayFor(model => model.Blog.Id)
+                @Html.DisplayFor(model => model.Blog.Name)
             </dd>
         </dl>
     </div>
