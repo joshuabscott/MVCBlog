@@ -45,7 +45,7 @@ namespace MVCBlog
                 }
                 catch(Exception ex)
                 {
-
+                    Console.WriteLine(ex);
                 }
             }
         }

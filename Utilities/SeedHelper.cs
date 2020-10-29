@@ -11,11 +11,11 @@ namespace MVCBlog.Utilities
 {
     public class SeedHelper
     {
-        public static async Task GetDataAsync(UserManager<BlogUser>userManager,RoleManager<IdentityRole> roleManager)
+        public static async Task GetDataAsync(UserManager<BlogUser> userManager, RoleManager<IdentityRole> roleManager)
         {
             await SeedRoles(roleManager);
             await SeedAdmin(userManager);
-            await SeedAdmin(userManager);
+            await SeedModerator(userManager);
         }
         private static async Task SeedRoles(RoleManager<IdentityRole> roleManager)
         {
@@ -25,7 +25,7 @@ namespace MVCBlog.Utilities
 
         private static async Task SeedAdmin(UserManager<BlogUser> userManager)
         {
-            if(await userManager.FindByEmailAsync("JoshuaBScott@gmail.com") == null)
+            if (await userManager.FindByEmailAsync("JoshuaBScott@gmail.com") == null)
             {
                 var admin = new BlogUser()
                 {
@@ -35,74 +35,29 @@ namespace MVCBlog.Utilities
                     LastName = "Scott",
                     EmailConfirmed = true
                 };
+                await userManager.CreateAsync(admin, "!1Qazwsx");
+                await userManager.AddToRoleAsync(admin, Roles.Admin.ToString());
             }
         }
-            }
 
-  
-  /// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  
-        public async Task SeedData(UserManager<BlogUser> userManager, RoleManager<IdentityRole> roleManager)
+
+        private static async Task SeedModerator(UserManager<BlogUser> userManager)
         {
-            SeedRoles(roleManager);
-            SeedUsers(userManager);
-            AssignRoles(userManager);
-        }
-
-        private async Task SeedRoles(RoleManager<IdentityRole> roleManager)
-        {
-            var roles = new List<string> { "Admin", "Moderator" };
-
-            foreach (var role in roles)
+            if (await userManager.FindByEmailAsync("JoshuaBScott@outlook.com") == null)
             {
-                if (!await.roleManager.RoleExistsAsync(role))
+                var moderator = new BlogUser()
                 {
-                    await roleManager.CreateAsync(new IdentityRole { Name = role, NormalizedName = role.ToUpper() });
-                }
+                    Email = "JoshuaBScott@outlook.com",
+                    UserName = "JoshScott",
+                    FirstName = "Josh",
+                    LastName = "Scott",
+                    EmailConfirmed = true
+                };
+                await userManager.CreateAsync(moderator, "!1Qazwsx");
+                await userManager.AddToRoleAsync(moderator, Roles.Moderator.ToString());
             }
         }
 
-        public async Task SeedUsers(UserManager<BlogUser> userManager)
-        {
-            var userManager = UserStore<BlogUser>(db);
-            //if (db.Users.Any(userManager => u.Email == "Joshuabscott@gmail.com"))
-
-            if (db.Users.Any(userManager => u.Email == "Joshuabscott@gmail.com"))
-            {
-               var adminUser = new BlogUser()
-               {
-                 EmailTokenProvider = "Joshuabscott@gmail.com",
-                 UserName = "JoshScott",
-                 FirstName = "Josh",
-                 LastName = "Scott"
-               };
-            }
-        await userManager.CreateAsync(adminUser);
-        await userManager.AddToRoleAsync(adminUser, "Admin");
-    
-
-    var roles = new List<string> { "Admin", "Moderator" };
-    foreach(var role in roles)
-    {
-    if(!db.Roles.Any(RoleManager => ref.Name == role))
-    {
-    await roleManager.CreateAsync(new IdentityRole { Name = role, NormalizedName = role.ToUpper()});
     }
 }
-}
-
-        private async Task SeedUsers(UserManager<BlogUser> userManager)
-        {
-            //var userStore = new UserStore<BlogUser>(db);
-            
-            if(!db.Users.Any(u => u.Email == "Joshuabscott@gmail.com"))
-            {
-                await userManager.CreateAsync()
-                    new BlogUser(
-                    {
-
-                    });
-            }
-        }
-    }
-}
+        /// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
