@@ -11,6 +11,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Identity;
+using MVCBlog.Enums;
 
 namespace MVCBlog
 {
@@ -38,7 +39,7 @@ namespace MVCBlog
                 var services = scope.ServiceProvider;
                 try
                 {
-                    var context = services.GetRequiredService<ApplicationDbContext>();
+                    //var context = services.GetRequiredService<ApplicationDbContext>();
                     var userManager = services.GetRequiredService<UserManager<BlogUser>>();
                     var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
                     await SeedHelper.SeedDataAsync(userManager, roleManager);

@@ -33,7 +33,7 @@
         <hr>
 
         <!-- Post Content -->
-        @Html.Raw(Model.Content)
+        @Html.Raw(Model.Body)
 
         <hr>
 
@@ -70,7 +70,7 @@
                     @*<img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">*@
                     <div class="media-body ml-4">
                         <h5 class="mt-0">
-                            @comment.Author.FirstName @comment.Author.LastName
+                            @comment.BlogUser.FirstName @comment.BlogUser.LastName
 
                             <span style="font-size: 1rem; font-weight: 500; opacity: 0.65;">
                                 @comment.Created.ToString("MMM dd")
@@ -79,7 +79,7 @@
                             </span>
 
                         </h5>
-                        @Html.Raw(comment.Content)
+                        @Html.Raw(comment.Body)
                         @*<form id="editForm-@comment.Id" class="editForm" asp-controller="Comments" asp-action="Edit" asp-route-id="@comment.Id">
                                 @Html.Hidden("Author", comment.Author)
                                 @Html.Hidden("AuthorId", comment.AuthorId)

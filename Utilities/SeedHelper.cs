@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using MVCBlog.Data;
+using MVCBlog.Enums;
 using MVCBlog.Models;
 using System;
 using System.Collections.Generic;
@@ -40,6 +41,10 @@ namespace MVCBlog.Utilities
             }
         }
 
+        internal static Task SeedDataAsync(UserManager<BlogUser> userManager, RoleManager<IdentityRole> roleManager)
+        {
+            throw new NotImplementedException();
+        }
 
         private static async Task SeedModerator(UserManager<BlogUser> userManager)
         {

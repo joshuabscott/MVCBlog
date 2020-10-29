@@ -14,6 +14,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MVCBlog.Models;
 using MVCBlog.Utilities;
+using MVCBlog.Enums;
 
 namespace MVCBlog
 {
@@ -46,8 +47,8 @@ namespace MVCBlog
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, SeedHelper)
         {
-            seedHelper.SeedRoles();
-            //CAll the SeedUsers method
+            //seedHelper.SeedRoles();
+            ////CAll the SeedUsers method
 
             //CALL the AssignRoles method
             if (env.IsDevelopment())

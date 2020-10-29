@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MVCBlog.Data;
 using MVCBlog.Models;
+using MVCBlog.Enums;
 
 namespace MVCBlog.Controllers
 {
@@ -53,24 +54,28 @@ namespace MVCBlog.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,PostId,BlogUserId,Body,Created,Updated")] Comment comment)
+        public async Task<IActionResult> Create([Bind(",PostId,")] Comment comment, string userComment)
         {
             if (ModelState.IsValid)
             {
                 var email = HttpContext.User.Identity.Name;
-                var BlogUser = _context.Users.FirstOrDefault(uint => uint.Email == email).Id;
+                var BlogId = _context.Users.FirstOrDefault(u => u.Email == email).Id;
+                var BlogUserId = _context.Users.FirstOrDefault(u => u.Email == email);
+                var post = _context.Posts.FirstOrDefault(p => p.Id == comment.PostId);
 
                 comment.Created = DateTimeOffset.Now;
                 comment.Updated = DateTimeOffset.Now;
-                comment.Content = userComment;
+                comment.Body = userComment;
                 comment.BlogUserId = bloguserid;
+                comment.BlogUser = bloguser;
+                comment.Post = post;
 
                 _context.Add(comment);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Details", "Posts", new { id = comment.PostId});
             }
-            //ViewData["BlogUserId"] = new SelectList(_context.Users, "Id", "Id", comment.BlogUserId);
-            //ViewData["PostId"] = new SelectList(_context.Posts, "Id", "Id", comment.PostId);
+            ViewData["BlogUserId"] = new SelectList(_context.Users, "Id", "Id", comment.BlogUserId);
+            ViewData["PostId"] = new SelectList(_context.Posts, "Id", "Id", comment.PostId);
             return View(comment);
         }
         /// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -123,11 +128,13 @@ namespace MVCBlog.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                //return RedirectToAction(nameof(Index));
+                return RedirectToAction("Details", "Posts", new { id = comment.PostId });
             }
             ViewData["BlogUserId"] = new SelectList(_context.Users, "Id", "Id", comment.BlogUserId);
             ViewData["PostId"] = new SelectList(_context.Posts, "Id", "Id", comment.PostId);
-            return View(comment);
+            //return View(comment);
+            return RedirectToAction("Details", "Posts", new { id = comment.PostId });
         }
 
         // GET: Comments/Delete/5
