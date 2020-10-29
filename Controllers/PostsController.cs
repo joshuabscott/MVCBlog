@@ -101,13 +101,13 @@ namespace MVCBlog.Controllers
         if (ModelState.IsValid)
             {
                 post.Created = DateTimeOffset.Now;
-                post.Up = DateTimeOffset.Now;
+                post.Updated = DateTimeOffset.Now;
                 post.Slug = Regex.Replace(post.Title.ToLower(), @"\s", "-");
                 //Image to DataVBase
                 if(ImageHelper != null)
                 {
                     var imageHelper = new ImageHelper();
-                    imageHelper.WriteImage(post, image);
+                    imageHelper.GetImage(post, image);
                 }
 
                 _context.Add(post);
@@ -159,7 +159,7 @@ namespace MVCBlog.Controllers
                     if (image != null)
                     {
                         var imageHelper = new ImageHelper();
-                        imageHelper.WriteImage(post, image);
+                        imageHelper.GetImage(post, image);
                     }
                     post.Updated = DateTime.Now;
                     _context.Update(post);

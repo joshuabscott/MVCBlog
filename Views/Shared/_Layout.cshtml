@@ -67,24 +67,38 @@
                                 <div class="logo-header">
                                     <a href="MVCBlog\Views\Home\Index.cshtml"><img src="images/logo-white.png" alt="" /></a>
                                 </div>
-                                <ul class="nav navbar-nav">
+                                <partial name="_LoginPartial"
+                                @await Component.InvokeAsync("TopNav")
 
+                                <ul class="nav navbar-nav">
                                     <!-- main Start -->
                                     <li class="active">
-                                        <a href="MVCBlog\Views\Home\Index.cshtml">Start <i class="fa fa-chevron-down"></i></a>
-                                        <ul class="sub-menu">
+
+                                        @*<a href="MVCBlog\Views\Home\Index.cshtml">Start <i class="fa fa-chevron-down"></i></a>*@
+                                        <a class="nag-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                                        <!--<ul class="sub-menu">-->
                                             @*<li><a href="index.html">Home 01</a></li>
                                                   <li><a href="index-2.html">Home 02</a></li>
                                                 <li><a href="index-3.html">Home 03</a></li>
                                                 <li><a href="index-4.html">Home 04</a></li>
                                                 <li><a href="index-5.html">Home 05</a></li>*@
-                                        </ul>
+                                        <!--</ul>-->
                                     </li>
-
+                                    @if (User.IsInRole("Admin"))
+                                    <!-- Blogs -->
+                                    <li>
+                                        <a class="nav-link text-dark" asp-area="" asp-controller="Blogs" asp-action="Create">Create Blog</a>
+                                        @*<a href="C:\Users\admin\source\repos\MVCBlog\Views\Home\post-standart.html">Posts <i class="fa fa-chevron-down"></i></a>
+                                        <ul class="sub-menu">
+                                            <li><a href="post-standart.html">Post Standart</a></li>
+                                        </ul>*@
+                                    </li>
+                                    @if (User.IsInRole("Admin"))
                                     <!-- Posts -->
                                     <li>
-                                        <a href="C:\Users\admin\source\repos\MVCBlog\Views\Home\post-standart.html">Posts <i class="fa fa-chevron-down"></i></a>
-                                        <ul class="sub-menu">
+                                        <a class="nav-link text-dark" asp-area="" asp-controller="Posts" asp-action="Create">Create Post</a>
+                                        @*<a href="C:\Users\admin\source\repos\MVCBlog\Views\Home\post-standart.html">Posts <i class="fa fa-chevron-down"></i></a>*@
+                                        @*<ul class="sub-menu">
                                             <li><a href="post-standart.html">Post Standart</a></li>
                                             <li><a href="post-left-sidebar.html">Post Left Sidebar</a></li>
                                             <li><a href="post-full-width.html">Post Full Width</a></li>
@@ -98,14 +112,14 @@
                                             <li><a href="post-video.html">Post Video</a></li>
                                             <li><a href="post-navigation.html">Post With Navigation</a></li>
                                             <li><a href="post-open-gutenberg.html">Post Open Gutenberg</a></li>
-                                        </ul>
+                                        </ul>*@
                                     </li>
 
                                     <!-- Category -->
                                     <li class="has-mega-menu post-slider life-style">
 
                                         <a href="#">Category<i class="fa fa-chevron-down"></i></a>
-                                        <div class="mega-menu">
+                                        @*<div class="mega-menu">
                                             <div class="life-style-bx">
                                                 <div class="life-style-tabs">
                                                     <ul>
@@ -439,7 +453,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div>*@
                                     </li>
 
                                     <!-- Shop -->
@@ -455,7 +469,7 @@
 
                                     <!-- About -->
                                     <li><a href="MVCBlog\Views\Home\about-us.cshtml">About</a></li>
-                                    
+
                                     <!-- Contact -->
                                     <li><a href="MVCBlog\Views\Home\contact.html">Contact</a></li>
                                 </ul>

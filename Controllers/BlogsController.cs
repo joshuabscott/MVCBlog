@@ -32,6 +32,7 @@ namespace MVCBlog.Controllers
         }
 
         // GET: Blogs/Details/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -50,6 +51,7 @@ namespace MVCBlog.Controllers
         }
 
         // GET: Blogs/Create
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             return View();
@@ -60,7 +62,6 @@ namespace MVCBlog.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Create([Bind("Id,Name,Url")] Blog blog)
         {
             if (ModelState.IsValid)
