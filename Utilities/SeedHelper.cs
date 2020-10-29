@@ -11,33 +11,37 @@ namespace MVCBlog.Utilities
 {
     public class SeedHelper
     {
-        private ApplicationDbContext _context;
-
-        public SeedHelper(ApplicationDbContext context)
+        public static async Task GetDataAsync(UserManager<BlogUser>userManager,RoleManager<IdentityRole> roleManager)
         {
-            _context = context;
-            _userManager = userManager;
-            _roleManager = roleManager;
+            await SeedRoles(roleManager);
+            await SeedAdmin(userManager);
+            await SeedAdmin(userManager);
+        }
+        private static async Task SeedRoles(RoleManager<IdentityRole> roleManager)
+        {
+            await roleManager.CreateAsync(new IdentityRole(Roles.Admin.ToString()));
+            await roleManager.CreateAsync(new IdentityRole(Roles.Moderator.ToString()));
         }
 
-        public async Task SeedData()
+        private static async Task SeedAdmin(UserManager<BlogUser> userManager)
         {
-            await SeedRolesAsync();
-            await SeedUsersAndAssignAsync(userManager);
-        }
-        public async Task SeedRolesAsync(RoleManager<IdentityRole> roleManager)
-            
-          var roles = new List<string> { "Admin", "Moderator" };
-
-          foreach (var role in roles)
-          {
-             if (!await.roleManager.RoleExistsAsync(role))
-             {
-                    await roleManager.CreateAsync(new IdentityRole { Name = role, NormalizedName = role.ToUpper()
-    });
-                }
+            if(await userManager.FindByEmailAsync("JoshuaBScott@gmail.com") == null)
+            {
+                var admin = new BlogUser()
+                {
+                    Email = "JoshuaBScott@gmail.com",
+                    UserName = "JoshScott",
+                    FirstName = "Josh",
+                    LastName = "Scott",
+                    EmailConfirmed = true
+                };
             }
         }
+            }
+
+  
+  /// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  
         public async Task SeedData(UserManager<BlogUser> userManager, RoleManager<IdentityRole> roleManager)
         {
             SeedRoles(roleManager);
