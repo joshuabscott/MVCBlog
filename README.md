@@ -17,9 +17,9 @@
 
 ### Built With
 
-This app was built in visual studio using the .NET Framework Template but mostly leverages HTML, CSS, and Javascript. However the project also uses Bootstrap and jQuery.
+This app was built in visual studio using the .NET Framework Template but mostly leverages HTML, CSS, Javascript, and C#. The project also uses Bootstrap and jQuery.
 
-* [HTML](https://www.w3schools.com/html/)[ / CSS](https://www.w3schools.com/css/)[ / Javascript](https://www.w3schools.com/js/DEFAULT.asp)
+* [HTML](https://www.w3schools.com/html/)[ / CSS](https://www.w3schools.com/css/)[ / Javascript](https://www.w3schools.com/js/DEFAULT.asp)[ / C#](https://www.w3schools.com/c#/)
 * [Bootstrap](https://getbootstrap.com)
 * [JQuery](https://jquery.com)
 
@@ -29,8 +29,8 @@ This app was built in visual studio using the .NET Framework Template but mostly
 Just clone the repo and run it. 
 The js libraries that you'll need are already in the project like
   * Bootstrap
-  * accounting.js
-  * Currency Formatting
+  * .js
+  * 
 
 ### Installation
 
@@ -54,4 +54,5 @@ Contributions are what make the open source community such an amazing place to b
 ## Contact
 
 Josh Scott
-joshuabscott@gmail.com
+* email - J@joshscott.xyz
+* text/call - 323.334.0417
