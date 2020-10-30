@@ -66,7 +66,6 @@
         </div>
 
        
-
         <div id="commentsection">
             <!-- Single Comment -->
             @foreach (var comment in Model.Comments.OrderByDescending(c => c.Created))
@@ -76,33 +75,39 @@
                     <div class="media-body ml-4">
                         <h5 class="mt-0">
                             @comment.BlogUser.FirstName @comment.BlogUser.LastName
-
                             <span style="font-size: 1rem; font-weight: 500; opacity: 0.65;">
                                 @comment.Created.ToString("MMM dd")
-
-                                @*<button class="editAnchor" onclick="ToggleEdit(@comment.Id)">Edit</button>*@
+                               
+                                @if (User.Identity.Name == comment.BlogUser.Email)
+                                {
+                                    <button class="editAnchor" onclick="ToggleEdit(@comment.Id)">Edit</button>
+                                }
                             </span>
 
                         </h5>
-                        @Html.Raw(comment.Body)
-                        @*<form id="editForm-@comment.Id" class="editForm" asp-controller="Comments" asp-action="Edit" asp-route-id="@comment.Id">
-                                @Html.Hidden("Author", comment.Author)
-                                @Html.Hidden("AuthorId", comment.AuthorId)
-                                @Html.Hidden("Content", comment.Content)
-                                @Html.Hidden("Id", comment.Id)
-                                @Html.Hidden("Post", comment.Post)
-                                @Html.Hidden("PostId", Model.Id)
-                                @Html.Hidden("Created", comment.Created)
-                                @Html.Hidden("Updated", DateTime.Now)
-                                <textarea name="editedComment" class="form-control" rows="1">@Html.Raw(comment.Content)</textarea>
-                                <button class="btn btn-primary btn-sm" type="submit">Submit</button>
-                            </form>*@
+                        <div class="align-items-center">
+                            <p id="comment-@comment.Id" class="mb-1">@Html.Raw(comment.Body)</p>
+                        </div>
+                        <form id="editForm-@comment.Id" class="editForm" asp-controller="Comments" asp-action="Edit" asp-route-id="@comment.Id" style="display:none">
+                            @Html.Hidden("Created", comment.Created)
+                            @Html.Hidden("AuthorId", comment.BlogUserId)
+                            @Html.Hidden("Author", comment.BlogUser)
+
+                            @Html.Hidden("Updated", DateTimeOffset.Now)
+                            @Html.Hidden("PostId", Model.Id)
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" name="content" value="@Html.Raw(comment.Body)">
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary" type="submit">Submit</button>
+                                </div>
+                            </div>
+                           
+                        </form>
                     </div>
                 </div>
             }
         </div>
-        
-
+       
     </div>
 
     <!-- Sidebar Widgets Column -->
@@ -123,11 +128,11 @@
             </div>
         </div>
 
-        
+       
 
         <!-- Side Widget -->
         <div class="card my-4">
-            <h5 class="card-header">About the Developer</h5>
+            <h5 class="card-header">About the dev</h5>
             <div class="card-body">
                 <div class="row pb-3">
                     <div class="col-4">
@@ -135,7 +140,7 @@
                     </div>
                     <div class="col">
                         <h4>Josh Scott</h4>
-                        <p>Full Stack Web Developer</p>
+                        <p>Full Stack .Net Developer</p>
                         <div class="row social_icon justify-content-start">
                             <a href="https://www.linkedin.com/in/joshgreatscott/" class="mr-2 ml-3"><i class="fab fa-linkedin-in fa-lg"></i></a>
                             <a href="https://github.com/joshuabscott" class="mr-2 ml-2"><i class="fab fa-github fa-lg"></i></a>
@@ -144,8 +149,7 @@
                         </div>
                     </div>
                 </div>
-                <p>With a background in customer service and the hospitality industry, currently working as a software developer I am enjoying working with hardware and software in creative ways to solve headaches with data. 
-                Learning about software technologies everyday helps reveal connections we didn't understand before. What did you Lean today? Or did I get it wrong. Share in the Comments.</p>
+                <p>With a background in story about life.</p>
                 <div class="br"></div>
             </div>
         </div>
@@ -153,3 +157,4 @@
     </div>
 
 </div>
+

@@ -89,25 +89,25 @@ namespace MVCBlog.Controllers
     [ValidateAntiForgeryToken]
     [Authorize(Roles = "Admin")]
     public async Task<IActionResult> Create([Bind("Id,BlogId,Title,Abstract,Content,Slug,IsPublished,Image,Created,Updated,ImageDataUrl")] Post post, IFormFile image)
-    {
-        if (ModelState.IsValid)
         {
-            post.Created = DateTimeOffset.Now;
-            post.Updated = DateTimeOffset.Now;
-            post.Slug = Regex.Replace(post.Title.ToLower(), @"\s", "-");
-            if(image != null)
+            if (ModelState.IsValid)
             {
-                var imageHelper = new ImageHelper();
-                imageHelper.GetImage(post, image);
-            }
-            _context.Add(post);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+                post.Created = DateTimeOffset.Now;
+                post.Updated = DateTimeOffset.Now;
+                post.Slug = Regex.Replace(post.Title.ToLower(), @"\s", "-");
+                if (image != null)
+                {
+                    var imageHelper = new ImageHelper();
+                    imageHelper.GetImage(post, image);
+                }
+                _context.Add(post);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
 
+            }
+            ViewData["BlogId"] = new SelectList(_context.Blogs, "Id", "Name", post.BlogId);
+            return View(post);
         }
-        ViewData["BlogId"] = new SelectList(_context.Blogs, "Id", "Name", post.BlogId);
-        return View(post);
-    }
         // GET: Posts/Edit/5
         [Authorize(Roles = "Admin, Moderator")]
         public async Task<IActionResult> BlogPosts(int? id)
