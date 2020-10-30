@@ -29,8 +29,8 @@ This app was built in visual studio using the .NET Framework Template but mostly
 Just clone the repo and run it. 
 The js libraries that you'll need are already in the project like
   * Bootstrap
-  * accounting.js
-  * Currency Formatting
+  * .js
+  * 
 
 ### Installation
 
