@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@using MVCBlog.Data
+@using MVCBlog.Utilities
+@inject ApplicationDbContext db
+
+<!DOCTYPE html>
 
 <html lang="en">
 <head>
@@ -547,6 +551,11 @@
                 @RenderBody()
             </main>
         </div>
+
+        @foreach (var blog in BlogHelper.GetBlogs(db))
+        {
+            <h2>@blog.Name</h2>
+        }
 
         <!-- Footer -->
         <footer class="site-footer">

@@ -10,15 +10,18 @@ using MVCBlog.Models;
 using MVCBlog.Enums;
 using MVCBlog.ViewModels;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 
 namespace MVCBlog.Controllers
 {
     public class CommentsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<BlogUser> userManager;
 
-        public CommentsController(ApplicationDbContext context)
+        public CommentsController(ApplicationDbContext context, UserManager<BlogUser> manager)
         {
+            _userManager = manager;
             _context = context;
         }
 
@@ -65,7 +68,7 @@ namespace MVCBlog.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("PostId")] Comment comment, string userComment)
+        public async Task<IActionResult> Create([Bind("PostId")] Comment comment, string userComment, string commentContent)
         {
             if (ModelState.IsValid)
             {
