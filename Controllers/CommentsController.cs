@@ -19,7 +19,7 @@ namespace MVCBlog.Controllers
         private readonly ApplicationDbContext _context;
         private readonly UserManager<BlogUser> userManager;
 
-        public CommentsController(ApplicationDbContext context, UserManager<BlogUser> manager)
+        public CommentsController(ApplicationDbContext context, UserManager<BlogUser>manager)
         {
             //_userManager = manager;
             _context = context;
@@ -68,7 +68,7 @@ namespace MVCBlog.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("PostId")] Comment comment, string userComment, string commentContent)
+        public async Task<IActionResult> Create([Bind("PostId")] Comment comment, string userComment, string commentBody)
         {
             if (ModelState.IsValid)
             {
