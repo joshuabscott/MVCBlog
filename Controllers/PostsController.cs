@@ -20,22 +20,18 @@ namespace MVCBlog.Controllers
     public class PostsController : Controller
     {
         private readonly ApplicationDbContext _context;
-
         public PostsController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-
-        // GET: Posts
+// GET: Posts
         [Authorize(Roles = "Admin, Moderator")]
         public async Task<IActionResult> Index()
         {
             var posts = _context.Posts.Include(p => p.Blog);
             return View(await posts.ToListAsync());
         }
-
-        /// //////////////////////////////////////////////////////////////////////////////////////////////////
 
         // GET: Posts/Details/5
         [Authorize(Roles = "Admin")]
@@ -45,7 +41,6 @@ namespace MVCBlog.Controllers
             {
                 return NotFound();
             }
-
             var post = await _context.Posts
                 .Include(p => p.Blog)
                 .Include(p => p.Comments)
@@ -54,7 +49,6 @@ namespace MVCBlog.Controllers
             {
                 return NotFound();
             }
-            // for each comment load BlogUser.
             foreach(var comment in post.Comments.ToList())
             {
                 comment.BlogUser = await _context.Users.FindAsync(comment.BlogUserId);
@@ -62,9 +56,6 @@ namespace MVCBlog.Controllers
             ViewData["Image"] = ImageHelper.DecodeImage(post.Image, post.FileName);
             return View(post);
         }
-
-        /// //////////////////////////////////////////////////////////////////////////////////////////////////
-
         // GET: Posts/Create
         [Authorize(Roles = "Admin")]
         public IActionResult Create(int? id)
@@ -97,36 +88,54 @@ namespace MVCBlog.Controllers
     [HttpPost]
     [ValidateAntiForgeryToken]
     [Authorize(Roles = "Admin")]
-    public async Task<IActionResult> Create([Bind("Id,BlogId,Title,Abstract,Content,Slug,IsPublished,Image,Created,Updated,ImageDataUrl")] Post post)
+    public async Task<IActionResult> Create([Bind("Id,BlogId,Title,Abstract,Content,Slug,IsPublished,Image,Created,Updated,ImageDataUrl")] Post post, IFormFile image)
     {
         if (ModelState.IsValid)
+        {
+            post.Created = DateTimeOffset.Now;
+            post.Updated = DateTimeOffset.Now;
+            post.Slug = Regex.Replace(post.Title.ToLower(), @"\s", "-");
+            if(image != null)
             {
-                post.Created = DateTimeOffset.Now;
-                post.Updated = DateTimeOffset.Now;
-                post.Slug = Regex.Replace(post.Title.ToLower(), @"\s", "-");
-                //Image to DataVBase
-                if(ImageHelper != null)
-                {
-                    var imageHelper = new ImageHelper();
-                    imageHelper.GetImage(post, Image);
-                }
-
-                _context.Add(post);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-
+                var imageHelper = new ImageHelper();
+                imageHelper.GetImage(post, image);
             }
-            ViewData["BlogId"] = new SelectList(_context.Blogs, "Id", "Name", post.BlogId);
-            return View(post);
-        }
+            _context.Add(post);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
 
+        }
+        ViewData["BlogId"] = new SelectList(_context.Blogs, "Id", "Name", post.BlogId);
+        return View(post);
+    }
+        // GET: Posts/Edit/5
+        [Authorize(Roles = "Admin, Moderator")]
+        public async Task<IActionResult> BlogPosts(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var blog = await _context.Blogs.FindAsync(id);
+            if (blog == null)
+            {
+                return NotFound();
+            }
+
+            ViewData["BlogName"] = blog.Name;
+            ViewData["BlogId"] = blog.Id;
+
+            var blogPosts = await _context.Posts.Where(p => p.BlogId == blog.Id).ToListAsync();
+            return View(blogPosts);
+        }
 
         // GET: Posts/Edit/5
         [Authorize(Roles = "Admin, Moderator")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
-        {
+            {
                 return NotFound();
             }
 
@@ -137,7 +146,6 @@ namespace MVCBlog.Controllers
             }
             ViewData["BlogId"] = new SelectList(_context.Blogs, "Id", "Name", post.BlogId);
             return View(post);
-
         }
 
         // POST: Posts/Edit/5
@@ -146,21 +154,20 @@ namespace MVCBlog.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin, Moderator")]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,BlogId,Title,Abstract,Content,Slug,IsPublished,Image,Created,Updated,ImageDataUrl")] Post post)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,BlogId,Title,Abstract,Content,Slug,IsPublished,Image,Created,Updated,ImageDataUrl")] Post post, IFormFile image)
         {
             if (id != post.Id)
             {
                 return NotFound();
             }
-
             if (ModelState.IsValid)
             {
                 try
                 {
-                    if (Image != null)
+                    if (image != null)
                     {
                         var imageHelper = new ImageHelper();
-                        imageHelper.GetImage(post, Image);
+                        imageHelper.GetImage(post, image);
                     }
                     post.Updated = DateTime.Now;
                     _context.Update(post);
@@ -182,7 +189,6 @@ namespace MVCBlog.Controllers
             ViewData["BlogId"] = new SelectList(_context.Blogs, "Id", "Id", post.BlogId);
             return View(post);
         }
-
         // GET: Posts/Delete/5
         [Authorize(Roles = "Admin, Moderator")]
         public async Task<IActionResult> Delete(int? id)

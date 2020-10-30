@@ -5,19 +5,19 @@
 }
 
 <h1>Create</h1>
+<h4>New post for @ViewData["BlogName"]</h4>
 
-<h4>Post</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create" enctype="multipart/form-data">
 
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            @if (Model == null) 
+            @if (Model == null)
             {
                 <div class="form-group">
                     <label asp-for="BlogId" class="control-label"></label>
-                    <select asp-for="BlogId" class ="form-control" asp-items="ViewBag.BlogId"></select>
+                    <select asp-for="BlogId" class="form-control" asp-items="ViewBag.BlogId"></select>
                 </div>
             }
             else
@@ -41,16 +41,22 @@
                 <input asp-for="Body" class="form-control" />
                 <span asp-validation-for="Body" class="text-danger"></span>
             </div>
-            
-            <div class="form-group">
-                <label asp-for="FileName" class="control-label"></label><br />
-                <input asp-for="Image" type="file" />
-                @*<span asp-validation-for="FileName" class="text-danger"></span>*@
-            </div>
-           
+
             <div class="form-group form-check">
                 <label class="form-check-label">
                     <input class="form-check-input" asp-for="IsPublished" /> @Html.DisplayNameFor(model => model.IsPublished)
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="FileName" class="control-label"></label><br />
+                <input asp-for="Image" type="file" />
+            </div>
+
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsPublished" />
+                    @Html.DisplayNameFor(model => model.IsPublished)
                 </label>
             </div>
             <div class="form-group">

@@ -29,10 +29,12 @@ namespace MVCBlog.Controllers
         {
             var posts = _context.Posts.Where(p => p.IsPublished).Include(p => p.Blog);
             var blogs = _context.Blogs;
+            var tags = _context.Tags;
             CategoryVMJS categories = new CategoryVMJS()
             {
                 Blogs = await blogs.ToListAsync(),
-                Posts = await posts.ToListAsync()
+                Posts = await posts.ToListAsync(),
+                Tags = await tags.ToListAsync()
             };
             return View(categories);
         }
@@ -64,8 +66,21 @@ namespace MVCBlog.Controllers
             CategoryVMJS categories = new CategoryVMJS()
             {
                 Blogs = await blogs.ToListAsync(),
+                Posts = await posts.ToListAsync()
+            };
+            return View("Index", categories);
+        }
+
+        public async Task<IActionResult> Tag()
+        {
+            var name = RouteData.Values["id"].ToString();
+            var posts = _context.Tags.Where(t => t.Name == name).Select(t => t.Post);
+            var blogs = _context.Blogs;
+            CategoryVMJS categories = new CategoryVMJS()
+            {
+                Blogs = await blogs.ToListAsync(),
                 Posts = await posts.ToListAsync(),
-                Tags = await _context.Tag.ToListAsync()
+                Tags = await _context.Tags.ToListAsync()
             };
             return View("Index", categories);
         }

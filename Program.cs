@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
 using MVCBlog.Data;
-using MVCBlog.Utilities;
-using MVCBlog.Models;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
@@ -12,6 +10,9 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Identity;
 using MVCBlog.Enums;
+using MVCBlog.Utilities;
+using MVCBlog.Models;
+
 
 namespace MVCBlog
 {

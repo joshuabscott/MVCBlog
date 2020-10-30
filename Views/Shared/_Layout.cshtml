@@ -41,7 +41,45 @@
 <body id="bg">
     <div class="page-wraper">
         <div id="loading-area"></div>
-        <!-- header -->
+
+        <!-- header Option One-->
+        <header>
+            <nav class="navbar navbar-expand-sm navbar-toggleable-sm border-bottom box-shadow mb-3">
+                <div id="navContainer" class="container">
+                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Mack's Tech Hub</a>
+
+                    <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                        <partial name="_LoginPartial" />
+                        @if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
+                        {
+                            <ul class="navbar-nav flex-grow-1">
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Blogs" asp-action="Index">Blogs</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Posts" asp-action="Index">Posts</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Tags" asp-action="Index">Tags</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Comments" asp-action="Index">Comments</a>
+                                </li>
+                            </ul>
+                        }
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <!-- header Option Two-->
         <header class="site-header mo-left header style-1">
 
             <!-- main header -->
@@ -67,7 +105,7 @@
                                 <div class="logo-header">
                                     <a href="MVCBlog\Views\Home\Index.cshtml"><img src="images/logo-white.png" alt="" /></a>
                                 </div>
-                                <partial name="_LoginPartial"
+                                <partial name="_LoginPartial" />
                                 {@await Component.InvokeAsync("TopNav")}
 
                                 <ul class="nav navbar-nav">
@@ -77,11 +115,11 @@
                                         @*<a href="MVCBlog\Views\Home\Index.cshtml">Start <i class="fa fa-chevron-down"></i></a>*@
                                         <a class="nag-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                                         <!--<ul class="sub-menu">-->
-                                            @*<li><a href="index.html">Home 01</a></li>
-                                                  <li><a href="index-2.html">Home 02</a></li>
-                                                <li><a href="index-3.html">Home 03</a></li>
-                                                <li><a href="index-4.html">Home 04</a></li>
-                                                <li><a href="index-5.html">Home 05</a></li>*@
+                                        @*<li><a href="index.html">Home 01</a></li>
+                                          <li><a href="index-2.html">Home 02</a></li>
+                                        <li><a href="index-3.html">Home 03</a></li>
+                                        <li><a href="index-4.html">Home 04</a></li>
+                                        <li><a href="index-5.html">Home 05</a></li>*@
                                         <!--</ul>-->
                                     </li>
                                     {@if (User.IsInRole("Admin"))}
@@ -458,15 +496,14 @@
 
                                     <!-- Shop -->
                                     <!--<li>
-                                        <a href="#">Shop<i class="fa fa-chevron-down"></i></a>
-                                        <ul class="sub-menu">
-                                            <li><a href="shop.html">Shop</a></li>
-                                            <li><a href="shop-product.html">Shop Product</a></li>
-                                            <li><a href="shop-cart.html">Cart</a></li>
-                                            <li><a href="shop-checkout.html">Checkout</a></li>
-                                        </ul>
-                                    </li>-->
-
+                                    <a href="#">Shop<i class="fa fa-chevron-down"></i></a>
+                                    <ul class="sub-menu">
+                                        <li><a href="shop.html">Shop</a></li>
+                                        <li><a href="shop-product.html">Shop Product</a></li>
+                                        <li><a href="shop-cart.html">Cart</a></li>
+                                        <li><a href="shop-checkout.html">Checkout</a></li>
+                                    </ul>
+                                </li>-->
                                     <!-- About -->
                                     <li><a href="MVCBlog\Views\Home\about-us.cshtml">About</a></li>
 
@@ -503,11 +540,13 @@
         </header>
         <!-- header END -->
 
+        @*@RenderBody()*@
 
-
-        @RenderBody()
-
-
+        <div class="container">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
 
         <!-- Footer -->
         <footer class="site-footer">
@@ -632,15 +671,14 @@
     <script src="~/js/dz.carousel.js"></script><!-- SORTCODE FUCTIONS -->
     <script src="~/js/dz.ajax.js"></script><!-- CONTACT JS  -->
     <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script><!-- TinyMCE RichTeckEditor  -->
-    <!-- Done switching script and links -->
-
+  
     <!-- /Tinymce Done-->
-    <script src="//cdn.tiny.cloud/1/3lwulzgbibotwwht2k2991x7r701wvjdbqxtg24b43c6z3sk/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    @*<script src="//cdn.tiny.cloud/1/3lwulzgbibotwwht2k2991x7r701wvjdbqxtg24b43c6z3sk/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     <script>
         tinymce.init({
             selector: '#Body'
         });
-    </script>
+    </script>*@
 
     @RenderSection("Scripts", required: false)
 </body>

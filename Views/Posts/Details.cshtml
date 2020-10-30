@@ -20,6 +20,11 @@
             <a asp-controller="Posts" asp-action="BlogPosts" asp-route-id="@Model.BlogId">@Model.Blog.Name</a>
         </p>
 
+        @foreach (var tag in Model.Tags)
+        {
+            @tag
+        }
+
         <hr>
 
         <!-- Date/Time -->
@@ -118,27 +123,29 @@
             </div>
         </div>
 
+        
 
         <!-- Side Widget -->
         <div class="card my-4">
-            <h5 class="card-header">About the dev</h5>
+            <h5 class="card-header">About the Developer</h5>
             <div class="card-body">
                 <div class="row pb-3">
                     <div class="col-4">
-                        <a href="https://mackenzie-weaver.netlify.app/" target="_blank"><img class="author_img rounded-circle" src="~/me100.png" alt="mackenzie weaver profile picture..." width="100"></a>
+                        <a href="https://josh-scott-portfolio.netlify.app/" target="_blank"><img class="author_img rounded-circle" src="#" alt="#" width="100"></a>
                     </div>
                     <div class="col">
-                        <h4>Mackenzie Weaver</h4>
+                        <h4>Josh Scott</h4>
                         <p>Full Stack Web Developer</p>
                         <div class="row social_icon justify-content-start">
-                            <a href="https://www.linkedin.com/in/mackenzie-weaver" class="mr-2 ml-3"><i class="fab fa-linkedin-in fa-lg"></i></a>
-                            <a href="https://github.com/mackenzieweaver" class="mr-2 ml-2"><i class="fab fa-github fa-lg"></i></a>
-                            <a href="https://twitter.com/Mackenz60579223" class="mr-2 ml-2"><i class="fab fa-twitter fa-lg"></i></a>
-                            <a href="https://www.youtube.com/channel/UCojUpFISOFPXrhmCKBGiYYg" class="mr-2 ml-2"><i class="fab fa-youtube fa-lg"></i></a>
+                            <a href="https://www.linkedin.com/in/joshgreatscott/" class="mr-2 ml-3"><i class="fab fa-linkedin-in fa-lg"></i></a>
+                            <a href="https://github.com/joshuabscott" class="mr-2 ml-2"><i class="fab fa-github fa-lg"></i></a>
+                            <a href="https://twitter.com/JoshuaBscott" class="mr-2 ml-2"><i class="fab fa-twitter fa-lg"></i></a>
+                            <a href="https://www.youtube.com/user/joshuabenscott" class="mr-2 ml-2"><i class="fab fa-youtube fa-lg"></i></a>
                         </div>
                     </div>
                 </div>
-                <p>With a background in electronics engineering and currently working as a software developer I have a deep interest in both the hardware and software of computers. I like writing about software technologies used in web development and I want to help others and the community grow and become more positive.</p>
+                <p>With a background in customer service and the hospitality industry, currently working as a software developer I am enjoying working with hardware and software in creative ways to solve headaches with data. 
+                Learning about software technologies everyday helps reveal connections we didn't understand before. What did you Lean today? Or did I get it wrong. Share in the Comments.</p>
                 <div class="br"></div>
             </div>
         </div>
@@ -146,69 +153,3 @@
     </div>
 
 </div>
-
-@*<h1>Details</h1>
-    <div>
-        <h4>Post</h4>
-        <hr />
-        <dl class="row">
-            <dt class = "col-sm-2">
-                @Html.DisplayNameFor(model => model.Title)
-            </dt>
-            <dd class = "col-sm-10">
-                @Html.DisplayFor(model => model.Title)
-            </dd>
-            <dt class = "col-sm-2">
-                @Html.DisplayNameFor(model => model.Abstract)
-            </dt>
-            <dd class = "col-sm-10">
-                @Html.DisplayFor(model => model.Abstract)
-            </dd>
-            <dt class = "col-sm-2">
-                @Html.DisplayNameFor(model => model.Content)
-            </dt>
-            <dd class = "col-sm-10">
-                @Html.DisplayFor(model => model.Content)
-            </dd>
-            <dt class = "col-sm-2">
-                @Html.DisplayNameFor(model => model.Slug)
-            </dt>
-            <dd class = "col-sm-10">
-                @Html.DisplayFor(model => model.Slug)
-            </dd>
-            <dt class = "col-sm-2">
-                @Html.DisplayNameFor(model => model.IsPublished)
-            </dt>
-            <dd class = "col-sm-10">
-                @Html.DisplayFor(model => model.IsPublished)
-            </dd>
-            <dt class = "col-sm-2">
-                @Html.DisplayNameFor(model => model.Image)
-            </dt>
-            <dd class = "col-sm-10">
-                @Html.DisplayFor(model => model.Image)
-            </dd>
-            <dt class = "col-sm-2">
-                @Html.DisplayNameFor(model => model.Created)
-            </dt>
-            <dd class = "col-sm-10">
-                @Html.DisplayFor(model => model.Created)
-            </dd>
-            <dt class = "col-sm-2">
-                @Html.DisplayNameFor(model => model.Updated)
-            </dt>
-            <dd class = "col-sm-10">
-                @Html.DisplayFor(model => model.Updated)
-            </dd>
-            <dt class = "col-sm-2">
-                @Html.DisplayNameFor(model => model.Blog)
-            </dt>
-            <dd class = "col-sm-10">
-                @Html.DisplayFor(model => model.Blog.Name)
-            </dd>
-        </dl>
-    </div>
-    <div>
-        <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-        <a asp-action="Index">Back to List</a>
-    </div>*@
