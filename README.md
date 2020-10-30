@@ -54,4 +54,5 @@ Contributions are what make the open source community such an amazing place to b
 ## Contact
 
 Josh Scott
-joshuabscott@gmail.com
+email - J@joshscott.xyz
+text/call - 323.334.0417
