@@ -21,7 +21,7 @@ namespace MVCBlog.Controllers
 
         public CommentsController(ApplicationDbContext context, UserManager<BlogUser> manager)
         {
-            _userManager = manager;
+            //_userManager = manager;
             _context = context;
         }
 

@@ -9,9 +9,9 @@ namespace MVCBlog.Utilities
     public class BlogHelper
     {
 
-        public static List<Blog> GetBlogs(ApplicationDbContext db)
-        {
-            return db.Blogs.ToList();
-        }
+        //public static List<Blog> GetBlogs(ApplicationDbContext db)
+        //{
+        //    return db.Blogs.ToList();
+        //}
     }
 }
