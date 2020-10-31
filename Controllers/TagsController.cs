@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MVCBlog.Data;
+using MVCBlog.Enums;
 using MVCBlog.Models;
 using MVCBlog.ViewModels;
 using Microsoft.AspNetCore.Authorization;
@@ -22,6 +23,7 @@ namespace MVCBlog.Controllers
         }
 
         // GET: Tags
+        [Authorize(Roles = "Admin, Moderator")]
         public async Task<IActionResult> Index()
         {
             var applicationDbContext = _context.Tags.Include(t => t.Post);
@@ -29,6 +31,7 @@ namespace MVCBlog.Controllers
         }
 
         // GET: Tags/Details/5
+        [Authorize(Roles = "Admin, Moderator")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -48,6 +51,7 @@ namespace MVCBlog.Controllers
         }
 
         // GET: Tags/Create
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             ViewData["PostId"] = new SelectList(_context.Posts, "Id", "Title");
@@ -59,6 +63,7 @@ namespace MVCBlog.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Create([Bind("Id,PostId,Name")] Tag tag)
         {
             if (ModelState.IsValid)
@@ -72,6 +77,7 @@ namespace MVCBlog.Controllers
         }
 
         // GET: Tags/Edit/5
+        [Authorize(Roles = "Admin, Moderator")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -93,6 +99,7 @@ namespace MVCBlog.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin, Moderator")]
         public async Task<IActionResult> Edit(int id, [Bind("Id,PostId,Name")] Tag tag)
         {
             if (id != tag.Id)
@@ -125,6 +132,7 @@ namespace MVCBlog.Controllers
         }
 
         // GET: Tags/Delete/5
+        [Authorize(Roles = "Admin, Moderator")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -146,6 +154,7 @@ namespace MVCBlog.Controllers
         // POST: Tags/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin, Moderator")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var tag = await _context.Tags.FindAsync(id);

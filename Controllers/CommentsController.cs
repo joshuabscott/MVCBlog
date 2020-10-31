@@ -1,16 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using MVCBlog.Data;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
+using MVCBlog.ViewModels;
 using MVCBlog.Models;
 using MVCBlog.Enums;
-using MVCBlog.ViewModels;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
+using MVCBlog.Data;
 
 namespace MVCBlog.Controllers
 {
@@ -58,7 +58,7 @@ namespace MVCBlog.Controllers
         [Authorize(Roles = "Admin, Moderator")]
         public IActionResult Create()
         {
-            ViewData["AuthorId"] = new SelectList(_context.Set<BlogUser>(), "Id", "FirstName");
+            ViewData["BlogUserId"] = new SelectList(_context.Set<BlogUser>(), "Id", "FirstName");
             ViewData["PostId"] = new SelectList(_context.Posts, "Id", "Title");
             return View();
         }
@@ -77,8 +77,8 @@ namespace MVCBlog.Controllers
                 var blogUser = _context.Users.FirstOrDefault(u => u.Email == email);
                 var post = _context.Posts.FirstOrDefault(p => p.Id == comment.PostId);
 
-                comment.Created = DateTime.Now;
-                comment.Updated = DateTime.Now;
+                comment.Created = DateTimeOffset.Now;
+                comment.Updated = DateTimeOffset.Now;
                 comment.Body = userComment;
                 comment.BlogUserId = blogUserId;
                 comment.BlogUser = blogUser;
@@ -89,7 +89,7 @@ namespace MVCBlog.Controllers
                 //return Redirect($"~/Posts/Details/{comment.PostId}");
                 return RedirectToAction("Details", "Posts", new { id = comment.PostId });
             }
-            ViewData["AuthorId"] = new SelectList(_context.Set<BlogUser>(), "Id", "Id", comment.BlogUserId);
+            ViewData["BlogUserId"] = new SelectList(_context.Set<BlogUser>(), "Id", "Id", comment.BlogUserId);
             ViewData["PostId"] = new SelectList(_context.Posts, "Id", "Id", comment.PostId);
             return View(comment);
         }
@@ -108,7 +108,7 @@ namespace MVCBlog.Controllers
             {
                 return NotFound();
             }
-            ViewData["AuthorId"] = new SelectList(_context.Set<BlogUser>(), "Id", "DisplayName", comment.BlogUserId);
+            ViewData["BlogUserId"] = new SelectList(_context.Set<BlogUser>(), "Id", "DisplayName", comment.BlogUserId);
             ViewData["PostId"] = new SelectList(_context.Posts, "Id", "Title", comment.PostId);
             return View(comment);
         }
@@ -118,8 +118,7 @@ namespace MVCBlog.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin, Moderator")]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,PostId,AuthorId,Content,Created,Updated")] Comment comment)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,PostId,BlogUserId,Body,Created,Updated")] Comment comment)
         {
             if (id != comment.Id)
             {
@@ -130,6 +129,17 @@ namespace MVCBlog.Controllers
             {
                 try
                 {
+                    //_context.Update(comment);
+                    //await _context.SaveChangesAsync();
+                    if (comment.Body.Contains("<!DOCTYPE"))
+                    {
+                        //XmlDocument doc = new XmlDocument();
+                        //doc.LoadXml(comment.Body);
+                        //XmlNode elem = doc.DocumentElement.FirstChild.NextSibling;
+                        //comment.Body = elem.FirstChild.InnerText.ToString();
+                    }
+                    comment.Post = _context.Posts.FirstOrDefault(p => p.Id == comment.PostId);
+                    comment.BlogUser = _context.Users.FirstOrDefault(u => u.Id == comment.BlogUserId);
                     _context.Update(comment);
                     await _context.SaveChangesAsync();
                 }
@@ -147,7 +157,7 @@ namespace MVCBlog.Controllers
                 //return RedirectToAction(nameof(Index));
                 return RedirectToAction("Details", "Posts", new { id = comment.PostId });
             }
-            ViewData["AuthorId"] = new SelectList(_context.Set<BlogUser>(), "Id", "Id", comment.BlogUserId);
+            ViewData["BlogUserId"] = new SelectList(_context.Set<BlogUser>(), "Id", "Id", comment.BlogUserId);
             ViewData["PostId"] = new SelectList(_context.Posts, "Id", "Id", comment.PostId);
             //return View(comment);
             return RedirectToAction("Details", "Posts", new { id = comment.PostId });

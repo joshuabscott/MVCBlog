@@ -1,17 +1,23 @@
-using System;
-using System.Collections.Generic;
-using MVCBlog.Data;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.DependencyInjection;
+
+using System;
+using System.Linq;
+using System.Collections.Generic;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
-using MVCBlog.Enums;
-using MVCBlog.Utilities;
+using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
+using MVCBlog.ViewModels;
 using MVCBlog.Models;
+using MVCBlog.Enums;
+using MVCBlog.Data;
+
 
 
 namespace MVCBlog
@@ -23,7 +29,6 @@ namespace MVCBlog
             var host = CreateHostBuilder(args).Build();
             await SeedDataAsync(host);
             host.Run();
-            //CreateHostBuilder(args).Build().Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
@@ -43,9 +48,9 @@ namespace MVCBlog
                     //var context = services.GetRequiredService<ApplicationDbContext>();
                     var userManager = services.GetRequiredService<UserManager<BlogUser>>();
                     var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
-                    await SeedHelper.SeedDataAsync(userManager, roleManager);
+                    //await SeedHelper.SeedDataAsync(userManager, roleManager);
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     Console.WriteLine(ex);
                 }

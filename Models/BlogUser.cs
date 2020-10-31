@@ -19,12 +19,17 @@ namespace MVCBlog.Models
         public string LastName { get; set; }
 
         public string DisplayName { get; set; }
-        public virtual ICollection<Comment> Comments { get; set; } = new HashSet<Comment>();
-
+        //public virtual ICollection<Comment> Comments { get; set; } = new HashSet<Comment>();
+        //public BlogUser()
+        //{
+        //    Comments = new HashSet<Comment>();
+        //    DisplayName = "New User";
+        //}
+        public virtual ICollection<Comment> Comments { get; set; }
+        // Constructor for BlogUser
         public BlogUser()
         {
             Comments = new HashSet<Comment>();
-            DisplayName = "New User";
         }
         #endregion
 

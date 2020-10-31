@@ -1,28 +1,35 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+﻿using System.Diagnostics;
 using Microsoft.EntityFrameworkCore.Internal;
 using Microsoft.Extensions.Logging;
-using MVCBlog.Data;
-using MVCBlog.Models;
-using MVCBlog.ViewModels;
+using Microsoft.AspNetCore;
+using System.IO;
+using System.Collections;
+
+using System;
+using System.Linq;
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
+using MVCBlog.ViewModels;
+using MVCBlog.Models;
+using MVCBlog.Enums;
+using MVCBlog.Data;
 
 namespace MVCBlog.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ApplicationDbContext _context;
-        //private readonly ILogger<HomeController> _logger;
+        private readonly ILogger<HomeController> _logger;
 
         public HomeController(ILogger<HomeController> logger, ApplicationDbContext context)
         {
             _context = context;
-            //_logger = logger;
+            _logger = logger;
         }
 
         public async Task<IActionResult> Index()
@@ -44,6 +51,7 @@ namespace MVCBlog.Controllers
             var posts = from p in _context.Posts
                         select p;
             var blogs = _context.Blogs;
+            var tags = _context.Tags;
             if (!String.IsNullOrEmpty(SearchString))
             {
                 posts = posts.Where(p => p.Title.Contains(SearchString) || p.Abstract.Contains(SearchString) || p.Body.Contains(SearchString));
@@ -53,7 +61,8 @@ namespace MVCBlog.Controllers
             CategoryVMJS categories = new CategoryVMJS()
             {
                 Blogs = await blogs.ToListAsync(),
-                Posts = await posts.ToListAsync()
+                Posts = await posts.ToListAsync(),
+                Tags = await tags.ToListAsync()
             };
             return View("Index", categories);
         }
@@ -63,10 +72,12 @@ namespace MVCBlog.Controllers
             var id = RouteData.Values["id"].ToString();
             var posts = _context.Posts.Where(p => p.BlogId == Int32.Parse(id) && p.IsPublished == true).Include(p => p.Blog);
             var blogs = _context.Blogs;
+            var tags = _context.Tags;
             CategoryVMJS categories = new CategoryVMJS()
             {
                 Blogs = await blogs.ToListAsync(),
-                Posts = await posts.ToListAsync()
+                Posts = await posts.ToListAsync(),
+                Tags = await tags.ToListAsync()
             };
             return View("Index", categories);
         }

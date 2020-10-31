@@ -14,7 +14,7 @@
         <!-- Title -->
         <h1 class="mt-4">@Model.Title</h1>
 
-        <!-- Author -->
+        <!-- BlogUser -->
         <p class="lead">
             by
             <a asp-controller="Posts" asp-action="BlogPosts" asp-route-id="@Model.BlogId">@Model.Blog.Name</a>
@@ -90,8 +90,8 @@
                         </div>
                         <form id="editForm-@comment.Id" class="editForm" asp-controller="Comments" asp-action="Edit" asp-route-id="@comment.Id" style="display:none">
                             @Html.Hidden("Created", comment.Created)
-                            @Html.Hidden("AuthorId", comment.BlogUserId)
-                            @Html.Hidden("Author", comment.BlogUser)
+                            @Html.Hidden("BlogUserId", comment.BlogUserId)
+                            @Html.Hidden("BlogUser", comment.BlogUser)
 
                             @Html.Hidden("Updated", DateTimeOffset.Now)
                             @Html.Hidden("PostId", Model.Id)
@@ -132,7 +132,7 @@
 
         <!-- Side Widget -->
         <div class="card my-4">
-            <h5 class="card-header">About the dev</h5>
+            <h5 class="card-header">About the developer</h5>
             <div class="card-body">
                 <div class="row pb-3">
                     <div class="col-4">

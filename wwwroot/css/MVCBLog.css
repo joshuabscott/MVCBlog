@@ -1,0 +1,69 @@
+﻿:root {
+    --primary: #264653;
+    --secondary: #F4A261;
+}
+
+.navbar, .footer {
+    color: #ffffff !important;
+    background-color: var(--primary) !important;
+}
+
+a.navbar-brand {
+    color: white !important;
+}
+
+a.nav-link {
+    color: white !important;
+}
+
+    a.nav-link:hover {
+        color: var(--secondary) !important;
+        opacity: 1 !important;
+    }
+
+a {
+    color: var(--secondary);
+    border: none;
+}
+
+    a:hover {
+        color: var(--secondary);
+        opacity: 0.75;
+        border: none;
+    }
+
+.btn {
+    border: none;
+    background-color: var(--primary) !important;
+}
+
+    .btn:hover {
+        color: var(--secondary);
+        opacity: 1;
+    }
+
+.noHover {
+    pointer-events: none;
+    color: white;
+}
+
+.editAnchor {
+    font-size: 0.9rem !important;
+    font-weight: 400;
+    color: var(--secondary) !important;
+    opacity: 1 !important;
+    border: none;
+    background-color: transparent;
+    padding-left: 2px;
+}
+
+/*.editForm {
+    display: none;
+}*/
+
+.mytag {
+    color: var(--secondary) !important;
+    opacity: 1 !important;
+    border: none !important;
+    background-color: transparent !important;
+}

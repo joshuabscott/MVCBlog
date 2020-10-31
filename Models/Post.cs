@@ -49,8 +49,6 @@ namespace MVCBlog.Models
         {
             Comments = new HashSet<Comment>();
             Tags = new HashSet<Tag>();
-        }
-
-        
+        }  
     }
 }

@@ -10,11 +10,11 @@ namespace MVCBlog.Utilities
 {
     public class ConnectionHelper
     {
-        private string ConnectionHelper()
-        {
-            var config = new PostgreSqlConnection();
-            var dbUrl = ConfigurationBinder["DATABASE_URL"];
-            if(string.IsNullOrEmpty)
-        }
+        //private string ConnectionHelper()
+        //{
+        //    var config = new PostgreSqlConnection();
+        //    var dbUrl = ConfigurationBinder["DATABASE_URL"];
+        //    if(string.IsNullOrEmpty)
+        //}
     }
 }

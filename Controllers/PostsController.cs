@@ -1,19 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
+﻿using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
-using Microsoft.EntityFrameworkCore;
-using MVCBlog.Data;
-using MVCBlog.Models;
-using MVCBlog.Utilities;
-using MVCBlog.Enums;
-using MVCBlog.ViewModels;
+using Microsoft.AspNetCore.Http;
+using System.IO;
+
+using System;
+using System.Linq;
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
+using MVCBlog.ViewModels;
+using MVCBlog.Models;
+using MVCBlog.Enums;
+using MVCBlog.Data;
+using MVCBlog.Utilities;
 
 namespace MVCBlog.Controllers
 {
@@ -29,12 +33,13 @@ namespace MVCBlog.Controllers
         [Authorize(Roles = "Admin, Moderator")]
         public async Task<IActionResult> Index()
         {
-            var posts = _context.Posts.Include(p => p.Blog);
-            return View(await posts.ToListAsync());
+            //var posts = _context.Posts.Include(p => p.Blog);
+            //return View(await posts.ToListAsync());
+            var applicationDbContext = _context.Posts.Include(p => p.Blog);
+            return View(await applicationDbContext.ToListAsync());
         }
 
         // GET: Posts/Details/5
-        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -53,7 +58,7 @@ namespace MVCBlog.Controllers
             {
                 comment.BlogUser = await _context.Users.FindAsync(comment.BlogUserId);
             }
-            ViewData["Image"] = ImageHelper.DecodeImage(post.Image, post.FileName);
+            //ViewData["Image"] = ImageHelper.DecodeImage(post.Image, post.FileName);
             return View(post);
         }
         // GET: Posts/Create
@@ -154,7 +159,7 @@ namespace MVCBlog.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin, Moderator")]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,BlogId,Title,Abstract,Content,Slug,IsPublished,Image,Created,Updated,ImageDataUrl")] Post post/*, IFormFile image*/)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,BlogId,Title,Abstract,Body,Slug,IsPublished,Image,Created,Updated,ImageDataUrl")] Post post/*, IFormFile image*/)
         {
             if (id != post.Id)
             {
@@ -169,7 +174,7 @@ namespace MVCBlog.Controllers
                     //    var imageHelper = new ImageHelper();
                     //    imageHelper.GetImage(post, image);
                     //}
-                    post.Updated = DateTime.Now;
+                    post.Updated = DateTimeOffset.Now;
                     _context.Update(post);
                     await _context.SaveChangesAsync();
                 }

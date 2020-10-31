@@ -18,22 +18,18 @@ namespace MVCBlog.Models
 
         #region Blog Properties
 
-        //  public List<Post> Posts { get; set; }
 
-        //  public Blog()
-        //  {
-        //      Posts = new List<Post>();
-        //   }
-
-        //public Blog()
-        //{
-        //    Posts = new HashSet<Post>();
-        //}
         #endregion
-        public virtual ICollection<Post> Posts { get; set; } = new HashSet<Post>();
+        //public virtual ICollection<Post> Posts { get; set; } = new HashSet<Post>();
+        public virtual ICollection<Post> Posts { get; set; }
+
+        public Blog()
+        {
+            Posts = new HashSet<Post>();
+        }
 
         #region Navigation
-       
+
         #endregion
     }
 }
