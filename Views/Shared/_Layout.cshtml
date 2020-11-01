@@ -11,6 +11,10 @@
     <title>@ViewData["Title"] - Josh Blog</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <link href="~/css/plugins.css" rel="stylesheet" />
+    <link href="~/css/style.css" rel="stylesheet" />
+    <link href="~/css/templete.css" rel="stylesheet" />
+    <link class="skin" type="text/css" href="~/css/skin/skin-1.css" rel="stylesheet" />
     @* Custom CSS *@
     <link href="~/css/custom.css" rel="stylesheet" />
 
@@ -24,7 +28,7 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm border-bottom box-shadow mb-3">
             <div id="navContainer" class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Josh Blog : For Days</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Blog For Days</a>
 
                 <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -32,35 +36,39 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <partial name="_LoginPartial" />
-                    @if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
+                    @*@if (User.IsInRole("Admin") || User.IsInRole("Moderator"))*@
                     {
                         <ul class="navbar-nav flex-grow-1">
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                                <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Blogs" asp-action="Index">Blogs</a>
+                                <a class="nav-link" asp-area="" asp-controller="Blogs" asp-action="Index">Blogs</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Posts" asp-action="Index">Posts</a>
+                                <a class="nav-link" asp-area="" asp-controller="Posts" asp-action="Index">Posts</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Tags" asp-action="Index">Tags</a>
+                                <a class="nav-link" asp-area="" asp-controller="Tags" asp-action="Index">Tags</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Comments" asp-action="Index">Comments</a>
+                                <a class="nav-link" asp-area="" asp-controller="Comments" asp-action="Index">Comments</a>
                             </li>
                         </ul>
-                    }
+                     }
                 </div>
             </div>
         </nav>
     </header>
+
+
+
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
+
 
     <footer class="border-top footer text-muted">
         <div class="container">
