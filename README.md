@@ -22,16 +22,13 @@ This app was built in visual studio using the .NET Framework Template but mostly
 * [HTML](https://www.w3schools.com/html/)[ / CSS](https://www.w3schools.com/css/)[ / Javascript](https://www.w3schools.com/js/DEFAULT.asp)[ / C#](https://docs.microsoft.com/en-us/dotnet/csharp/)
 * [Bootstrap](https://getbootstrap.com)
 * [JQuery](https://jquery.com)
+* [Docker](https://docker.com)
+* [Heroku](https://heroku.com)
 
 <!-- GETTING STARTED -->
 ## Getting Started
 
 Just clone the repo and run it. 
-The js libraries that you'll need are already in the project like
-  * Bootstrap
-  * Html, CSS, Javascript, C#
-  * Docker
-  * Heroku
 
 ### Installation
 
