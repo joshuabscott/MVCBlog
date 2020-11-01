@@ -17,8 +17,7 @@ using MVCBlog.ViewModels;
 using MVCBlog.Models;
 using MVCBlog.Enums;
 using MVCBlog.Data;
-
-
+using MVCBlog.Utilities;
 
 namespace MVCBlog
 {
@@ -48,7 +47,7 @@ namespace MVCBlog
                     //var context = services.GetRequiredService<ApplicationDbContext>();
                     var userManager = services.GetRequiredService<UserManager<BlogUser>>();
                     var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
-                    //await SeedHelper.SeedDataAsync(userManager, roleManager);
+                    await SeedHelper.SeedDataAsync(userManager, roleManager);
                 }
                 catch (Exception ex)
                 {
