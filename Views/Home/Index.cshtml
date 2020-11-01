@@ -5,18 +5,22 @@
     ViewData["Title"] = "Home Page";
 }
 
-<!-- Content -->
+
+
+
+ Content
 <div class="container">
     <div class="row">
-        <!-- Blog Entries Column -->
+        Blog Entries Column
         <div class="col-md-8">
             <h1 class="my-4">Josh Blog <small>for Days</small></h1>
             @foreach (var post in Model.Posts.OrderByDescending(m => m.Created))
             {
-                <!-- Blog Post -->
+                Blog Post;
                 <div class="card mb-4">
                     <img class="card-img-top" src="@post.ImageDataUrl" alt="Card image cap">
-                    @*<img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">*@
+
+                    <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">
                     <div class="card-body">
                         <h2 class="card-title">@Html.DisplayFor(data => post.Title)</h2>
                         <p class="card-text">@Html.DisplayFor(data => post.Abstract)</p>
@@ -35,7 +39,7 @@
                     </div>
                 </div>
             }
-            <!-- Pagination older to newer-->
+            Pagination older to newer
             <ul class="pagination justify-content-center mb-4">
                 <li class="page-item">
                     <a class="page-link" href="#">&larr; Older</a>
@@ -45,11 +49,9 @@
                 </li>
             </ul>
         </div>
-
-        <!-- Sidebar Widgets Column -->
+        Sidebar Widgets Column
         <div class="col-md-4">
-
-            <!-- Search Widget Search -->
+            Search Widget Search
             <div class="card my-4">
                 <h5 class="card-header">Search</h5>
                 <div class="card-body">
@@ -63,8 +65,7 @@
                     </form>
                 </div>
             </div>
-
-            <!-- Categories Widget -->
+            Categories Widget
             <div class="card my-4">
                 <h5 class="card-header">Category</h5>
                 <div class="card-body">
@@ -74,38 +75,38 @@
                                 @foreach (var blog in Model.Blogs)
                                 {
                                     <li>
-                                        @*<a asp-controller="Posts" asp-action="BlogPosts" asp-route-id="@blog.Id">@blog.Name</a>*@
+                                        <a asp-controller="Posts" asp-action="BlogPosts" asp-route-id="@blog.Id">@blog.Name</a>
                                         <a asp-controller="Home" asp-action="Categories" asp-route-id="@blog.Id">@blog.Name</a>
                                     </li>
                                 }
-                                @*<li>
-                                        <a href="#">Web Design</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">HTML</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Freebies</a>
-                                    </li>*@
+                                <li>
+                                    <a href="#">Web Design</a>
+                                </li>
+                                <li>
+                                    <a href="#">HTML</a>
+                                </li>
+                                <li>
+                                    <a href="#">Freebies</a>
+                                </li>
                             </ul>
                         </div>
                         <div class="col-lg-6">
                             <ul class="list-unstyled mb-0">
-                                @*<li>
-                                        <a href="#">JavaScript</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">CSS</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Tutorials</a>
-                                    </li>*@
+                                <li>
+                                    <a href="#">JavaScript</a>
+                                </li>
+                                <li>
+                                    <a href="#">CSS</a>
+                                </li>
+                                <li>
+                                    <a href="#">Tutorials</a>
+                                </li>
                             </ul>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- Side Widget ABout Josh-->
+            Side Widget ABout Josh
             <div class="card my-4">
                 <h5 class="card-header">About the Developer</h5>
                 <div class="card-body">
@@ -124,14 +125,472 @@
                             </div>
                         </div>
                     </div>
-                    <p>With a background in Customer Service and hospitality, working as a software developer has allowed me use hardware and software in ways I never have before. 
-                    I hope you enjoy reading about software technologies used in web development  that I have had to learn about to complete goals.
-                    I would like to help others on their journey in learning about programing.</p>
+                    <p>
+                        With a background in Customer Service and hospitality, working as a software developer has allowed me use hardware and software in ways I never have before.
+                        I hope you enjoy reading about software technologies used in web development  that I have had to learn about to complete goals.
+                        I would like to help others on their journey in learning about programing.
+                    </p>
                     <div class="br"></div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- /.row -->
+    /.row
 </div>
+ Content END
+
+
+
+<!-- Content -->
+<!--<div class="page-content bg-white">-->
+    <!-- inner page banner -->
+    <!--<div class="banner-image style-1 dlab-bnr-inr dlab-bnr-inr-lg overlay-black-light relative">
+        <img src="images/banner/pic6.jpg" alt="">
+    </div>-->
+    <!-- Trending -->
+    <!--<div class="section-full trend-panel style-1">
+        <div class="container">
+            <div class="trend-panel-space">
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 col-sm-6">
+                        <div class="category-box-outline m-b30">
+                            <div class="category-box overlay">
+                                <div class="category-media">
+                                    <img src="images/category/pic1.jpg" alt="">
+                                </div>
+                                <div class="category-info">
+                                    <div class="category-style"><a href="javascript:void(0);">Fashion</a></div>
+                                    <h4><a href="post-navigation.html">Ready for the Summer</a></h4>
+                                    <a href="post-navigation.html" class="category-title">Read More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-6">
+                        <div class="category-box-outline m-b30">
+                            <div class="category-box overlay">
+                                <div class="category-media">
+                                    <img src="images/category/pic2.jpg" alt="">
+                                </div>
+                                <div class="category-info">
+                                    <div class="category-style"><a href="javascript:void(0);">Travel</a></div>
+                                    <h4><a href="post-link.html">Trends Tried & Tested.</a></h4>
+                                    <a href="post-link.html" class="category-title">Read More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4">
+                        <div class="category-box-outline m-b30">
+                            <div class="category-box overlay">
+                                <div class="category-media">
+                                    <img src="images/category/pic3.jpg" alt="">
+                                </div>
+                                <div class="category-info">
+                                    <div class="category-style"><a href="javascript:void(0);">Beauty</a></div>
+                                    <h4><a href="post-quote.html">Makeup for new Look</a></h4>
+                                    <a href="post-quote.html" class="category-title">Read More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>-->
+    <!-- Trending end -->
+    <!-- inner page banner end -->
+    <!--<div class="content-block">-->
+        <!-- load-more-content -->
+        <!--<div class="section-full bg-white content-inner-2">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-9 col-lg-8 col-md-7 col-sm-12 col-12">
+                        <div class="row sp10">
+                            <div class="col-lg-6">
+                                <div class="blog-card post-grid m-b30">
+                                    <div class="blog-card-media">
+                                        <img src="images/blog/pic2.jpg" alt="" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 d-flex">
+                                <div class="blog-card center text-center bg-dark m-b30">
+                                    <div class="blog-card-info text-white">
+                                        <div class="title-sm"><a href="javascript:void(0);">Lifestyle</a></div>
+                                        <h4 class="title"><a href="post-gallery-alternative.html">Sonoma Valley Lancome</a></h4>
+                                        <p>Aenean sollicitudin, lorem quis bibendum auctor, ninkis elit ipsum, nec sagittis sem nibh into service id elit. Duis sedio.</p>
+                                        <div class="">
+                                            <ul class="social-link-round">
+                                                <li class="link-ic"><a href="javascript:void(0);" class="btn-link share"><i class="la la-share-alt"></i></a></li>
+                                                <li><a href="javascript:void(0);" class="btn-link"><i class="fa fa-twitter"></i></a></li>
+                                                <li><a href="javascript:void(0);" class="btn-link"><i class="fa fa-pinterest-p"></i></a></li>
+                                                <li><a href="javascript:void(0);" class="btn-link"><i class="fa fa-facebook"></i></a></li>
+                                                <li><a href="javascript:void(0);" class="btn-link"><i class="fa fa-instagram"></i></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="sep-bottom">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <div class="blog-card post-grid grid-style m-b30">
+                                        <div class="blog-card-media">
+                                            <img src="images/blog/pic3.jpg" alt="" />
+                                        </div>
+                                        <div class="blog-card-info">
+                                            <div class="title-sm"><a href="javascript:void(0);">Beauty</a></div>
+                                            <h5 class="font-20"><a href="post-quote.html">Wardrobe this Season</a></h5>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="blog-card post-grid grid-style m-b30">
+                                        <div class="blog-card-media">
+                                            <img src="images/blog/pic4.jpg" alt="" />
+                                        </div>
+                                        <div class="blog-card-info">
+                                            <div class="title-sm"><a href="javascript:void(0);">Fashion</a></div>
+                                            <h5 class="font-20"><a href="post-left-sidebar.html">Our Winter Fairytale</a></h5>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="blog-card post-grid grid-style m-b30">
+                                        <div class="blog-card-media">
+                                            <img src="images/blog/pic5.jpg" alt="" />
+                                        </div>
+                                        <div class="blog-card-info">
+                                            <div class="title-sm"><a href="javascript:void(0);">Travel</a></div>
+                                            <h5 class="font-20"><a href="post-full-width.html">French Skincare Secret</a></h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="section-head text-center">
+                            <div class="title-sm"><a href="javascript:void(0);">Lifestyle</a></div>
+                            <h2 class="title-head"><a href="post-with-small-side-image.html">Sonoma Valley Lancome</a></h2>
+                        </div>
+                        <div class="loadmore-content">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="blog-card full-design">
+                                        <div class="blog-card-media">
+                                            <img src="images/blog/default/thum3.jpg" alt="" />
+                                        </div>
+                                        <div class="blog-card-info style-1">
+                                            <div class="date">
+                                                25 January,  2020
+                                            </div>
+                                            <ul class="social-link-round">
+                                                <li class="link-ic"><a href="javascript:void(0);" class="btn-link share"><i class="la la-share-alt"></i></a></li>
+                                                <li><a href="javascript:void(0);" class="btn-link"><i class="fa fa-twitter"></i></a></li>
+                                                <li><a href="javascript:void(0);" class="btn-link"><i class="fa fa-pinterest-p"></i></a></li>
+                                                <li><a href="javascript:void(0);" class="btn-link"><i class="fa fa-facebook"></i></a></li>
+                                                <li><a href="javascript:void(0);" class="btn-link"><i class="fa fa-instagram"></i></a></li>
+                                            </ul>
+                                            <div class="">
+                                                <a href="post-with-small-side-image.html" class="btn-link readmore"><i class="la la-arrow-right"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" id="masonry">
+                                <div class="col-lg-6 col-md-12 col-sm-6 card-container">
+                                    <div class="blog-card post-grid">
+                                        <div class="blog-card-media">
+                                            <img src="images/blog/masonary/pic1.jpg" alt="" />
+                                        </div>
+                                        <div class="blog-card-info">
+                                            <div class="title-sm"><a href="javascript:void(0);">beauty</a></div>
+                                            <h4 class="title"><a href="post-gallery.html">Night Out in Whistler</a></h4>
+                                            <p>Aenean sollicitudin, lorem quis bibendum auctor, ninkis elit ipsum, nec sagittis sem nibh id elit. Duis sedio.</p>
+                                            <ul class="social-link-round">
+                                                <li class="link-ic"><a href="javascript:void(0);" class="btn-link share"><i class="la la-share-alt"></i></a></li>
+                                                <li><a href="javascript:void(0);" class="btn-link"><i class="fa fa-twitter"></i></a></li>
+                                                <li><a href="javascript:void(0);" class="btn-link"><i class="fa fa-pinterest-p"></i></a></li>
+                                                <li><a href="javascript:void(0);" class="btn-link"><i class="fa fa-facebook"></i></a></li>
+                                                <li><a href="javascript:void(0);" class="btn-link"><i class="fa fa-instagram"></i></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-12 col-sm-6 card-container">
+                                    <div class="blog-card post-grid">
+                                        <div class="blog-card-media">
+                                            <img src="images/blog/masonary/pic2.jpg" alt="" />
+                                        </div>
+                                        <div class="blog-card-info">
+                                            <div class="title-sm"><a href="javascript:void(0);">beauty</a></div>
+                                            <h4 class="title"><a href="post-audio.html">Head-To-Toe Black</a></h4>
+                                            <p>Aenean sollicitudin, lorem quis bibendum auctor, ninkis elit ipsum, nec sagittis sem nibh id elit. Duis sedio.</p>
+                                            <ul class="social-link-round">
+                                                <li class="link-ic"><a href="javascript:void(0);" class="btn-link share"><i class="la la-share-alt"></i></a></li>
+                                                <li><a href="javascript:void(0);" class="btn-link"><i class="fa fa-twitter"></i></a></li>
+                                                <li><a href="javascript:void(0);" class="btn-link"><i class="fa fa-pinterest-p"></i></a></li>
+                                                <li><a href="javascript:void(0);" class="btn-link"><i class="fa fa-facebook"></i></a></li>
+                                                <li><a href="javascript:void(0);" class="btn-link"><i class="fa fa-instagram"></i></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-12 col-sm-6 card-container">
+                                    <div class="blog-card post-grid">
+                                        <div class="blog-card-media">
+                                            <img src="images/blog/masonary/pic4.jpg" alt="" />
+                                        </div>
+                                        <div class="blog-card-info">
+                                            <div class="title-sm"><a href="javascript:void(0);">beauty</a></div>
+                                            <h4 class="title"><a href="post-full-width.html">California Spring Break</a></h4>
+                                            <p>Aenean sollicitudin, lorem quis bibendum auctor, ninkis elit ipsum, nec sagittis sem nibh id elit. Duis sedio.</p>
+                                            <ul class="social-link-round">
+                                                <li class="link-ic"><a href="javascript:void(0);" class="btn-link share"><i class="la la-share-alt"></i></a></li>
+                                                <li><a href="javascript:void(0);" class="btn-link"><i class="fa fa-twitter"></i></a></li>
+                                                <li><a href="javascript:void(0);" class="btn-link"><i class="fa fa-pinterest-p"></i></a></li>
+                                                <li><a href="javascript:void(0);" class="btn-link"><i class="fa fa-facebook"></i></a></li>
+                                                <li><a href="javascript:void(0);" class="btn-link"><i class="fa fa-instagram"></i></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-12 col-sm-6 card-container">
+                                    <div class="blog-card post-grid">
+                                        <div class="blog-card-media">
+                                            <img src="images/blog/masonary/pic3.jpg" alt="" />
+                                        </div>
+                                        <div class="blog-card-info">
+                                            <div class="title-sm"><a href="javascript:void(0);">beauty</a></div>
+                                            <h4 class="title"><a href="post-gallery-alternative.html">Valentine’s Day Outfits</a></h4>
+                                            <p>Aenean sollicitudin, lorem quis bibendum auctor, ninkis elit ipsum, nec sagittis sem nibh id elit. Duis sedio.</p>
+                                            <ul class="social-link-round">
+                                                <li class="link-ic"><a href="javascript:void(0);" class="btn-link share"><i class="la la-share-alt"></i></a></li>
+                                                <li><a href="javascript:void(0);" class="btn-link"><i class="fa fa-twitter"></i></a></li>
+                                                <li><a href="javascript:void(0);" class="btn-link"><i class="fa fa-pinterest-p"></i></a></li>
+                                                <li><a href="javascript:void(0);" class="btn-link"><i class="fa fa-facebook"></i></a></li>
+                                                <li><a href="javascript:void(0);" class="btn-link"><i class="fa fa-instagram"></i></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-12 col-sm-6 card-container">
+                                    <div class="blog-card post-grid">
+                                        <div class="blog-card-media">
+                                            <img src="images/blog/masonary/pic6.jpg" alt="" />
+                                        </div>
+                                        <div class="blog-card-info">
+                                            <div class="title-sm"><a href="javascript:void(0);">beauty</a></div>
+                                            <h4 class="title"><a href="post-left-sidebar.html">Weekend Style Diaries</a></h4>
+                                            <p>Aenean sollicitudin, lorem quis bibendum auctor, ninkis elit ipsum, nec sagittis sem nibh id elit. Duis sedio.</p>
+                                            <ul class="social-link-round">
+                                                <li class="link-ic"><a href="javascript:void(0);" class="btn-link share"><i class="la la-share-alt"></i></a></li>
+                                                <li><a href="javascript:void(0);" class="btn-link"><i class="fa fa-twitter"></i></a></li>
+                                                <li><a href="javascript:void(0);" class="btn-link"><i class="fa fa-pinterest-p"></i></a></li>
+                                                <li><a href="javascript:void(0);" class="btn-link"><i class="fa fa-facebook"></i></a></li>
+                                                <li><a href="javascript:void(0);" class="btn-link"><i class="fa fa-instagram"></i></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-12 col-sm-6 card-container">
+                                    <div class="blog-card post-grid">
+                                        <div class="blog-card-media">
+                                            <img src="images/blog/masonary/pic5.jpg" alt="" />
+                                        </div>
+                                        <div class="blog-card-info">
+                                            <div class="title-sm"><a href="javascript:void(0);">beauty</a></div>
+                                            <h4 class="title"><a href="post-link.html">The Gift Of Time</a></h4>
+                                            <p>Aenean sollicitudin, lorem quis bibendum auctor, ninkis elit ipsum, nec sagittis sem nibh id elit. Duis sedio.</p>
+                                            <ul class="social-link-round">
+                                                <li class="link-ic"><a href="javascript:void(0);" class="btn-link share"><i class="la la-share-alt"></i></a></li>
+                                                <li><a href="javascript:void(0);" class="btn-link"><i class="fa fa-twitter"></i></a></li>
+                                                <li><a href="javascript:void(0);" class="btn-link"><i class="fa fa-pinterest-p"></i></a></li>
+                                                <li><a href="javascript:void(0);" class="btn-link"><i class="fa fa-facebook"></i></a></li>
+                                                <li><a href="javascript:void(0);" class="btn-link"><i class="fa fa-instagram"></i></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-12 col-sm-6 card-container">
+                                    <div class="blog-card post-grid">
+                                        <div class="blog-card-media">
+                                            <img src="images/blog/masonary/pic7.jpg" alt="" />
+                                        </div>
+                                        <div class="blog-card-info">
+                                            <div class="title-sm"><a href="javascript:void(0);">beauty</a></div>
+                                            <h4 class="title"><a href="post-navigation.html">French Skincare Secret</a></h4>
+                                            <p>Aenean sollicitudin, lorem quis bibendum auctor, ninkis elit ipsum, nec sagittis sem nibh id elit. Duis sedio.</p>
+                                            <ul class="social-link-round">
+                                                <li class="link-ic"><a href="javascript:void(0);" class="btn-link share"><i class="la la-share-alt"></i></a></li>
+                                                <li><a href="javascript:void(0);" class="btn-link"><i class="fa fa-twitter"></i></a></li>
+                                                <li><a href="javascript:void(0);" class="btn-link"><i class="fa fa-pinterest-p"></i></a></li>
+                                                <li><a href="javascript:void(0);" class="btn-link"><i class="fa fa-facebook"></i></a></li>
+                                                <li><a href="javascript:void(0);" class="btn-link"><i class="fa fa-instagram"></i></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-12 col-sm-6 card-container">
+                                    <div class="blog-card post-grid">
+                                        <div class="blog-card-media">
+                                            <img src="images/blog/masonary/pic8.jpg" alt="" />
+                                        </div>
+                                        <div class="blog-card-info">
+                                            <div class="title-sm"><a href="javascript:void(0);">beauty</a></div>
+                                            <h4 class="title"><a href="post-open-gutenberg.html">Amazon Echo Look</a></h4>
+                                            <p>Aenean sollicitudin, lorem quis bibendum auctor, ninkis elit ipsum, nec sagittis sem nibh id elit. Duis sedio.</p>
+                                            <ul class="social-link-round">
+                                                <li class="link-ic"><a href="javascript:void(0);" class="btn-link share"><i class="la la-share-alt"></i></a></li>
+                                                <li><a href="javascript:void(0);" class="btn-link"><i class="fa fa-twitter"></i></a></li>
+                                                <li><a href="javascript:void(0);" class="btn-link"><i class="fa fa-pinterest-p"></i></a></li>
+                                                <li><a href="javascript:void(0);" class="btn-link"><i class="fa fa-facebook"></i></a></li>
+                                                <li><a href="javascript:void(0);" class="btn-link"><i class="fa fa-instagram"></i></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="load-more-btn text-center">
+                                        <a href="javascript:;" class="btn outline outline-2 black radius-xl">Load More</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-5 col-sm-12 col-12">
+                        <div class="side-bar p-l30 sticky-top">
+                            <div class="widget widget-newsletter text-center">
+                                <form class="dzSubscribe dezPlaceAni" action="script/mailchamp.php" method="post">
+                                    <div class="news-back form-style">
+                                        <h4>Join</h4>
+                                        <div class="input-group">
+                                            <input name="dzEmail" required="required" type="email" class="form-control" placeholder="Your Email">
+                                            <div class="input-group-append">
+                                                <button name="submit" value="Submit" type="submit" class="btn"><i class="la la-paper-plane"></i></button>
+                                            </div>
+                                        </div>
+                                        <div class="dzSubscribeMsg"></div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="widget widget_gallery gallery-grid-2">
+                                <h6 class="widget-title"><span>Instagram</span></h6>
+                                <ul>
+                                    <li>
+                                        <a href="#">
+                                            <div class="dlab-post-thum dlab-img-overlay1 dlab-img-effect">
+                                                <img src="images/gallery/widget-gallery/pic1.jpg" alt="">
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <div class="dlab-post-thum dlab-img-overlay1 dlab-img-effect">
+                                                <img src="images/gallery/widget-gallery/pic2.jpg" alt="">
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <div class="dlab-post-thum dlab-img-overlay1 dlab-img-effect">
+                                                <img src="images/gallery/widget-gallery/pic3.jpg" alt="">
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <div class="dlab-post-thum dlab-img-overlay1 dlab-img-effect">
+                                                <img src="images/gallery/widget-gallery/pic4.jpg" alt="">
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="widget widget-social">
+                                <h6 class="widget-title"><span>Social</span></h6>
+                                <ul>
+                                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-snapchat-ghost"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-pinterest-p"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                                </ul>
+                                <div class="advertise text-center m-b20">
+                                    <img src="images/add.png" alt="" />
+                                </div>
+                                <div class="fb-social relative">
+                                    <img src="images/default-social.jpg" alt="" />
+                                    <div class="facebook-like">
+                                        <button class="btn radius-xl">Like on facebook</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="widget widget-stories">
+                                <h6 class="widget-title"><span>Latest Post</span></h6>
+                                <div class="post-carousel owl-carousel owl-theme owl-none owl-btn-3">
+                                    <div class="item">
+                                        <img src="images/gallery/widget-gallery/pic5.jpg" alt="" />
+                                    </div>
+                                    <div class="item">
+                                        <img src="images/gallery/widget-gallery/pic6.jpg" alt="" />
+                                    </div>
+                                    <div class="item">
+                                        <img src="images/gallery/widget-gallery/pic7.jpg" alt="" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="widget widget_tag_cloud">
+                                <h6 class="widget-title"><span>Tags</span></h6>
+                                <div class="tagcloud text-center">
+                                    <a href="#">Blog</a>
+                                    <a href="#">Photography</a>
+                                    <a href="#">Style</a>
+                                    <a href="#">Instagram</a>
+                                    <a href="#">Trend</a>
+                                    <a href="#">Lifestyle</a>
+                                    <a href="#">Fashion</a>
+                                    <a href="#">Travel</a>
+                                    <a href="#">Europe</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>-->
+        <!-- load-more-content end -->
+        <!-- subscribe -->
+        <!--<div class="section-full bg-gray subscribe-sc">
+            <div class="container">
+                <div class="row align-items-center subscribe-design">
+                    <div class="col-lg-7 col-md-7 d-none d-md-block">
+                        <img src="images/subscribe.png" alt="" />
+                    </div>
+                    <div class="col-lg-5 col-md-5">
+                        <form class="dzSubscribe dezPlaceAni" action="script/mailchamp.php" method="post">
+                            <h2>Subscribe to My Blog</h2>
+                            <div class="form-style subscribe">
+                                <div class="input-group">
+                                    <input name="dzEmail" required="required" type="email" class="form-control" placeholder="Your Email">
+                                    <div class="input-group-append">
+                                        <button name="submit" value="Submit" type="submit" class="btn"><i class="la la-paper-plane"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="dzSubscribeMsg"></div>
+                        </form>
+                    </div>
+                </div>
+                <h2 class="subscribe-text">subscribe</h2>
+            </div>
+        </div>-->
+        <!-- subscribe end -->
+    <!--</div>-->
+    <!-- contact area END -->
+<!--</div>-->
 <!-- Content END-->
