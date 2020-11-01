@@ -7,11 +7,7 @@
 
 * [About the Project](#about-the-project)
 * [Built With](#built-with)
-* [Getting Started](#getting-started)
-* [Installation](#installation)
-* [Contributing](#contributing)
 * [Contact](#contact)
-* [Acknowledgements](#acknowledgements)
 
 ## About The Project
 
