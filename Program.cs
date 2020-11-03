@@ -26,6 +26,7 @@ namespace MVCBlog
         public async static Task Main(string[] args)
         {
             var host = CreateHostBuilder(args).Build();
+            host.MigrateDataBase();
             await SeedDataAsync(host);
             host.Run();
         }

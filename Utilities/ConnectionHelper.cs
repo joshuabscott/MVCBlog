@@ -8,13 +8,12 @@ using MVCBlog.Models;
 
 namespace MVCBlog.Utilities
 {
-    public class ConnectionHelper
+    public class PostgreSqlConnection
     {
-        //private string ConnectionHelper()
-        //{
-        //    var config = new PostgreSqlConnection();
-        //    var dbUrl = ConfigurationBinder["DATABASE_URL"];
-        //    if(string.IsNullOrEmpty)
-        //}
+        public string Server { get; set; }
+        public string Port { get; set; }
+        public string UserId { get; set; }
+        public string Password { get; set; }
+        public string Database { get; set; }
     }
 }
