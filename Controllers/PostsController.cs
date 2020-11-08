@@ -3,7 +3,6 @@ using System.Text.RegularExpressions;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.AspNetCore.Http;
 using System.IO;
-
 using System;
 using System.Linq;
 using System.Collections.Generic;
@@ -29,7 +28,7 @@ namespace MVCBlog.Controllers
             _context = context;
         }
 
-// GET: Posts
+        // GET: Posts
         [Authorize(Roles = "Admin, Moderator")]
         public async Task<IActionResult> Index()
         {
@@ -93,18 +92,18 @@ namespace MVCBlog.Controllers
     [HttpPost]
     [ValidateAntiForgeryToken]
     [Authorize(Roles = "Admin")]
-    public async Task<IActionResult> Create([Bind("Id,BlogId,Title,Abstract,Content,Slug,IsPublished,Image,Created,Updated,ImageDataUrl")] Post post/*, IFormFile image*/)
+    public async Task<IActionResult> Create([Bind("Id,BlogId,Title,Abstract,Content,Slug,IsPublished,Image,Created,Updated,ImageDataUrl")] Post post, IFormFile image)
         {
             if (ModelState.IsValid)
             {
                 post.Created = DateTimeOffset.Now;
                 post.Updated = DateTimeOffset.Now;
                 post.Slug = Regex.Replace(post.Title.ToLower(), @"\s", "-");
-                //if (image != null)
-                //{
-                //    var imageHelper = new ImageHelper();
-                //    imageHelper.GetImage(post, image);
-                //}
+                if (image != null)
+                {
+                    var imageHelper = new ImageHelper();
+                    imageHelper.GetImage(post, image);
+                }
                 _context.Add(post);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -159,7 +158,7 @@ namespace MVCBlog.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin, Moderator")]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,BlogId,Title,Abstract,Body,Slug,IsPublished,Image,Created,Updated,ImageDataUrl")] Post post/*, IFormFile image*/)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,BlogId,Title,Abstract,Body,Slug,IsPublished,Image,Created,Updated,ImageDataUrl")] Post post, IFormFile image)
         {
             if (id != post.Id)
             {
@@ -169,11 +168,11 @@ namespace MVCBlog.Controllers
             {
                 try
                 {
-                    //if (image != null)
-                    //{
-                    //    var imageHelper = new ImageHelper();
-                    //    imageHelper.GetImage(post, image);
-                    //}
+                    if (image != null)
+                    {
+                        var imageHelper = new ImageHelper();
+                        imageHelper.GetImage(post, image);
+                    }
                     post.Updated = DateTimeOffset.Now;
                     _context.Update(post);
                     await _context.SaveChangesAsync();

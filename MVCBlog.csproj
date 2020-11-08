@@ -31,6 +31,22 @@
 
   <ItemGroup>
     <None Include="Views\Home\about-us.cshtml" />
+    <None Include="wwwroot\images\images\logo.svg" />
+    <None Include="wwwroot\images\images\pic01.jpg" />
+    <None Include="wwwroot\images\images\pic02.jpg" />
+    <None Include="wwwroot\images\images\pic03.jpg" />
+    <None Include="wwwroot\images\images\pic04.jpg" />
+    <None Include="wwwroot\images\images\pic05.jpg" />
+    <None Include="wwwroot\images\images\pic06.jpg" />
+    <None Include="wwwroot\images\images\pic07.jpg" />
+    <None Include="wwwroot\images\images\pic08.jpg" />
+    <None Include="wwwroot\images\images\pic09.jpg" />
+    <None Include="wwwroot\images\images\pic10.jpg" />
+    <None Include="wwwroot\images\images\pic11.jpg" />
+    <None Include="wwwroot\images\images\pic12.jpg" />
+    <None Include="wwwroot\images\images\pic13.jpg" />
+    <None Include="wwwroot\images\images\pic14.jpg" />
+    <None Include="wwwroot\images\images\pic15.jpg" />
   </ItemGroup>
 
 </Project>

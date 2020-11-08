@@ -3,7 +3,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.DependencyInjection;
-
 using System;
 using System.Linq;
 using System.Collections.Generic;
@@ -26,7 +25,7 @@ namespace MVCBlog
         public async static Task Main(string[] args)
         {
             var host = CreateHostBuilder(args).Build();
-            host.MigrateDataBase();
+            //host.MigrateDataBase();
             await SeedDataAsync(host);
             host.Run();
         }

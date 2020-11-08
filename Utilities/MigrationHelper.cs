@@ -13,27 +13,27 @@ using System.Threading.Tasks;
 
 namespace MVCBlog.Utilities
 {
-    public static class MigrationHelper
-    {
-        public static IHost MigrateDataBase(this IHost host)
-        {
-            using var scope = host.Services.CreateScope();
-            using var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+    //public static class MigrationHelper
+    //{
+    //    public static IHost MigrateDataBase(this IHost host)
+    //    {
+    //        using var scope = host.Services.CreateScope();
+    //        using var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
 
-            var pendingMigragtions = context.Database.GetPendingMigrations().ToList();
-            if (pendingMigragtions.Count > 0)
-            {
-                var migrator = context.Database.GetService<IMigratior>();
-                foreach (var targetMigration in pendingMigragtions)
-                {
-                    migrator.Migrate(targetMigration);
-                }
-            }
-        }
-        CatchBlock (PostgresException ex)
-        {
-            Console.WriteLine(ex);
-        }
-        return host;
-    }
+    //        var pendingMigragtions = context.Database.GetPendingMigrations().ToList();
+    //        if (pendingMigragtions.Count > 0)
+    //        {
+    //            var migrator = context.Database.GetService<IMigratior>();
+    //            foreach (var targetMigration in pendingMigragtions)
+    //            {
+    //                migrator.Migrate(targetMigration);
+    //            }
+    //        }
+    //    }
+    //    CatchBlock (PostgresException ex)
+    //    {
+    //        Console.WriteLine(ex);
+    //    }
+    //    return host;
+    //}
 }

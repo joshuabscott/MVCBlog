@@ -11,15 +11,16 @@ using MVCBlog.ViewModels;
 using MVCBlog.Models;
 using MVCBlog.Enums;
 using MVCBlog.Data;
+using System.Xml;
 
 namespace MVCBlog.Controllers
 {
     public class CommentsController : Controller
     {
         private readonly ApplicationDbContext _context;
-        private readonly UserManager<BlogUser> userManager;
+        //private readonly UserManager<BlogUser> userManager;
 
-        public CommentsController(ApplicationDbContext context, UserManager<BlogUser>manager)
+        public CommentsController(ApplicationDbContext context/*, UserManager<BlogUser>manager*/)
         {
             //_userManager = manager;
             _context = context;
@@ -133,10 +134,10 @@ namespace MVCBlog.Controllers
                     //await _context.SaveChangesAsync();
                     if (comment.Body.Contains("<!DOCTYPE"))
                     {
-                        //XmlDocument doc = new XmlDocument();
-                        //doc.LoadXml(comment.Body);
-                        //XmlNode elem = doc.DocumentElement.FirstChild.NextSibling;
-                        //comment.Body = elem.FirstChild.InnerText.ToString();
+                        XmlDocument doc = new XmlDocument();
+                        doc.LoadXml(comment.Body);
+                        XmlNode elem = doc.DocumentElement.FirstChild.NextSibling;
+                        comment.Body = elem.FirstChild.InnerText.ToString();
                     }
                     comment.Post = _context.Posts.FirstOrDefault(p => p.Id == comment.PostId);
                     comment.BlogUser = _context.Users.FirstOrDefault(u => u.Id == comment.BlogUserId);
