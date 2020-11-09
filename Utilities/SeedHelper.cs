@@ -38,7 +38,7 @@ namespace MVCBlog.Utilities
                 var admin = new BlogUser()
                 {
                     Email = "JoshuaBScott@gmail.com",
-                    UserName = "JoshScotty",
+                    UserName = "JoshuaBScott@gmail.com",
                     FirstName = "Joshua",
                     LastName = "Scotty",
                     EmailConfirmed = true
@@ -55,7 +55,7 @@ namespace MVCBlog.Utilities
                 var moderator = new BlogUser()
                 {
                     Email = "J@joshscott.xyz",
-                    UserName = "JScott",
+                    UserName = "J@joshscott.xyz",
                     FirstName = "Josh",
                     LastName = "Scott",
                     EmailConfirmed = true
