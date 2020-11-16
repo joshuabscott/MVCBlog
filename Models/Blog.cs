@@ -11,13 +11,12 @@ namespace MVCBlog.Models
         #region Keys
 
         public int Id { get; set; }
-        public string Name { get; set; }
-        public string URL { get; set; }
 
         #endregion
 
-        #region Blog Properties
-
+        #region Blogs Properties
+        public string Name { get; set; }
+        public string URL { get; set; }
 
         #endregion
         //public virtual ICollection<Post> Posts { get; set; } = new HashSet<Post>();

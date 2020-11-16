@@ -8,16 +8,18 @@ namespace MVCBlog.Models
     public class Tag
     {
         #region Keys
+        public int Id { get; set; }
         #endregion
 
         #region Post Properties
-        public int Id { get; set; }
+
         public int PostId { get; set; }
         public string Name { get; set; }
-        public virtual Post Post { get; set; }
+
         #endregion
 
         #region Navigation
+        public virtual Post Post { get; set; }
         #endregion
     }
 }

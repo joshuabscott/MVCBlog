@@ -22,7 +22,7 @@
         <div class="row text-center">
             <div class="col">
                 <!--Admin Create Post Button-->
-                @if (User.IsInRole("Admin"))
+                @if (User.IsInRole("Administrator"))
                 {
                     <p>
                         <a asp-action="Create">Create new Blog Topic</a>

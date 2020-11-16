@@ -10,7 +10,7 @@ namespace MVCBlog.Enums
     //to use a template with the name of "Enum" for such models.
     public enum Roles
     {
-        Admin,
+        Administrator,
         Moderator
     }
 }

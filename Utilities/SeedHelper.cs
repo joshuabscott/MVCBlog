@@ -27,7 +27,7 @@ namespace MVCBlog.Utilities
 
         public static async Task SeedRoles(RoleManager<IdentityRole> roleManager)
         {
-            await roleManager.CreateAsync(new IdentityRole(Roles.Admin.ToString()));
+            await roleManager.CreateAsync(new IdentityRole(Roles.Administrator.ToString()));
             await roleManager.CreateAsync(new IdentityRole(Roles.Moderator.ToString()));
         }
 
@@ -44,7 +44,7 @@ namespace MVCBlog.Utilities
                     EmailConfirmed = true
                 };
                 await userManager.CreateAsync(admin, "!1Qazwsx");
-                await userManager.AddToRoleAsync(admin, Roles.Admin.ToString());
+                await userManager.AddToRoleAsync(admin, Roles.Administrator.ToString());
             }
         }
 

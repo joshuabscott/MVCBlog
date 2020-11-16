@@ -30,6 +30,7 @@ namespace MVCBlog.Models
         public BlogUser()
         {
             Comments = new HashSet<Comment>();
+            DisplayName = "New User";
         }
         #endregion
 

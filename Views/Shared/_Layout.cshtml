@@ -62,7 +62,7 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <partial name="_LoginPartial" />
-                    @if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
+                    @if (User.IsInRole("Administrator") || User.IsInRole("Moderator"))
                     {
                         <ul class="navbar-nav flex-grow-1">
                             <li class="nav-item">
