@@ -1,68 +1,154 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-
-using System;
+﻿using System;
 using System.Linq;
 using System.Collections.Generic;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
+using System.Diagnostics;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
-using MVCBlog.ViewModels;
 using MVCBlog.Models;
-using MVCBlog.Enums;
-using MVCBlog.Data;
+
 
 namespace MVCBlog.Utilities
 {
+    public enum Roles
+    {
+        Administrator,
+        Moderator,
+        Demo
+    }
+
     public class SeedHelper
     {
-        public static async Task SeedDataAsync(UserManager<BlogUser> userManager, RoleManager<IdentityRole> roleManager)
-        {
-            await SeedRoles(roleManager);
-            await SeedAdmin(userManager);
-            await SeedModerator(userManager);
-        }
-
-        public static async Task SeedRoles(RoleManager<IdentityRole> roleManager)
+        //Seed Roles
+        public static async Task SeedRolesAsync(RoleManager<IdentityRole> roleManager)
         {
             await roleManager.CreateAsync(new IdentityRole(Roles.Administrator.ToString()));
             await roleManager.CreateAsync(new IdentityRole(Roles.Moderator.ToString()));
+            await roleManager.CreateAsync(new IdentityRole(Roles.Demo.ToString()));
         }
 
-        public static async Task SeedAdmin(UserManager<BlogUser> userManager)
+        public static async Task SeedDefaultUsersAsync(UserManager<BlogUser> userManager)
         {
-            if (await userManager.FindByEmailAsync("JoshuaBScott@gmail.com") == null)
+            //SeedDefault Administrator
+            #region SeedAdministrator
+            var defaultAdmin = new BlogUser
             {
-                var admin = new BlogUser()
+                UserName = "J@mailinator.com",
+                Email = "J@mailinator.comJ",
+                FirstName = "Josh",
+                LastName = "Scott",
+                EmailConfirmed = true
+            };
+            try
+            {
+                var user = await userManager.FindByEmailAsync(defaultAdmin.Email);
+                if (user == null)
                 {
-                    Email = "JoshuaBScott@gmail.com",
-                    UserName = "JoshuaBScott@gmail.com",
-                    FirstName = "Joshua",
-                    LastName = "Scotty",
-                    EmailConfirmed = true
-                };
-                await userManager.CreateAsync(admin, "!1Qazwsx");
-                await userManager.AddToRoleAsync(admin, Roles.Administrator.ToString());
+                    await userManager.CreateAsync(defaultAdmin, "!1Qqazwsxedc");
+                    await userManager.AddToRoleAsync(defaultAdmin, Roles.Administrator.ToString());
+                }
             }
-        }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("************ ERROR  ************");
+                Debug.WriteLine("Error Seeding Default Administrator.");
+                Debug.WriteLine(ex.Message);
+                Debug.WriteLine("********************************");
+                throw;
+            }
+            #endregion
 
-        public static async Task SeedModerator(UserManager<BlogUser> userManager)
-        {
-            if (await userManager.FindByEmailAsync("J@joshscott.xyz") == null)
+            //SeedDefault Moderator
+            #region SeedModerator
+            var defaultModerator = new BlogUser
             {
-                var moderator = new BlogUser()
+                UserName = "W@mailinator.com",
+                Email = "W@mailinator.comJ",
+                FirstName = "Adam",
+                LastName = "West",
+                EmailConfirmed = true
+            };
+            try
+            {
+                var user = await userManager.FindByEmailAsync(defaultModerator.Email);
+                if (user == null)
                 {
-                    Email = "J@joshscott.xyz",
-                    UserName = "J@joshscott.xyz",
-                    FirstName = "Josh",
-                    LastName = "Scott",
-                    EmailConfirmed = true
-                };
-                await userManager.CreateAsync(moderator, "!1Qazwsxedc");
-                await userManager.AddToRoleAsync(moderator, Roles.Moderator.ToString());
+                    await userManager.CreateAsync(defaultModerator, "!1Qqazwsxedc");
+                    await userManager.AddToRoleAsync(defaultModerator, Roles.Moderator.ToString());
+                }
             }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("************ ERROR  ************");
+                Debug.WriteLine("Error Seeding Default Administrator.");
+                Debug.WriteLine(ex.Message);
+                Debug.WriteLine("********************************");
+                throw;
+            }
+            #endregion
+
+
+
+            //SeedDemo Administrator
+            #region Demo Administrator
+            var demoAdministrator = new BlogUser
+            {
+                UserName = "demoW@mailinator.com",
+                Email = "demoW@mailinator.comJ",
+                FirstName = "Adam",
+                LastName = "West",
+                EmailConfirmed = true
+            };
+            try
+            {
+                var user = await userManager.FindByEmailAsync(defaultModerator.Email);
+                if (user == null)
+                {
+                    await userManager.CreateAsync(demoAdministrator, "g9N88.se!");
+                    await userManager.AddToRoleAsync(demoAdministrator, Roles.Administrator.ToString());
+                    await userManager.AddToRoleAsync(demoAdministrator, Roles.Demo.ToString());
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("************ ERROR  ************");
+                Debug.WriteLine("Error Seeding Default Administrator.");
+                Debug.WriteLine(ex.Message);
+                Debug.WriteLine("********************************");
+                throw;
+            }
+            #endregion
+
+            //SeedDemo Moderator
+            #region Demo Moderator
+            var demoModerator = new BlogUser
+            {
+                UserName = "demoW@mailinator.com",
+                Email = "demoW@mailinator.comJ",
+                FirstName = "B",
+                LastName = "West",
+                EmailConfirmed = true
+            };
+            try
+            {
+                var user = await userManager.FindByEmailAsync(demoModerator.Email);
+                if (user == null)
+                {
+                    await userManager.CreateAsync(demoModerator, "g9N88.se!");
+                    await userManager.AddToRoleAsync(demoModerator, Roles.Moderator.ToString());
+                    await userManager.AddToRoleAsync(demoModerator, Roles.Demo.ToString());
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("************ ERROR  ************");
+                Debug.WriteLine("Error Seeding Default Administrator.");
+                Debug.WriteLine(ex.Message);
+                Debug.WriteLine("********************************");
+                throw;
+            }
+            #endregion
+
         }
     }
 }
