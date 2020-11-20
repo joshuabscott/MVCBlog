@@ -9,6 +9,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Utilities\BlogHelper.cs" />
+    <Compile Remove="Utilities\ConnectionHelper.cs" />
+    <Compile Remove="Utilities\MigrationHelper.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Remove="Views\Home\about-us.cshtml" />
   </ItemGroup>
 

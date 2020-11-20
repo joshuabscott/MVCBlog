@@ -34,24 +34,6 @@ namespace MVCBlog.Utilities
     }
 }
 
-//using Microsoft.AspNetCore.Http;
-//using Microsoft.CodeAnalysis.CSharp.Syntax;
-//using System.IO;
-
-//using System;
-//using System.Linq;
-//using System.Collections.Generic;
-//using Microsoft.AspNetCore.Authorization;
-//using Microsoft.AspNetCore.Mvc.Rendering;
-//using Microsoft.EntityFrameworkCore;
-//using Microsoft.AspNetCore.Identity;
-//using Microsoft.AspNetCore.Mvc;
-//using System.Threading.Tasks;
-//using MVCBlog.ViewModels;
-//using MVCBlog.Models;
-//using MVCBlog.Enums;
-//using MVCBlog.Data;
-
 //namespace MVCBlog.Utilities
 //{
 //    public class ImageHelper

@@ -7,29 +7,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using MVCBlog.Models;
 using MVCBlog.Utilities;
-
-//using Microsoft.AspNetCore.Hosting;
-//using Microsoft.Extensions.Configuration;
-//using Microsoft.Extensions.Hosting;
-//using Microsoft.Extensions.Logging;
-//using Microsoft.Extensions.DependencyInjection;
-//using System;
-//using System.Linq;
-//using System.Collections.Generic;
-//using Microsoft.AspNetCore.Authorization;
-//using Microsoft.AspNetCore.Mvc.Rendering;
-//using Microsoft.EntityFrameworkCore;
-//using Microsoft.AspNetCore.Identity;
-//using Microsoft.AspNetCore.Mvc;
-//using System.Threading.Tasks;
-//using MVCBlog.ViewModels;
-//using MVCBlog.Models;
-//using MVCBlog.Enums;
-//using MVCBlog.Data;
-//using MVCBlog.Utilities;
 
 namespace MVCBlog
 {
