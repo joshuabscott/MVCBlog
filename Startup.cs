@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MVCBlog.Models;
 using MVCBlog.Data;
+using MVCBlog.Services;
 
 namespace MVCBlog
 {
@@ -26,9 +27,13 @@ namespace MVCBlog
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
-                //options.UseNpgsql(GetConnectionString()));
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
+               options.UseNpgsql(
+                   DataHelper.GetConnectionString(Configuration)));
+
+            //services.AddDbContext<ApplicationDbContext>(options =>
+            //    //options.UseNpgsql(GetConnectionString()));
+            //    options.UseSqlServer(
+            //        Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<BlogUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
