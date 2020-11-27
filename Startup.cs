@@ -1,16 +1,22 @@
 using System;
-using System.Linq;
 using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Identity;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using MVCBlog.Models;
+using Npgsql;
 using MVCBlog.Data;
-using MVCBlog.Services;
+using MVCBlog.Models;
+using MVCBlog.ViewModels;
+using MVCBlog.Utilities;
+using MVCBlog.Enums;
 
 namespace MVCBlog
 {
@@ -21,27 +27,23 @@ namespace MVCBlog
             Configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; /*set;*/ }
+        public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationDbContext>(options =>
+            
+            services.AddDbContext<ApplicationDbContext>(options => 
                options.UseNpgsql(
-                   DataHelper.GetConnectionString(Configuration)));
-
-            //services.AddDbContext<ApplicationDbContext>(options =>
-            //    //options.UseNpgsql(GetConnectionString()));
-            //    options.UseSqlServer(
-            //        Configuration.GetConnectionString("DefaultConnection")));
+                DataHelper.GetConnectionString(Configuration)));
+            
             services.AddDefaultIdentity<BlogUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
-           
             services.AddControllersWithViews();
             services.AddRazorPages();
         }
-        
+
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
@@ -72,5 +74,26 @@ namespace MVCBlog
                 endpoints.MapRazorPages();
             });
         }
+
+        //private string GetConnectionString()
+        //{
+        //    var config = new PostgreSqlConnection();
+        //    var dbUrl = Configuration["DATABASE_URL"];
+        //    if (string.IsNullOrEmpty(dbUrl))
+        //    {
+        //        Configuration.Bind("PostgreSQL", config);
+        //    }
+        //    else
+        //    {
+        //        var dbUrlData = dbUrl.Split(":");
+        //        config.Server = dbUrlData[2].Split("@")[1];
+        //        config.Port = dbUrlData[3].Split("/")[0];
+        //        config.Database = dbUrlData[3].Split("/")[1];
+        //        config.UserId = dbUrlData[1].TrimStart('/');
+        //        config.Password = dbUrlData[2].Split("@")[0];
+        //    }
+        //    string connString = $"Server={config.Server}; Port={config.Port}; Database={config.Database}; User Id={config.UserId}; Password={config.Password}";
+        //    return connString;
+        //}
     }
 }

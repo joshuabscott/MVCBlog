@@ -5,12 +5,13 @@ WORKDIR /app
 #EXPOSE 80
 #EXPOSE 443
 
-FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS build
 WORKDIR /src
-COPY ["MVCBlog.csproj", "MVCBlog/"]
+
+COPY ["MVCBlog.csproj", ""]
 RUN dotnet restore "./MVCBlog.csproj"
 COPY . .
-WORKDIR "/src/MVCBlog"
+WORKDIR "/src/."
 RUN dotnet build "MVCBlog.csproj" -c Release -o /app/build
 
 FROM build AS publish
@@ -19,5 +20,5 @@ RUN dotnet publish "MVCBlog.csproj" -c Release -o /app/publish
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-#ENTRYPOINT ["dotnet", "MVCBlog.dll"]
 CMD ASPNETCORE_URLS=http://*:$PORT dotnet MVCBlog.dll
+#}//Tue 24

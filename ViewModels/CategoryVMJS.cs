@@ -1,9 +1,9 @@
-﻿using MVCBlog.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections;
 using System.Linq;
 using System.Threading.Tasks;
+using MVCBlog.Models;
 
 namespace MVCBlog.ViewModels
 {
@@ -18,5 +18,7 @@ namespace MVCBlog.ViewModels
         //        // Load most last post property
         //        public <Post> LatestPost { get; set; }
         //}
+        public int PageNum { get; set; }
+        public int TotalPosts { get; set; }
     }
 }
