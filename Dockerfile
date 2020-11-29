@@ -22,3 +22,4 @@ WORKDIR /app
 COPY --from=publish /app/publish .
 CMD ASPNETCORE_URLS=http://*:$PORT dotnet MVCBlog.dll
 #}//Tue 24
+#//V2.0 JS 11-28

@@ -96,4 +96,4 @@ namespace MVCBlog
         //    return connString;
         //}
     }
-}
+}//V2.0 JS 11-28

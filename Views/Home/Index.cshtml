@@ -1,320 +1,388 @@
-﻿<!-- Destinations -->
-<section class="pt-5">
-    <div class="container text-center">
-        <h1>Featured Blog Topics</h1>
-        @*<p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis aliquid</p>*@
-    </div>
-    <div class="destinations-slider owl-carousel owl-theme nav-center-custom owl-padding">
-        <a class="destination d-flex align-items-end bg-center bg-cover" href="post.html" style="background: url(img/travel-home-4.jpg)">
-            <div class="destination-inner w-100 text-center text-white index-forward has-transition">
-                <p class="small text-uppercase mb-0">@*Paris*@</p>
-                <h2 class="h3 mb-4">Blog #1</h2>
-                <div class="btn btn-primary btn-block destination-btn text-white">Discover</div>
-            </div>
-        </a><a class="destination d-flex align-items-end bg-center bg-cover" href="post.html" style="background: url(img/travel-home-2.jpg)">
-            <div class="destination-inner w-100 text-center text-white index-forward has-transition">
-                <p class="small text-uppercase mb-0">@*Tokyo*@</p>
-                <h2 class="h3 mb-4">Blog #2</h2>
-                <div class="btn btn-primary btn-block destination-btn text-white">Discover</div>
-            </div>
-        </a><a class="destination d-flex align-items-end bg-center bg-cover" href="post.html" style="background: url(img/travel-home-3.jpg)">
-            <div class="destination-inner w-100 text-center text-white index-forward has-transition">
-                <p class="small text-uppercase mb-0">@*Madrid*@</p>
-                <h2 class="h3 mb-4">Blog #3</h2>
-                <div class="btn btn-primary btn-block destination-btn text-white">Discover</div>
-            </div>
-        </a><a class="destination d-flex align-items-end bg-center bg-cover" href="post.html" style="background: url(img/travel-home-1.jpg)">
-            <div class="destination-inner w-100 text-center text-white index-forward has-transition">
-                <p class="small text-uppercase mb-0">@*Rome*@</p>
-                <h2 class="h3 mb-4">Blog #4</h2>
-                <div class="btn btn-primary btn-block destination-btn text-white">Discover</div>
-            </div>
-        </a><a class="destination d-flex align-items-end bg-center bg-cover" href="post.html" style="background: url(img/travel-home-5.jpg)">
-            <div class="destination-inner w-100 text-center text-white index-forward has-transition">
-                <p class="small text-uppercase mb-0">@*Jakarta*@</p>
-                <h2 class="h3 mb-4">Blog #5</h2>
-                <div class="btn btn-primary btn-block destination-btn text-white">Discover</div>
-            </div>
-        </a><a class="destination d-flex align-items-end bg-center bg-cover" href="post.html" style="background: url(img/travel-home-6.jpg)">
-            <div class="destination-inner w-100 text-center text-white index-forward has-transition">
-                <p class="small text-uppercase mb-0">@*Ottawa*@</p>
-                <h2 class="h3 mb-4">Blog #7</h2>
-                <div class="btn btn-primary btn-block destination-btn text-white">Discover</div>
-            </div>
-        </a><a class="destination d-flex align-items-end bg-center bg-cover" href="post.html" style="background: url(img/travel-home-7.jpg)">
-            <div class="destination-inner w-100 text-center text-white index-forward has-transition">
-                <p class="small text-uppercase mb-0">@*Cairo*@</p>
-                <h2 class="h3 mb-4">Blog #8</h2>
-                <div class="btn btn-primary btn-block destination-btn text-white">Discover</div>
-            </div>
-        </a><a class="destination d-flex align-items-end bg-center bg-cover" href="post.html" style="background: url(img/travel-home-4.jpg)">
-            <div class="destination-inner w-100 text-center text-white index-forward has-transition">
-                <p class="small text-uppercase mb-0">@*Berlin*@</p>
-                <h2 class="h3 mb-4">Blog #9</h2>
-                <div class="btn btn-primary btn-block destination-btn text-white">Discover</div>
-            </div>
-        </a><a class="destination d-flex align-items-end bg-center bg-cover" href="post.html" style="background: url(img/travel-home-2.jpg)">
-            <div class="destination-inner w-100 text-center text-white index-forward has-transition">
-                <p class="small text-uppercase mb-0">@*Bangkok*@</p>
-                <h2 class="h3 mb-4">Blog #10</h2>
-                <div class="btn btn-primary btn-block destination-btn text-white">Discover</div>
-            </div>
-        </a><a class="destination d-flex align-items-end bg-center bg-cover" href="post.html" style="background: url(img/travel-home-3.jpg)">
-            <div class="destination-inner w-100 text-center text-white index-forward has-transition">
-                <p class="small text-uppercase mb-0">@*Malé*@</p>
-                <h2 class="h3 mb-4">Blog #11</h2>
-                <div class="btn btn-primary btn-block destination-btn text-white">Discover</div>
-            </div>
-        </a><a class="destination d-flex align-items-end bg-center bg-cover" href="post.html" style="background: url(img/travel-home-1.jpg)">
-            <div class="destination-inner w-100 text-center text-white index-forward has-transition">
-                <p class="small text-uppercase mb-0">@*New York*@</p>
-                <h2 class="h3 mb-4">Blog #12</h2>
-                <div class="btn btn-primary btn-block destination-btn text-white">Discover</div>
-            </div>
-        </a>
-    </div>
-</section>
-<!-- Divider Section -->
-<section class="py-5">
-    <div class="container py-4">
-        <!-- Home listing -->
-        <div class="row align-items-stretch bg-full-left">
-            <div class="col-lg-6 pr-lg-0 order-2 order-lg-1">
-                <div class="h-100 bg-light d-flex align-items-center">
-                    <div class="py-5 pr-4 pl-3 pl-lg-0">
-                        <p class="text-primary font-weight-bold small text-uppercase mb-2">Travel guide</p>
+﻿@model MVCBlog.ViewModels.CategoryVMJS
 
-                        <h3 class="h4">
-                            <a asp-controller="Posts" asp-action="Details" asp-route-id=""
-                               class="text-reset">Book to inspire your travel</a>
-                        </h3>
+@{
+    ViewData["Title"] = "Home Page";
+    var page = Model.PageNum;
+    var older = page - 1;
+    var newer = page + 1;
+}
 
-                        <p class="text-muted text-small mb-3"> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi quam nobis autem voluptate illum beatae atque suscipit inventore tenetur, perferendis facere sequi optio laudantium obcaecati aliquam, dolores ea. Pariatur, repellendus.</p>
-                        <p class="text-muted text-small mb-3"> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi quam nobis autem voluptate illum beatae atque suscipit inventore tenetur, perferendis facere sequi optio laudantium obcaecati aliquam, dolores ea. Pariatur, repellendus.</p>
-                        <ul class="list-inline small text-uppercase mb-0">
-                            <li class="list-inline-item align-middle"><img class="rounded-circle shadow-sm" src="~/img/person-1.jpg" alt="" width="30" /></li>
-                            <li class="list-inline-item mr-0 text-gray align-middle">By </li>
-                            <li class="list-inline-item align-middle mr-0"><a class="font-weight-bold reset-anchor" href="#">Jason Doe</a></li>
-                            <li class="list-inline-item text-gray align-middle mr-0">|</li>
-                            <li class="list-inline-item text-gray align-middle">Jan, 2019</li>
-                        </ul>
+<!-- Content -->
+<div class="page-content bg-white">
+    <!-- Slider Banner -->
+    <div class="top-category">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-6 m-b30">
+                    <div class="category-box overlay center large overlay-medium">
+                        <div class="category-media">
+                            <img src="images/category/category-top/pic1.jpg" alt="">
+                        </div>
+                        <div class="category-info">
+                            <div class="category-style"><a href="javascript:void(0);">Lifestyle</a></div>
+                            <h1><a href="post-left-sidebar.html">Ready for the Summer</a></h1>
+                            <a href="javascript:void(0);" class="category-title"><i class="la la-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 m-b30">
+                    <div class="category-box overlay center large overlay-medium">
+                        <div class="category-media">
+                            <img src="images/category/category-top/pic2.jpg" alt="">
+                        </div>
+                        <div class="category-info">
+                            <div class="category-style"><a href="javascript:void(0);">Fashion</a></div>
+                            <h1><a href="post-slide-show.html">Trends Tried & Tested.</a></h1>
+                            <a href="javascript:void(0);" class="category-title"><i class="la la-arrow-right"></i></a>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6 pl-lg-0 order-1 order-lg-2"><a class="d-block h-100 bg-center bg-cover" href="post.html" style="background: url(img/travel-home-divider.jpg)"></a></div>
         </div>
     </div>
-</section>
-<!-- Instagram section-->
-<section class="pb-5">
-    <div class="container pb-4">
-        <header class="text-center mb-5">
-            <h2>Backpack traveler</h2>
-            <p>A place for your Instagram pictures or gallery.</p>
-        </header>
-        <div class="row">
-            <div class="col-lg-3 col-md-6 px-md-1 py-1">
-                <a class="instagram-item d-block w-100 reset-anchor text-white" href="#">
-                    <img class="img-fluid" src="~/img/listing-tnumbnail-1.jpg" alt="">
-                    <div class="instagram-item-overlay p-5">
-                        <h6>We travel not to escape life, but for life not to escape us.</h6>
-                    </div>
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-6 px-md-1 py-1">
-                <a class="instagram-item d-block w-100 reset-anchor text-white" href="#">
-                    <img class="img-fluid" src="~/img/listing-tnumbnail-2.jpg" alt="">
-                    <div class="instagram-item-overlay p-5">
-                        <h6>We travel not to escape life, but for life not to escape us.</h6>
-                    </div>
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-6 px-md-1 py-1">
-                <a class="instagram-item d-block w-100 reset-anchor text-white" href="#">
-                    <img class="img-fluid" src="~/img/listing-tnumbnail-3.jpg" alt="">
-                    <div class="instagram-item-overlay p-5">
-                        <h6>We travel not to escape life, but for life not to escape us.</h6>
-                    </div>
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-6 px-md-1 py-1">
-                <a class="instagram-item d-block w-100 reset-anchor text-white" href="#">
-                    <img class="img-fluid" src="~/img/listing-tnumbnail-4.jpg" alt="">
-                    <div class="instagram-item-overlay p-5">
-                        <h6>We travel not to escape life, but for life not to escape us.</h6>
-                    </div>
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-6 px-md-1 py-1">
-                <a class="instagram-item d-block w-100 reset-anchor text-white" href="#">
-                    <img class="img-fluid" src="~/img/listing-tnumbnail-5.jpg" alt="">
-                    <div class="instagram-item-overlay p-5">
-                        <h6>We travel not to escape life, but for life not to escape us.</h6>
-                    </div>
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-6 px-md-1 py-1">
-                <a class="instagram-item d-block w-100 reset-anchor text-white" href="#">
-                    <img class="img-fluid" src="~/img/listing-tnumbnail-6.jpg" alt="">
-                    <div class="instagram-item-overlay p-5">
-                        <h6>We travel not to escape life, but for life not to escape us.</h6>
-                    </div>
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-6 px-md-1 py-1">
-                <a class="instagram-item d-block w-100 reset-anchor text-white" href="#">
-                    <img class="img-fluid" src="~/img/listing-tnumbnail-1.jpg" alt="">
-                    <div class="instagram-item-overlay p-5">
-                        <h6>We travel not to escape life, but for life not to escape us.</h6>
-                    </div>
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-6 px-md-1 py-1">
-                <a class="instagram-item d-block w-100 reset-anchor text-white" href="#">
-                    <img class="img-fluid" src="~/img/listing-tnumbnail-2.jpg" alt="">
-                    <div class="instagram-item-overlay p-5">
-                        <h6>We travel not to escape life, but for life not to escape us.</h6>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- Travel essentials section -->
-<section class="py-5 bg-light">
-    <div class="container py-4">
-        <header class="text-center mb-5">
-            <h2>My travel essentials</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-        </header>
-        <div class="row text-center">
-            <div class="col-lg-3 col-md-6">
-                <a class="text-reset text-decoration-none" href="post.html">
-                    <img class="mb-4" src="~/img/bag.png" alt="" height="150">
-                    <h3 class="h5">Backpack</h3>
-                    <p class="text-small text-muted">Deserunt et ad culpa culpa dolore.</p>
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <a class="text-reset text-decoration-none" href="post.html">
-                    <img class="mb-4" src="~/img/camera.png" alt="" height="150">
-                    <h3 class="h5">Camera</h3>
-                    <p class="text-small text-muted">Consectetur ex sunt duis minim quis dolor.</p>
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <a class="text-reset text-decoration-none" href="post.html">
-                    <img class="mb-4" src="~/img/glasses.png" alt="" height="150">
-                    <h3 class="h5">Sunglasses</h3>
-                    <p class="text-small text-muted">Deserunt et ad culpa culpa dolore.</p>
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <a class="text-reset text-decoration-none" href="post.html">
-                    <img class="mb-4" src="~/img/headphone.png" alt="" height="150">
-                    <h3 class="h5">Headphones</h3>
-                    <p class="text-small text-muted">Elit ad est labore irure qui.</p>
-                </a>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- Subscribe section -->
-<section class="py-5">
-    <div class="container py-4">
-        <div class="row align-items-center">
-            <div class="col-lg-6 position-relative py-4"><img class="subscribe-img" src="~/img/subscribe-img-1.jpg" alt=""><img class="subscribe-img" src="~/img/subscribe-img-2.jpg" alt=""></div>
-            <div class="col-lg-6">
-                <h2>Best money saving - Travel tips</h2>
-                <p class="text-muted mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos quidem facere aliquam, delectus, incidunt ipsum fugit deserunt ducimus quibusdam consequuntur quos numquam ipsa suscipit animi dolore. Est beatae inventore voluptas.</p>
-                <form action="#">
-                    <div class="row">
-                        <div class="form-group col-lg-8">
-                            <input class="form-control" type="email" name="email" placeholder="Enter your email address">
-                        </div>
-                        <div class="form-group col-lg-4">
-                            <button class="btn btn-dark btn-block" type="submit">Subscribe</button>
+    <!-- Slider Banner -->
+    <div class="content-block">
+        <!-- About Us -->
+        <!-- category -->
+        <div class="section-full space-1">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="category-box m-b20">
+                            <div class="category-media">
+                                <img src="images/category/pic4.jpg" alt="">
+                            </div>
+                            <div class="category-info type-1">
+                                <a href="javascript:void(0);" class="category-title btn-style">Beauty</a>
+                            </div>
                         </div>
                     </div>
-                </form>
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="category-box m-b20">
+                            <div class="category-media">
+                                <img src="images/category/pic5.jpg" alt="">
+                            </div>
+                            <div class="category-info type-1">
+                                <a href="javascript:void(0);" class="category-title btn-style">Lifestyle</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="category-box m-b20">
+                            <div class="category-media">
+                                <img src="images/category/pic6.jpg" alt="">
+                            </div>
+                            <div class="category-info type-1">
+                                <a href="javascript:void(0);" class="category-title btn-style">Fashion</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="category-box m-b20">
+                            <div class="category-media">
+                                <img src="images/category/pic7.jpg" alt="">
+                            </div>
+                            <div class="category-info type-1">
+                                <a href="javascript:void(0);" class="category-title btn-style">Travel</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</section>
-<!-- Top categories section -->
-<section class="py-5 bg-light">
-    <div class="container py-4">
-        <header class="mb-5 text-center">
-            <h2>Top categories</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
-        </header>
-        <div class="row text-center">
-            <div class="col-lg-2 col-md-4 col-sm-6 mb-4 mb-lg-0">
-                <a class="reset-anchor d-block" href="listing.html">
-                    <svg class="svg-icon mb-3 svg-icon-big svg-icon-light text-primary">
-                        <use xlink:href="#food-1"> </use>
-                    </svg>
-                    <h3 class="h5">Restaurants</h3>
-                    <p class="text-muted text-small">3 Destinations</p>
-                </a>
-            </div>
-            <div class="col-lg-2 col-md-4 col-sm-6 mb-4 mb-lg-0">
-                <a class="reset-anchor d-block" href="listing.html">
-                    <svg class="svg-icon mb-3 svg-icon-big svg-icon-light text-primary">
-                        <use xlink:href="#paper-bag-1"> </use>
-                    </svg>
-                    <h3 class="h5 mb-1">Markets</h3>
-                    <p class="text-muted text-small">7 Destinations</p>
-                </a>
-            </div>
-            <div class="col-lg-2 col-md-4 col-sm-6 mb-4 mb-lg-0">
-                <a class="reset-anchor d-block" href="listing.html">
-                    <svg class="svg-icon mb-3 svg-icon-big svg-icon-light text-primary">
-                        <use xlink:href="#special-price-1"> </use>
-                    </svg>
-                    <h3 class="h5 mb-1">Low budget</h3>
-                    <p class="text-muted text-small">2 Destinations</p>
-                </a>
-            </div>
-            <div class="col-lg-2 col-md-4 col-sm-6 mb-4 mb-lg-0">
-                <a class="reset-anchor d-block" href="listing.html">
-                    <svg class="svg-icon mb-3 svg-icon-big svg-icon-light text-primary">
-                        <use xlink:href="#movie-camera-1"> </use>
-                    </svg>
-                    <h3 class="h5 mb-1">Cinemas</h3>
-                    <p class="text-muted text-small">4 Destinations</p>
-                </a>
-            </div>
-            <div class="col-lg-2 col-md-4 col-sm-6 mb-4 mb-lg-0">
-                <a class="reset-anchor d-block" href="listing.html">
-                    <svg class="svg-icon mb-3 svg-icon-big svg-icon-light text-primary">
-                        <use xlink:href="#beach-1"> </use>
-                    </svg>
-                    <h3 class="h5 mb-1">Beaches</h3>
-                    <p class="text-muted text-small">5 Destinations</p>
-                </a>
-            </div>
-            <div class="col-lg-2 col-md-4 col-sm-6 mb-4 mb-lg-0">
-                <a class="reset-anchor d-block" href="listing.html">
-                    <svg class="svg-icon mb-3 svg-icon-big svg-icon-light text-primary">
-                        <use xlink:href="#camping-1"> </use>
-                    </svg>
-                    <h3 class="h5 mb-1">Camping</h3>
-                    <p class="text-muted text-small">6 Destinations</p>
-                </a>
+        <!-- category end -->
+        <div class="section-full bg-white content-inner-2">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-9 col-lg-8 col-md-7 col-sm-12 col-12">
+                        <div class="loadmore-content">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="blog-card post-left">
+                                        <div class="blog-card-media">
+                                            <img src="images/blog/blog-left/pic1.jpg" alt="" />
+                                        </div>
+                                        <div class="blog-card-info">
+                                            <div class="title-sm"><a href="javascript:void(0);">Beauty</a></div>
+                                            <h4 class="title"><a href="post-full-width.html">Makeup for new Look</a></h4>
+                                            <p>Aenean sollicitudin, lorem quis bibendum auctor, ninkis elit ipsum nec sagittis sem nibh id elit. Quisque porta finibus est a faucibus.</p>
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <ul class="social-link-round">
+                                                    <li class="link-ic"><a href="javascript:void(0);" class="btn-link share"><i class="la la-share-alt"></i></a></li>
+                                                    <li><a href="javascript:void(0);" class="btn-link"><i class="fa fa-twitter"></i></a></li>
+                                                    <li><a href="javascript:void(0);" class="btn-link"><i class="fa fa-pinterest-p"></i></a></li>
+                                                    <li><a href="javascript:void(0);" class="btn-link"><i class="fa fa-facebook"></i></a></li>
+                                                    <li><a href="javascript:void(0);" class="btn-link"><i class="fa fa-instagram"></i></a></li>
+                                                </ul>
+                                                <div class="">
+                                                    <a href="post-full-width.html" class="btn-link readmore"><i class="la la-arrow-right"></i></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="blog-card post-left">
+                                        <div class="blog-card-media">
+                                            <img src="images/blog/blog-left/pic2.jpg" alt="" />
+                                        </div>
+                                        <div class="blog-card-info">
+                                            <div class="title-sm"><a href="javascript:void(0);">Lifestyle</a></div>
+                                            <h4 class="title"><a href="post-open-gutenberg.html">Sonoma Valley Lancome</a></h4>
+                                            <p>Aenean sollicitudin, lorem quis bibendum auctor, ninkis elit ipsum nec sagittis sem nibh id elit. Quisque porta finibus est a faucibus.</p>
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <ul class="social-link-round">
+                                                    <li class="link-ic"><a href="javascript:void(0);" class="btn-link share"><i class="la la-share-alt"></i></a></li>
+                                                    <li><a href="javascript:void(0);" class="btn-link"><i class="fa fa-twitter"></i></a></li>
+                                                    <li><a href="javascript:void(0);" class="btn-link"><i class="fa fa-pinterest-p"></i></a></li>
+                                                    <li><a href="javascript:void(0);" class="btn-link"><i class="fa fa-facebook"></i></a></li>
+                                                    <li><a href="javascript:void(0);" class="btn-link"><i class="fa fa-instagram"></i></a></li>
+                                                </ul>
+                                                <div class="">
+                                                    <a href="post-open-gutenberg.html" class="btn-link readmore"><i class="la la-arrow-right"></i></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="blog-card post-left">
+                                        <div class="blog-card-media">
+                                            <img src="images/blog/blog-left/pic3.jpg" alt="" />
+                                        </div>
+                                        <div class="blog-card-info">
+                                            <div class="title-sm"><a href="javascript:void(0);">Travel</a></div>
+                                            <h4 class="title"><a href="post-navigation.html">Ready for the Summer</a></h4>
+                                            <p>Aenean sollicitudin, lorem quis bibendum auctor, ninkis elit ipsum nec sagittis sem nibh id elit. Quisque porta finibus est a faucibus.</p>
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <ul class="social-link-round">
+                                                    <li class="link-ic"><a href="javascript:void(0);" class="btn-link share"><i class="la la-share-alt"></i></a></li>
+                                                    <li><a href="javascript:void(0);" class="btn-link"><i class="fa fa-twitter"></i></a></li>
+                                                    <li><a href="javascript:void(0);" class="btn-link"><i class="fa fa-pinterest-p"></i></a></li>
+                                                    <li><a href="javascript:void(0);" class="btn-link"><i class="fa fa-facebook"></i></a></li>
+                                                    <li><a href="javascript:void(0);" class="btn-link"><i class="fa fa-instagram"></i></a></li>
+                                                </ul>
+                                                <div class="">
+                                                    <a href="post-navigation.html" class="btn-link readmore"><i class="la la-arrow-right"></i></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="blog-card full center overlay">
+                                        <div class="blog-card-media">
+                                            <img src="images/blog/default/thum1.jpg" alt="" />
+                                        </div>
+                                        <div class="blog-card-info text-white">
+                                            <div class="title-sm"><a href="javascript:void(0);">Fashion</a></div>
+                                            <h2 class="title-head"><a href="post-gallery-alternative.html">Night Out in Whistler</a></h2>
+                                            <a href="post-gallery-alternative.html" class="btn-link readmore"><i class="la la-arrow-right"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="blog-card post-left">
+                                        <div class="blog-card-media">
+                                            <img src="images/blog/blog-left/pic4.jpg" alt="" />
+                                        </div>
+                                        <div class="blog-card-info">
+                                            <div class="title-sm"><a href="javascript:void(0);">Beauty</a></div>
+                                            <h4 class="title"><a href="post-link.html">Makeup for new Look</a></h4>
+                                            <p>Aenean sollicitudin, lorem quis bibendum auctor, ninkis elit ipsum nec sagittis sem nibh id elit. Quisque porta finibus est a faucibus.</p>
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <ul class="social-link-round">
+                                                    <li class="link-ic"><a href="javascript:void(0);" class="btn-link share"><i class="la la-share-alt"></i></a></li>
+                                                    <li><a href="javascript:void(0);" class="btn-link"><i class="fa fa-twitter"></i></a></li>
+                                                    <li><a href="javascript:void(0);" class="btn-link"><i class="fa fa-pinterest-p"></i></a></li>
+                                                    <li><a href="javascript:void(0);" class="btn-link"><i class="fa fa-facebook"></i></a></li>
+                                                    <li><a href="javascript:void(0);" class="btn-link"><i class="fa fa-instagram"></i></a></li>
+                                                </ul>
+                                                <div class="">
+                                                    <a href="post-link.html" class="btn-link readmore"><i class="la la-arrow-right"></i></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="blog-card post-left">
+                                        <div class="blog-card-media">
+                                            <img src="images/blog/blog-left/pic5.jpg" alt="" />
+                                        </div>
+                                        <div class="blog-card-info">
+                                            <div class="title-sm"><a href="javascript:void(0);">Lifestyle</a></div>
+                                            <h4 class="title"><a href="post-full-width.html">Sonoma Valley Lancome</a></h4>
+                                            <p>Aenean sollicitudin, lorem quis bibendum auctor, ninkis elit ipsum nec sagittis sem nibh id elit. Quisque porta finibus est a faucibus.</p>
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <ul class="social-link-round">
+                                                    <li class="link-ic"><a href="javascript:void(0);" class="btn-link share"><i class="la la-share-alt"></i></a></li>
+                                                    <li><a href="javascript:void(0);" class="btn-link"><i class="fa fa-twitter"></i></a></li>
+                                                    <li><a href="javascript:void(0);" class="btn-link"><i class="fa fa-pinterest-p"></i></a></li>
+                                                    <li><a href="javascript:void(0);" class="btn-link"><i class="fa fa-facebook"></i></a></li>
+                                                    <li><a href="javascript:void(0);" class="btn-link"><i class="fa fa-instagram"></i></a></li>
+                                                </ul>
+                                                <div class="">
+                                                    <a href="post-full-width.html" class="btn-link readmore"><i class="la la-arrow-right"></i></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="blog-card post-left">
+                                        <div class="blog-card-media">
+                                            <img src="images/blog/blog-left/pic6.jpg" alt="" />
+                                        </div>
+                                        <div class="blog-card-info">
+                                            <div class="title-sm"><a href="javascript:void(0);">Travel</a></div>
+                                            <h4 class="title"><a href="post-left-sidebar.html">Ready for the Summer</a></h4>
+                                            <p>Aenean sollicitudin, lorem quis bibendum auctor, ninkis elit ipsum nec sagittis sem nibh id elit. Quisque porta finibus est a faucibus.</p>
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <ul class="social-link-round">
+                                                    <li class="link-ic"><a href="javascript:void(0);" class="btn-link share"><i class="la la-share-alt"></i></a></li>
+                                                    <li><a href="javascript:void(0);" class="btn-link"><i class="fa fa-twitter"></i></a></li>
+                                                    <li><a href="javascript:void(0);" class="btn-link"><i class="fa fa-pinterest-p"></i></a></li>
+                                                    <li><a href="javascript:void(0);" class="btn-link"><i class="fa fa-facebook"></i></a></li>
+                                                    <li><a href="javascript:void(0);" class="btn-link"><i class="fa fa-instagram"></i></a></li>
+                                                </ul>
+                                                <div class="">
+                                                    <a href="post-left-sidebar.html" class="btn-link readmore"><i class="la la-arrow-right"></i></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Pagination start -->
+                        <div class="pagination-bx clearfix text-center">
+                            <ul class="pagination">
+                                <li class="active"><a href="javascript:void(0)">1</a></li>
+                                <li><a href="javascript:void(0)">2</a></li>
+                                <li><a href="javascript:void(0)">3</a></li>
+                                <li class="next"><a href="javascript:void(0)"><i class="fa fa-angle-right"></i></a></li>
+                            </ul>
+                        </div>
+                        <!-- Pagination END -->
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-5 col-sm-12 col-12">
+                        <div class="side-bar p-l30 sticky-top">
+                            <div class="widget widget-newsletter text-center">
+                                <form class="dzSubscribe dezPlaceAni" action="script/mailchamp.php" method="post">
+                                    <div class="news-back form-style">
+                                        <h4>Join</h4>
+                                        <div class="input-group">
+                                            <input name="dzEmail" required="required" type="email" class="form-control" placeholder="Your Email">
+                                            <div class="input-group-append">
+                                                <button name="submit" value="Submit" type="submit" class="btn"><i class="la la-paper-plane"></i></button>
+                                            </div>
+                                        </div>
+                                        <div class="dzSubscribeMsg"></div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="widget widget_gallery gallery-grid-2">
+                                <h6 class="widget-title"><span>Instagram</span></h6>
+                                <ul>
+                                    <li>
+                                        <a href="#">
+                                            <div class="dlab-post-thum dlab-img-overlay1 dlab-img-effect">
+                                                <img src="images/gallery/widget-gallery/pic1.jpg" alt="">
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <div class="dlab-post-thum dlab-img-overlay1 dlab-img-effect">
+                                                <img src="images/gallery/widget-gallery/pic2.jpg" alt="">
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <div class="dlab-post-thum dlab-img-overlay1 dlab-img-effect">
+                                                <img src="images/gallery/widget-gallery/pic3.jpg" alt="">
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <div class="dlab-post-thum dlab-img-overlay1 dlab-img-effect">
+                                                <img src="images/gallery/widget-gallery/pic4.jpg" alt="">
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="widget widget-social">
+                                <h6 class="widget-title"><span>Social</span></h6>
+                                <ul>
+                                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-snapchat-ghost"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-pinterest-p"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                                </ul>
+                                <div class="advertise text-center m-b20">
+                                    <img src="images/add.png" alt="" />
+                                </div>
+                                <div class="fb-social relative">
+                                    <img src="images/default-social.jpg" alt="" />
+                                    <div class="facebook-like">
+                                        <button class="btn radius-xl">Like on facebook</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="widget widget-stories">
+                                <h6 class="widget-title"><span>Latest Post</span></h6>
+                                <div class="post-carousel owl-carousel owl-theme owl-none owl-btn-3">
+                                    <div class="item">
+                                        <img src="images/gallery/widget-gallery/pic5.jpg" alt="" />
+                                    </div>
+                                    <div class="item">
+                                        <img src="images/gallery/widget-gallery/pic6.jpg" alt="" />
+                                    </div>
+                                    <div class="item">
+                                        <img src="images/gallery/widget-gallery/pic7.jpg" alt="" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="widget widget_tag_cloud">
+                                <h6 class="widget-title"><span>Tags</span></h6>
+                                <div class="tagcloud text-center">
+                                    <a href="#">Blog</a>
+                                    <a href="#">Photography</a>
+                                    <a href="#">Style</a>
+                                    <a href="#">Instagram</a>
+                                    <a href="#">Trend</a>
+                                    <a href="#">Lifestyle</a>
+                                    <a href="#">Fashion</a>
+                                    <a href="#">Travel</a>
+                                    <a href="#">Europe</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</section>
-<!-- Sponsors section-->
-<section class="py-5">
-    <div class="container py-4">
-        <header class="text-center mb-4">
-            <h2>Our sponsors</h2>
-        </header>
-        <!-- Brands -->
-        <div class="owl-carousel sponsors-slider">
-            <a href="#"><img class="d-block mx-auto my-3 sponsor" src="~/img/brand-1.svg" alt=""></a><a href="#"><img class="d-block mx-auto my-3 sponsor" src="~/img/brand-2.svg" alt=""></a><a href="#"><img class="d-block mx-auto my-3 sponsor" src="~/img/brand-3.svg" alt=""></a><a href="#"><img class="d-block mx-auto my-3 sponsor" src="~/img/brand-4.svg" alt=""></a><a href="#"><img class="d-block mx-auto my-3 sponsor" src="~/img/brand-5.svg" alt=""></a><a href="#"><img class="d-block mx-auto my-3 sponsor" src="~/img/brand-6.svg" alt=""></a>
+        <!-- About Us End -->
+        <!-- subscribe -->
+        <div class="section-full bg-gray subscribe-sc">
+            <div class="container">
+                <div class="row align-items-center subscribe-design">
+                    <div class="col-lg-7 col-md-7 d-none d-md-block">
+                        <img src="images/subscribe.png" alt="" />
+                    </div>
+                    <div class="col-lg-5 col-md-5">
+                        <form class="dzSubscribe dezPlaceAni" action="script/mailchamp.php" method="post">
+                            <h2>Subscribe to My Blog</h2>
+                            <div class="form-style subscribe">
+                                <div class="input-group">
+                                    <input name="dzEmail" required="required" type="email" class="form-control" placeholder="Your Email">
+                                    <div class="input-group-append">
+                                        <button name="submit" value="Submit" type="submit" class="btn"><i class="la la-paper-plane"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="dzSubscribeMsg"></div>
+                        </form>
+                    </div>
+                </div>
+                <h2 class="subscribe-text">subscribe</h2>
+            </div>
         </div>
+        <!-- subscribe end -->
     </div>
-</section>
+    <!-- contact area END -->
+</div>
+<!-- Content END-->

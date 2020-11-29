@@ -47,7 +47,6 @@ namespace MVCBlog
                 var services = scope.ServiceProvider;
                 try
                 {
-                    
                     var userManager = services.GetRequiredService<UserManager<BlogUser>>();
                     var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
                     await SeedHelper.SeedDataAsync(userManager, roleManager);
@@ -59,35 +58,9 @@ namespace MVCBlog
             }
         }
     }
-}
+}//V2.0 JS 11-28
 
 
-
-
-
-
-
-
-
-//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Threading.Tasks;
-//using Microsoft.AspNetCore.Hosting;
-//using Microsoft.AspNetCore.Identity;
-//using Microsoft.Extensions.Configuration;
-//using Microsoft.Extensions.DependencyInjection;
-//using Microsoft.Extensions.Hosting;
-//using Microsoft.Extensions.Logging;
-//using Microsoft.CodeAnalysis.CSharp.Syntax;
-//using Microsoft.EntityFrameworkCore;
-//using Microsoft.EntityFrameworkCore.Infrastructure;
-//using Microsoft.EntityFrameworkCore.Migrations;
-//using MVCBlog.Data;
-//using MVCBlog.Models;
-//using MVCBlog.Services;
-//using MVCBlog.Utilities;
-//using Npgsql;
 
 //namespace MVCBlog
 //{

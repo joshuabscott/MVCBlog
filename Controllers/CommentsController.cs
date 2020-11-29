@@ -89,7 +89,7 @@ namespace MVCBlog.Controllers
                 //return Redirect($"~/Posts/Details/{comment.PostId}");
                 return RedirectToAction("Details", "Posts", new { id = comment.PostId });
             }
-            ViewData["AuthorId"] = new SelectList(_context.Set<BlogUser>(), "Id", "Id", comment.BlogUserId);
+            ViewData["BlogUserId"] = new SelectList(_context.Set<BlogUser>(), "Id", "Id", comment.BlogUserId);
             ViewData["PostId"] = new SelectList(_context.Posts, "Id", "Id", comment.PostId);
             return View(comment);
         }
@@ -108,7 +108,7 @@ namespace MVCBlog.Controllers
             {
                 return NotFound();
             }
-            ViewData["AuthorId"] = new SelectList(_context.Set<BlogUser>(), "Id", "DisplayName", comment.BlogUserId);
+            ViewData["BlogUserId"] = new SelectList(_context.Set<BlogUser>(), "Id", "DisplayName", comment.BlogUserId);
             ViewData["PostId"] = new SelectList(_context.Posts, "Id", "Title", comment.PostId);
             return View(comment);
         }
@@ -118,7 +118,7 @@ namespace MVCBlog.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,PostId,AuthorId,Content,Created,Updated")] Comment comment)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,PostId,BlogUserId,Content,Created,Updated")] Comment comment)
         {
             if (id != comment.Id)
             {
@@ -199,7 +199,7 @@ namespace MVCBlog.Controllers
             return _context.Comments.Any(e => e.Id == id);
         }
     }
-}
+}//V2.0 JS 11-28
 
 
 
