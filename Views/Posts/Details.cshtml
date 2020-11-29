@@ -1,120 +1,14 @@
 ﻿@model MVCBlog.Models.Post
-<!--Not the same as using directive, this is C# method for referencing
-    Need a reference up here for Blog User model and comments model; for comments and author's names to show up -->
 
+@{
+    ViewData["Title"] = "Details";
+}
 
-<div class="container text-center">
-    <p class="h6 mb-0 text-uppercase text-primary">@Model.Blog.Name</p>
-    <h1>@Model.Title</h1>
-
-    <p class="mb-3">@Model.Abstract</p>
-    <ul class="list-inline small text-uppercase mb-0">
-        <li class="list-inline-item align-middle"><img class="rounded-circle shadow-sm" src="~/img/person-1.jpg" alt="" width="40" /></li>
-        <li class="list-inline-item mr-0 text-muted align-middle">By </li>
-        <li class="list-inline-item align-middle mr-0"><a class="font-weight-bold reset-anchor" href="#">Josh Scott@*; Or User*@</a></li>
-        <li class="list-inline-item text-muted align-middle mr-0">|</li>
-        <li class="list-inline-item text-muted align-middle mr-0">@Model.Created.Date.ToString("MMM dd,yyyy H:mm tt") </li>
-        <li class="list-inline-item text-muted align-middle mr-0">|</li>
-        <li class="list-inline-item text-muted align-middle">@Model.Comments.Count Comments</li>
-    </ul>
-</div>
-<img class="w-100 py-5" src="~/img/post-banner.jpg" alt="">
-<div class="container">
-    <div class="row">
-        @*Start of blog content*@
-        <div class="col-lg mb-5 mb-lg-0">
-            <p class="lead first-letter-styled line-height-lg">@Html.Raw(Model.Body)</p>           @*@Model.Content*@
-            <div class="p-4 bg-light mb-5">
-                <ul class="list-inline mb-0">
-                    <li class="list-inline-item mr-2 pr-lg-2"><a class="tag reset-anchor" href="#"><i class="fas fa-bookmark text-primary mr-2"></i>Tag1</a></li>
-                    <li class="list-inline-item mr-2 pr-lg-2"><a class="tag reset-anchor" href="#"><i class="fas fa-bookmark text-primary mr-2"></i>Tag2</a></li>
-                    <li class="list-inline-item mr-2 pr-lg-2"><a class="tag reset-anchor" href="#"><i class="fas fa-bookmark text-primary mr-2"></i>Tag3</a></li>
-                </ul>
-            </div>
-            <div class="container-fluid">
-                <div class="row text-center">
-                    <div class="col">
-                        <p>
-                            <a asp-controller="Posts" asp-action="BlogPosts" asp-route-id="@Model.BlogId">Back to @Model.Blog.Name Posts </a> |
-                            <a asp-controller="Posts" asp-action="Index">Back to All Posts</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <h3 class="h4 mb-4">Share this post</h3>
-            <ul class="list-inline mb-5">
-                <li class="list-inline-item mr-1 mb-3"><a class="social-link-share facebook" href="#"><i class="fab fa-facebook-f mr-2"></i>Share</a></li>
-                <li class="list-inline-item mr-1 mb-3"><a class="social-link-share twitter" href="#"><i class="fab fa-twitter mr-2"></i>Tweet</a></li>
-                <li class="list-inline-item mr-1 mb-3"><a class="social-link-share instagram" href="#"><i class="fab fa-instagram mr-2"></i>Share</a></li>
-            </ul>
-            <h3 class="h4 mb-4">Leave a comment</h3>
-            @if (User.Identity.IsAuthenticated)
-            {
-                <form class="mb-5" asp-controller="Comments" asp-action="Create" method="post">
-                    <input type="hidden" asp-for="Id" />
-                    <div class="row">
-                        <div class="form-group col-lg-12">
-                            <textarea class="form-control" name="Content" rows="5" placeholder="Leave your message"></textarea>
-                        </div>
-                        <div class="form-group col-lg-12">
-                            <button class="btn btn-dark" type="submit">Submit your comment</button>
-                        </div>
-                    </div>
-                </form>
-            }
-            else
-            {
-                <a class="btn btn-dark" asp-area="Identity" asp-page="/Account/Login">Login</a>
-
-            }
-            <h3 class="h4 mb-4 d-flex align-items-center"><span>Comments</span><span class="text-small ml-3 text-gray">@Model.Comments.Count</span></h3>
-            <ul class="list-unstyled comments">
-                @foreach (var comment in Model.Comments)
-                {
-                    <li>
-                        <div class="d-flex mb-4">
-                            <div class="pr-2 flex-grow-1" style="width: 75px; min-width: 75px;"><img class="rounded-circle shadow-sm img-fluid img-thumbnail" src="~/img/person-1.jpg" alt=""></div>
-                            <div class="pl-2">
-                                <p class="small mb-0 text-primary">@comment.Created.ToString("dd MMM yyyy")</p>
-                                <h5>@comment.BlogUser.FirstName @comment.BlogUser.LastName</h5>
-                                <p class="text-muted text-small mb-2">@comment.Body</p><a class="reset-anchor text-small" href="#"><i class="fas fa-share mr-2 text-primary"></i><strong>Reply</strong></a>
-                            </div>
-                        </div>
-                    </li>
-                }
-                <li>
-                    <div class="d-flex mb-4">
-                        <div class="pr-2 flex-grow-1" style="width: 75px; min-width: 75px;"><img class="rounded-circle shadow-sm img-fluid img-thumbnail" src="~/img/person-1.jpg" alt=""></div>
-                        <div class="pl-2">
-                            <p class="small mb-0 text-primary">30 Oct 2019</p>
-                            <h5>Mike Johnson</h5>
-                            <p class="text-muted text-small mb-2">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At.</p><a class="reset-anchor text-small" href="#"><i class="fas fa-share mr-2 text-primary"></i><strong>Reply</strong></a>
-                        </div>
-                    </div>
-                </li>
-
-            </ul>
-        </div>
-    </div>
-</div>
-<div class="container-fluid">
-    <div class="row text-center">
-        <div class="col">
-            <p>
-                <a asp-controller="Posts" asp-action="BlogPosts" asp-route-id="@Model.BlogId">Back to @Model.Blog.Name Posts </a> |
-                <a asp-controller="Posts" asp-action="Index">Back to All Posts</a>
-            </p>
-        </div>
-    </div>
-</div>
-
-
-@*End of Body*@
-
-<br />
-<hr />
-<br />
-
+<h1>Details</h1>
+@*@{
+        var date = Model.Created.ToString("MMM dd, yyyy");
+    }
+    @date*@
 <div>
     <h4>Post</h4>
     <hr />
@@ -129,7 +23,7 @@
             @Html.DisplayNameFor(model => model.Abstract)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Abstract)
+            @Html.Display(Model.Abstract)
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Body)
@@ -140,11 +34,12 @@
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Image)
         </dt>
-        <dd>
-            @*<h3>@Model.FileName</h3>*@
-            @if (ViewBag.Image != null)
+        <dd class="col-sm-10">
+            @if (Model.FileName != null && Model.FileName.Length > 0)
             {
+                <h3>This is the @Model.FileName image</h3>
                 <img src="@ViewBag.Image" alt="@Model.FileName" />
+                @*@Html.DisplayFor(model => model.Image)*@
             }
         </dd>
         <dt class="col-sm-2">
@@ -159,50 +54,21 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Updated)
         </dd>
-        @*<dt class = "col-sm-2">
-                @Html.DisplayNameFor(model => model.IsPublished)
-            </dt>
-            <dd class = "col-sm-10">
-                @Html.DisplayFor(model => model.IsPublished)
-            </dd>*@
-        @*<dt class = "col-sm-2">
-                @Html.DisplayNameFor(model => model.Blog)
-            </dt>
-            <dd class = "col-sm-10">
-                @Html.DisplayFor(model => model.Blog.Id)
-            </dd>*@
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.IsPublished)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.IsPublished)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Blog)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Blog.Name)
+        </dd>
     </dl>
 </div>
 <div>
-    @*<a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |*@
-    <a asp-controller="Posts" asp-action="BlogPosts" asp-route-id="@Model.BlogId">Back to Blog Topic</a> |
-    <a asp-controller="Posts" asp-action="Index">Back to All Posts</a>
-
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
 </div>
-
-
-
-<!-- Side Widget -->
-<div class="card my-4">
-    <h5 class="card-header">About the developer</h5>
-    <div class="card-body">
-        <div class="row pb-3">
-            <div class="col-4">
-                <a href="https://josh-scott-portfolio.netlify.app/" target="_blank"><img class="author_img rounded-circle" src="#" alt="#" width="100"></a>
-            </div>
-            <div class="col">
-                <h4>Josh Scott</h4>
-                <p>Full Stack .Net Developer</p>
-                <div class="row social_icon justify-content-start">
-                    <a href="https://www.linkedin.com/in/joshgreatscott/" class="mr-2 ml-3"><i class="fab fa-linkedin-in fa-lg"></i></a>
-                    <a href="https://github.com/joshuabscott" class="mr-2 ml-2"><i class="fab fa-github fa-lg"></i></a>
-                    <a href="https://twitter.com/JoshuaBscott" class="mr-2 ml-2"><i class="fab fa-twitter fa-lg"></i></a>
-                    <a href="https://www.youtube.com/user/joshuabenscott" class="mr-2 ml-2"><i class="fab fa-youtube fa-lg"></i></a>
-                </div>
-            </div>
-        </div>
-        <p>With a background in story about life.</p>
-        <div class="br"></div>
-    </div>
-</div>
-

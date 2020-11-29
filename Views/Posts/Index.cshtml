@@ -1,115 +1,46 @@
 ﻿@using MVCBlog.Utilities
 @using MVCBlog.Models
 @model IEnumerable<Post>
+
 @{
     ViewData["Title"] = "Index";
-    //var ImageHelper = new ImageHelper[];
 }
 
-<!-- Hero section -->
-<section class="hero bg-center bg-cover" style="background: url(img/hero-banner.jpg)">
-    <div class="dark-overlay py-5">
-        <div class="overlay-content">
-            <div class="container py-5 text-white text-center">
-                <h1>All Posts</h1>
-            </div>
-        </div>
-    </div>
-</section>
+<h1>Posts</h1>
 
-<!-- Blog Topics -->
-<section class="pt-5">
-    @*<div class="container-fluid">
-            <div class="row text-center">
-                <div class="col">
-                    <p>
-                        <a asp-action="Create">Create new Blog Topic</a>
-                    </p>
-                </div>
-            </div>
-        </div>*@
-    @foreach (var item in Model)
-    {
-        <div class="container pt-5">
-            <div class="row mb-5">
-                <div class="col-lg-8">
-                    <div class="row text-center">
-
-                        @*Blog Category 1*@
-                        <div class="col-lg-6 mb-5">
-                            <a><img class="img-fluid mb-4" src="~/img/listing-tnumbnail-3.jpg" alt="" /></a>
-                            <ul class="list-inline small text-uppercase mb-0">
-                                <li class="list-inline-item text-gray align-middle"> @Html.DisplayFor(modelItem => item.Created)</li>
-                            </ul>
-                            <h3 class="h4 mt-2">
-                                <a asp-controller="Posts" asp-action="Index" class="reset-anchor">@Html.DisplayFor(modelItem => item.Title)</a>
-                            </h3>
-                            <p class="text-small mb-1">@Html.DisplayFor(modelItem => item.Abstract)</p>
-                            <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-link">Continue reading</a>
-                        </div>
-
-                        <div>
-                            @*Blog Category 2*@
-                            @*<div class="col-lg-6 mb-5">
-                                    <a><img class="img-fluid mb-4" src="~/img/listing-tnumbnail-4.jpg" alt="" /></a>
-                                    <h3 class="h4 mt-2"> <a asp-controller="Posts" asp-action="BlogPosts" asp-route-id="@item.Id" class="reset-anchor">@Html.DisplayFor(modelItem => item.Name)</a></h3>
-                                </div>*@
-
-                            @*Blog Category 3*@
-                            @*<div class="col-lg-6 mb-5">
-                                    <a><img class="img-fluid mb-4" src="~/img/listing-tnumbnail-1.jpg" alt="" /></a>
-                                    <h3 class="h4 mt-2"> <a asp-controller="Posts" asp-action="BlogPosts" asp-route-id="@item.Id" class="reset-anchor">Third Blog Topic</a></h3>
-                                </div>*@
-
-                            @*Blog Category 4*@
-                            @*<div class="col-lg-6 mb-5">
-                                    <a><img class="img-fluid mb-4" src="~/img/listing-tnumbnail-2.jpg" alt="" /></a>
-                                    <h3 class="h4 mt-2"> <a asp-controller="Posts" asp-action="BlogPosts" asp-route-id="@item.Id" class="reset-anchor">Fourth Blog Topic</a></h3>
-                                </div>*@
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    }
-
-</section>
-
-<br />
-<br />
-<hr />
-
-@*<p>
-        <a asp-action="Create">Create New</a>
-    </p>*@
-<table class="table">
+<p>
+    <a asp-action="Create">Create new</a>
+</p>
+<table class="table table-striped table-responsive myTables">
     <thead>
         <tr>
-            @*<th>
-                    @Html.DisplayNameFor(model => model.Blog)
-                </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.Title)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Abstract)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Body)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Image)
-            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.Content)
+                </th>*@
+            @*<th>
+                    @Html.DisplayNameFor(model => model.Slug)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IsPublished)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Image)
+                </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.Created)
             </th>
-            @*<th>
-                    @Html.DisplayNameFor(model => model.Updated)
-                </th>*@
-            @*<th>
-                    @Html.DisplayNameFor(model => model.IsPublished)
-                </th>*@
-
+            <th>
+                @Html.DisplayNameFor(model => model.Updated)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Blog)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -117,55 +48,37 @@
         @foreach (var item in Model)
         {
             <tr>
-                @*<td>
-                        @Html.DisplayFor(modelItem => item.Blog.Id)
-                    </td>*@
-
                 <td>
                     @Html.DisplayFor(modelItem => item.Title)
                 </td>
-
                 <td>
                     @Html.DisplayFor(modelItem => item.Abstract)
                 </td>
-
-                <td>
-                    @Html.Raw(item.Body)
-                </td>
-
-                <td>
-                    @if (item.Image != null)
-                    {
-                        <img src="@ImageHelper.GetImage(item)" />
-                    }
-
-                </td>
-
+                @*<td>
+                        @Html.Raw(item.Content)
+                    </td>*@
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.Slug)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IsPublished)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Image)
+                    </td>*@
                 <td>
                     @Html.DisplayFor(modelItem => item.Created)
                 </td>
-
-                @*<td>
-                        @Html.DisplayFor(modelItem => item.Updated)
-                    </td>*@
-
-                @*<td>
-                        @Html.DisplayFor(modelItem => item.IsPublished)
-                    </td>*@
-
                 <td>
-
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    @Html.DisplayFor(modelItem => item.Updated)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Blog.Name)
+                </td>
+                <td>
                     <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
                     <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-
-
-                    @*<a asp-action="Comment" asp-route-id="@item.Id">Comment</a>*@
-
-
-
-
-
                 </td>
             </tr>
         }

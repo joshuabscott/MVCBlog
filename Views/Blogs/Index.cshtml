@@ -4,78 +4,21 @@
     ViewData["Title"] = "Index";
 }
 
-<!-- Hero section -->
-<section class="hero bg-center bg-cover" style="background: url(img/hero-banner.jpg)">
-    <div class="dark-overlay py-5">
-        <div class="overlay-content">
-            <div class="container py-5 text-white text-center">
-                <h1>Blog Topics</h1>
-            </div>
-        </div>
-    </div>
-</section>
+<h1>Blogs</h1>
 
-
-<!--Blogs-->
-<section class="pt-5">
-    <div class="container-fluid">
-        <div class="row text-center">
-            <div class="col">
-                <!--Admin Create Post Button-->
-                @if (User.IsInRole("Administrator"))
-                {
-                    <p>
-                        <a asp-action="Create">Create new Blog Topic</a>
-                    </p>
-                }
-            </div>
-        </div>
-    </div>
-    @foreach (var item in Model)
-    {
-        <div class="container pt-5">
-            <div class="row mb-5">
-                <div class="col-lg-8">
-                    <div class="row text-center">
-                        <div class="col-lg-6 mb-5">
-
-                            <!-- Blog Category 1-->
-
-                            <a><img class="img-fluid mb-4 rounded" src="~/img/listing-tnumbnail-3.jpg" alt="" /></a>
-                            <h3 class="h4 mt-2">
-                                <a asp-controller="Posts" asp-action="BlogPosts" asp-route-id="@item.Id"
-                                   class="reset-anchor">@Html.DisplayFor(modelItem => item.Name)</a>
-                            </h3>
-
-                            <!--Admin/Moderator Create/Delete Buttons-->
-                            @if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
-                            {
-                                <p>
-                                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                                </p>
-                            }
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    }
-
-</section>
-
-
-<br />
-<br />
-<hr />
-
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
 <table class="table">
     <thead>
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Name)
             </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.Url)
+                </th>*@
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -85,10 +28,12 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Name)
                 </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.Url)
+                    </td>*@
                 <td>
                     <a asp-controller="Posts" asp-action="BlogPosts" asp-route-id="@item.Id">Blog Posts</a> |
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <!--<a asp-action="Details" asp-route-id="@item.Id">details</a> |-->
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
                     <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
                 </td>
             </tr>
