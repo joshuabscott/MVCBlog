@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Npgsql;
+
 using MVCBlog.Data;
 using MVCBlog.Models;
 using MVCBlog.ViewModels;
@@ -29,17 +29,20 @@ namespace MVCBlog
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+        //. This method gets called by the runtime. Use this method to add services to the container.
+        public void ConfigureServices(IServiceCollection services)// Remember Dependences Injection is set up here in the configureServices
         {
-            
+            //1. services are configured for using DbContext
             services.AddDbContext<ApplicationDbContext>(options => 
-               options.UseNpgsql(
+               options.UseNpgsql(//switched from defualt, to use NPGSql
                 DataHelper.GetConnectionString(Configuration)));
-            
-            services.AddDefaultIdentity<BlogUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddRoles<IdentityRole>()
+
+            //2. using directive for injection using IdentityRole with BlogUser
+            services.AddDefaultIdentity<BlogUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+                .AddDefaultUI()
+                .AddDefaultTokenProviders();
+
             services.AddControllersWithViews();
             services.AddRazorPages();
         }
