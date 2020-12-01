@@ -8,10 +8,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Npgsql;
 using MVCBlog.Data;
-using MVCBlog.Models;
-using MVCBlog.ViewModels;
-using MVCBlog.Utilities;
-using MVCBlog.Enums;
 
 namespace MVCBlog.Utilities
 {

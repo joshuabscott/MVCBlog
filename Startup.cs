@@ -38,8 +38,8 @@ namespace MVCBlog
                 DataHelper.GetConnectionString(Configuration)));
 
             //2. using directive for injection using IdentityRole with BlogUser
-            services.AddDefaultIdentity<BlogUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddIdentity<BlogUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultUI()
                 .AddDefaultTokenProviders();
 
