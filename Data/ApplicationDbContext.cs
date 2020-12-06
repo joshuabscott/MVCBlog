@@ -13,14 +13,6 @@ namespace MVCBlog.Data
             : base(options)
         {
         }
-        //protected override void OnModelCreating(ModelBuilder modelBuilder)
-        //{
-        //    base.OnModelCreating(modelBuilder);
-        //    modelBuilder.Entity<BlogUser>()
-        //        .HasKey(pu => new { pu.BlogId, pu.UserId });
-        //}
-
-      
         public DbSet<MVCBlog.Models.Blog> Blogs { get; set; }
         public DbSet<MVCBlog.Models.BlogUser> BlogUsers { get; set; }
 
@@ -29,4 +21,3 @@ namespace MVCBlog.Data
         public DbSet<MVCBlog.Models.Tag> Tags { get; set; }
     }
 }
-//Sun

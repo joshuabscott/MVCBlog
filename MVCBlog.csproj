@@ -11,15 +11,17 @@
   <ItemGroup>
     <Compile Remove="Utilities\BlogHelper.cs" />
     <Compile Remove="Utilities\ConnectionHelper.cs" />
-    <Compile Remove="Utilities\MigrationHelper.cs" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Remove="Views\Home\about-us.cshtml" />
+    <Content Remove="Views\Home\Privacy.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
     <None Remove="Views\Home\index-2.html" />
+    <None Remove="Views\Home\post-standart.html" />
+    <None Remove="Views\Home\post-video.html" />
   </ItemGroup>
 
   <ItemGroup>
@@ -44,7 +46,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="Views\Home\about-us.cshtml" />
     <None Include="wwwroot\images\images\logo.svg" />
     <None Include="wwwroot\images\images\pic01.jpg" />
     <None Include="wwwroot\images\images\pic02.jpg" />

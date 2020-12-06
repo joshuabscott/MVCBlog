@@ -4,11 +4,15 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Comments</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+@if (User.IsInRole("Administrator") || User.IsInRole("Moderator"))
+{
+    <p>
+        <a class="btn btn-primary" asp-action="Create">Create New Comment</a>
+    </p>
+}
+
 <table class="table">
     <thead>
         <tr>
@@ -67,11 +71,22 @@
             <td>
                 @Html.DisplayFor(modelItem => item.BlogUser.Id)
             </td>*@
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
+        <td>
+
+            @if (User.IsInRole("Administrator") || User.IsInRole("Moderator"))
+            {
+                <a class="btn btn-primary" asp-action="AssignUsers" asp-route-id="@item.Id">Assign</a>
+            }
+            <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.Id">Details</a>
+            @if (User.IsInRole("Administrator") || User.IsInRole("Moderator"))
+            {
+                <a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+            }
+            @if (User.IsInRole("Administrator"))
+            {
+                <a class="btn btn-danger text-light" data-target="#deleteModal-@item.Id" data-toggle="modal">Delete</a>
+            }
+        </td>
         </tr>
 }
     </tbody>

@@ -33,7 +33,7 @@ namespace MVCBlog
         public void ConfigureServices(IServiceCollection services)// Remember Dependences Injection is set up here in the configureServices
         {
             //1. services are configured for using DbContext
-            services.AddDbContext<ApplicationDbContext>(options => 
+            services.AddDbContext<ApplicationDbContext>(options =>
                options.UseNpgsql(//switched from defualt, to use NPGSql
                 DataHelper.GetConnectionString(Configuration)));
 
@@ -77,26 +77,5 @@ namespace MVCBlog
                 endpoints.MapRazorPages();
             });
         }
-
-        //private string GetConnectionString()
-        //{
-        //    var config = new PostgreSqlConnection();
-        //    var dbUrl = Configuration["DATABASE_URL"];
-        //    if (string.IsNullOrEmpty(dbUrl))
-        //    {
-        //        Configuration.Bind("PostgreSQL", config);
-        //    }
-        //    else
-        //    {
-        //        var dbUrlData = dbUrl.Split(":");
-        //        config.Server = dbUrlData[2].Split("@")[1];
-        //        config.Port = dbUrlData[3].Split("/")[0];
-        //        config.Database = dbUrlData[3].Split("/")[1];
-        //        config.UserId = dbUrlData[1].TrimStart('/');
-        //        config.Password = dbUrlData[2].Split("@")[0];
-        //    }
-        //    string connString = $"Server={config.Server}; Port={config.Port}; Database={config.Database}; User Id={config.UserId}; Password={config.Password}";
-        //    return connString;
-        //}
     }
-}//V2.0 JS 11-28
+}

@@ -1,10 +1,50 @@
 ﻿@model MVCBlog.Models.Blog
 
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keywords" content="" />
+    <meta name="author" content="" />
+    <meta name="robots" content="" />
+    <meta name="description" content="LeMars : Blog HTML Template" />
+    <meta property="og:title" content="LeMars : Blog HTML Template" />
+    <meta property="og:description" content="LeMars : Blog HTML Template" />
+    <meta property="og:image" content="http://lemars.dexignzone.com/xhtml/social-image.png" />
+    <meta name="format-detection" content="telephone=no">
+
+    <!-- FAVICONS ICON -->
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.png" />
+
+    <!-- PAGE TITLE HERE -->
+    <title> Blog : by Josh Scott</title>
+
+    <!-- MOBILE SPECIFIC -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+    <!-- STYLESHEETS -->
+    <link rel="stylesheet" type="text/css" href="css/plugins.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/templete.css">
+    <link class="skin" rel="stylesheet" type="text/css" href="css/skin/skin-1.css">
+
+    <!-- Data tables css -->
+    <!--<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">-->
+    <!-- Font Awesome Kit -->
+    <!--<script src="https://kit.fontawesome.com/8b5ae67e5c.js" crossorigin="anonymous"></script>-->
+    <!-- TinyMCE  -->
+    <!--<script src="https://cdn.tiny.cloud/1/3lwulzgbibotwwht2k2991x7r701wvjdbqxtg24b43c6z3sk/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>-->
+
+</head>
 @{
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<h1>Create New</h1>
 
 <h4>Blog</h4>
 <hr />
@@ -18,10 +58,10 @@
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             @*<div class="form-group">
-                <label asp-for="URL" class="control-label"></label>
-                <input asp-for="URL" class="form-control" />
-                <span asp-validation-for="URL" class="text-danger"></span>
-            </div>*@
+                    <label asp-for="URL" class="control-label"></label>
+                    <input asp-for="URL" class="form-control" />
+                    <span asp-validation-for="URL" class="text-danger"></span>
+                </div>*@
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
@@ -29,8 +69,11 @@
     </div>
 </div>
 
+@*<div>
+        <a asp-action="Index">Back to List</a>
+    </div>*@
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a class="btn btn-info" asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {

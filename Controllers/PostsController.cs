@@ -1,36 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
+using System.IO;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
+using System.Text.RegularExpressions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
+using Npgsql;
 using MVCBlog.Data;
 using MVCBlog.Models;
+using MVCBlog.ViewModels;
 using MVCBlog.Utilities;
-
-//using System.Runtime.InteropServices;
-//using System.Text.RegularExpressions;
-//using Microsoft.CodeAnalysis.CSharp.Syntax;
-//using Microsoft.AspNetCore.Http;
-//using System.IO;
-//using System;
-//using System.Linq;
-//using System.Collections.Generic;
-//using Microsoft.AspNetCore.Authorization;
-//using Microsoft.AspNetCore.Mvc.Rendering;
-//using Microsoft.EntityFrameworkCore;
-//using Microsoft.AspNetCore.Identity;
-//using Microsoft.AspNetCore.Mvc;
-//using System.Threading.Tasks;
-//using MVCBlog.ViewModels;
-//using MVCBlog.Models;
-//using MVCBlog.Enums;
-//using MVCBlog.Data;
-//using MVCBlog.Utilities;
+using MVCBlog.Enums;
 
 namespace MVCBlog.Controllers
 {
@@ -43,11 +27,93 @@ namespace MVCBlog.Controllers
             _context = context;
         }
 
-        //Shows individual posts 
+        // GET: Posts
+        [Authorize(Roles = "Administrator, Moderator")]
+        public async Task<IActionResult> Index()
+        {
+            var applicationDbContext = _context.Posts.Include(p => p.Blog);
+            return View(await applicationDbContext.ToListAsync());
+        }
+
+        // GET: Posts/Details/5
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var post = await _context.Posts
+                .Include(p => p.Blog)
+                .Include(p => p.Comments)
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (post == null)
+            {
+                return NotFound();
+            }
+            // for each comment load author
+            foreach (var comment in post.Comments.ToList())
+            {
+                comment.BlogUser = await _context.Users.FindAsync(comment.BlogUserId);
+            }
+            return View(post);
+        }
+
+        // GET: Posts/Create
+        [Authorize(Roles = "Administrator")]
+        public IActionResult Create(int? id)
+        {
+            if (id == null)
+            {
+                ViewData["BlogId"] = new SelectList(_context.Blogs, "Id", "Name");
+            }
+            else
+            {
+                var blog = _context.Blogs.Find(id);
+                if (blog == null)
+                {
+                    return NotFound();
+                }
+                var newPost = new Post()
+                {
+                    BlogId = (int)id
+                };
+                ViewData["BlogName"] = blog.Name;
+                ViewData["BlogId"] = id;
+                return View(newPost);
+            }
+            return View();
+        }
+
+        // POST: Posts/Create
+        // To protect from over-posting attacks, enable the specific properties you want to bind to, for 
+        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator")]
+        public async Task<IActionResult> Create([Bind("Id,BlogId,Title,Abstract,Content,Slug,IsPublished,Image,Created,Updated,ImageDataUrl")] Post post, IFormFile image)
+        {
+            if (ModelState.IsValid)
+            {
+                post.Created = DateTime.Now;
+                post.Updated = DateTime.Now;
+                post.Slug = Regex.Replace(post.Title.ToLower(), @"\s", "-");
+                //Write image to db
+                if (image != null)
+                {
+                    var imageHelper = new ImageHelper();
+                    imageHelper.WriteImage(post, image);
+                }
+                _context.Add(post);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            ViewData["BlogId"] = new SelectList(_context.Blogs, "Id", "Name", post.BlogId);
+            return View(post);
+        }
+
+        [Authorize(Roles = "Administrator, Moderator")]
         public async Task<IActionResult> BlogPosts(int? id)
         {
-            //I know that I will have to push an instance of Post into the View
-
             if (id == null)
             {
                 return NotFound();
@@ -62,105 +128,14 @@ namespace MVCBlog.Controllers
             ViewData["BlogName"] = blog.Name;
             ViewData["BlogId"] = blog.Id;
 
-            var posts = _context.Posts.Where(p => p.BlogId == id);       
-            //linking my posts to topic
-            return View(await posts.ToListAsync());
-
-        }
-        // GET: Posts
-        public async Task<IActionResult> Index()
-        {
-            var applicationDbContext = _context.Posts.Include(p => p.Blog);
-            return View(await applicationDbContext.ToListAsync());
-        }
-
-        // GET: Posts/Details/5
-        public async Task<IActionResult> Details(int? id)       
-            //Method; includes parameters int? and id
-        {
-            var post = await _context.Posts         
-                //Link Statement
-                .Include(p => p.Blog)
-                .Include(p => p.Comments).ThenInclude(b => b.BlogUser)           
-                //Eager Loading; from database
-                .FirstOrDefaultAsync(m => m.Id == id);
-
-            if (post.Image != null)
-            {
-                ViewData["Image"] = ImageHelper.GetImage(post);
-            }
-
-            if (id == null)
-            {                               
-                //"Catch"; checks for errors in code and returns NotFound()
-                return NotFound();
-            }
-
-            if (post == null)
-            {
-                return NotFound();
-            }
-
-            return View(post);
-        }
-
-        // GET: Posts/Create
-        [Authorize/*(Roles = "Administrator")*/]
-        //This is what keeps regular users out. Nobody BUT administrator can access this.
-        public IActionResult Create(int? id)
-        {
-            //See if I have been given Id 
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var blog = _context.Blogs.Find(id);
-
-            if (blog == null)
-            {
-                return NotFound();
-            }
-
-            ViewData["BlogName"] = blog.Name;
-            var model = new Post() { BlogId = (int)id };
-
-            //ViewData["BlogId"] = new SelectList(_context.Blog, "Id", "Id");
-            return View(model);
-        }
-        // POST: Posts/Create
-        // To protect from over-posting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("BlogId,Title,Abstract,Content,Image")] Post post, IFormFile image)
-        {
-
-            if (ModelState.IsValid)     //This is what's posting the image
-            {
-
-                if (image != null)
-                {
-                    post.FileName = image.FileName;
-
-                    post.Image = ImageHelper.EncodeImage(image);
-                }
-
-
-                post.Created = DateTime.Now;
-                _context.Add(post);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(BlogPosts), new { id = post.BlogId });
-            }
-            //ViewData["BlogId"] = new SelectList(_context.Blog, "Id", "Id", post.BlogId);
-            return View(post);
+            var blogPosts = await _context.Posts.Where(p => p.BlogId == blog.Id).ToListAsync();
+            return View(blogPosts);
         }
 
         // GET: Posts/Edit/5
-        [Authorize/*(Roles = "Administrator, Moderator")*/]
+        [Authorize(Roles = "Administrator, Moderator")]
         public async Task<IActionResult> Edit(int? id)
         {
-
             if (id == null)
             {
                 return NotFound();
@@ -171,13 +146,7 @@ namespace MVCBlog.Controllers
             {
                 return NotFound();
             }
-
-            if (post.Image != null)
-            {
-                ViewData["Image"] = ImageHelper.GetImage(post);
-            }
-
-            //ViewData["BlogId"] = new SelectList(_context.Blog, "Id", "Id", post.BlogId);
+            ViewData["BlogId"] = new SelectList(_context.Blogs, "Id", "Name", post.BlogId);
             return View(post);
         }
 
@@ -186,7 +155,8 @@ namespace MVCBlog.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,BlogId,Title,Abstract,Content,Image,Created,FileName")] Post post, IFormFile image)
+        [Authorize(Roles = "Administrator, Moderator")]
+        public async Task<IActionResult> Edit(int id, [Bind("Id,BlogId,Title,Abstract,Content,Slug,IsPublished,Image,Created,Updated,ImageDataUrl")] Post post, IFormFile image)
         {
             if (id != post.Id)
             {
@@ -195,21 +165,16 @@ namespace MVCBlog.Controllers
 
             if (ModelState.IsValid)
             {
-
                 try
                 {
-
                     if (image != null)
                     {
-                        post.FileName = image.FileName;
-
-                        post.Image = ImageHelper.EncodeImage(image);
+                        var imageHelper = new ImageHelper();
+                        imageHelper.WriteImage(post, image);
                     }
-
                     post.Updated = DateTime.Now;
                     _context.Update(post);
                     await _context.SaveChangesAsync();
-
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -222,15 +187,14 @@ namespace MVCBlog.Controllers
                         throw;
                     }
                 }
-
-                return RedirectToAction(nameof(BlogPosts), new { id = post.BlogId });
+                return RedirectToAction(nameof(Index));
             }
-            //ViewData["BlogId"] = new SelectList(_context.Blog, "Id", "Id", post.BlogId);
+            ViewData["BlogId"] = new SelectList(_context.Blogs, "Id", "Id", post.BlogId);
             return View(post);
         }
 
         // GET: Posts/Delete/5
-        [Authorize/*(Roles = "Administrator, Moderator")*/]
+        [Authorize(Roles = "Administrator, Moderator")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -246,25 +210,19 @@ namespace MVCBlog.Controllers
                 return NotFound();
             }
 
-
-            if (post.Image != null)
-            {
-                ViewData["Image"] = ImageHelper.GetImage(post);
-            }
-
-
             return View(post);
         }
 
         // POST: Posts/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator, Moderator")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var post = await _context.Posts.FindAsync(id);
             _context.Posts.Remove(post);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(BlogPosts), new { id = post.BlogId });     //Tried inserting BlogPosts, but 404 occured
+            return RedirectToAction(nameof(Index));
         }
 
         private bool PostExists(int id)
@@ -273,7 +231,6 @@ namespace MVCBlog.Controllers
         }
     }
 }
-
 //        private readonly ApplicationDbContext _context;
 //        public PostsController(ApplicationDbContext context)
 //        {
