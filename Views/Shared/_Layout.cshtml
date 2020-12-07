@@ -8,15 +8,15 @@
     <meta name="description" content="A blog about learning to program" />
 
     <!-- FAVICONS ICON -->
-    <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
-    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.png" />
-
+    <link rel="icon" href="~/images/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" type="image/x-icon" href="~/images/favicon-16x16.png" />
+    
     <!-- PAGE TITLE HERE -->
     <title> Great Scott! : by Josh Scott</title>
 
     <!-- MOBILE SPECIFIC -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
->
+    >
     <!-- STYLESHEETS -->
     <link rel="stylesheet" type="text/css" href="css/plugins.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
@@ -31,51 +31,86 @@
     <!--<script src="https://cdn.tiny.cloud/1/3lwulzgbibotwwht2k2991x7r701wvjdbqxtg24b43c6z3sk/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>-->
 </head>
 
+
 <body id="bg">
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm border-bottom box-shadow mb-3">
-            <div id="navContainer" class="container">
+<div class="page-wraper">
+<div id="loading-area"></div>
+	<!-- header -->
+<header class="site-header mo-left header">
+    <!-- top-bar -->
+    <div class="container text-light bg-black">
+        <div class="top-bar container text-light bg-black">
+            <div class="row d-flex justify-content-between align-items-center">
 
-                
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Great Scott!</a>
+                <!-- Subscribe -->
+                <div class="dlab-topbar-left">
+                    <button class="btn white radius-xl" type="button">Subscribe</button>
+                </div>
+                <!-- website logo -->
+                <div class="logo-header">
+                    <a href="https://thejoshscott.com/" target="_blank"><img src="~/images/gslogo.png" alt="" /></a>
+                </div>
+                <div class="dlab-topbar-right topbar-social">
+                    <ul>
+                        @*<li><a href="#" class="site-button-link text-light"><i class="fa fa-facebook-f"></i></a></li>*@
+                        <li><a href="https://www.linkedin.com/in/joshgreatscott"  class="site-button-link text-light" target="_blank" <!--class="linkedin"--><i class="fa fa-linkedin"></i></a></li>
+                        <li><a href="https://twitter.com/JoshuaBscott" class="site-button-link text-light" target="_blank" <!--class="twitter"--><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="https://github.com/joshuabscott" class="site-button-link text-light" target="_blank" <!--class="github"--><i class="fa fa-github"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- top-bar end -->
+    <!-- main header -->
+    <div class="sticky-header main-bar-wraper navbar-expand-lg">
+        <div class="main-bar clearfix ">
+            <div class="container">
+                <div class="header-content-bx no-bdr">
 
-                <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <partial name="_LoginPartial" />
-                    @if (User.IsInRole("Administrator") || User.IsInRole("Moderator"))
-                    {
-                        <ul class="navbar-nav flex-grow-1">
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Blogs" asp-action="Index">Blogs</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Posts" asp-action="Index">Posts</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Tags" asp-action="Index">Tags</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Comments" asp-action="Index">Comments</a>
-                            </li>
-
-                        
-                        </ul>
-                    }
-
-                        <!-- website logo ----------------------------------------------------------------------------------------------------------------------------------------------------->
+                    <!-- website logo -->
+                    <div class="logo-header">
+                        <a href="index.html"><img src="~/images/gslogo.png" alt="" /></a>
+                    </div>
+                    <!-- nav toggle button -->
+                    <button class="navbar-toggler collapsed navicon justify-content-end" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                    <!-- main nav -->
+                    <div class="header-nav navbar-collapse collapse justify-content-center" id="navbarNavDropdown">
                         <div class="logo-header">
                             <a href="index.html"><img src="~/images/gslogo.png" alt="" /></a>
                         </div>
+                        <ul class="nav navbar-nav">
+                            <li class="active"><a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                            <li><a class="nav-link text-dark" asp-area="" asp-controller="Posts" asp-action="Index">Posts</a></li>
+                            <li><a class="nav-link text-dark" asp-area="" asp-controller="Comments" asp-action="Index">Comments</a></li>
+                            <li><a class="nav-link text-dark" href="about-us.html">About</a></li>
+                            <li><a class="nav-link text-dark" href="contact.html">Contact</a></li>
+
+                        </ul>
+                        <div class="social-menu">
+                            <ul>
+                                <li><a href="javascript:void(0);"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="javascript:void(0);"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="javascript:void(0);"><i class="fa fa-google-plus"></i></a></li>
+                                <li><a href="javascript:void(0);"><i class="fa fa-facebook"></i></a></li>
+                            </ul>
+                        </div>
+                        <div class="nav-link text-dark">
+                            <partial name="_LoginPartial" />
+                        </div>
+                    </div>
                 </div>
             </div>
-        </nav>
-    </header>
+        </div>
+    </div>
+    <!-- main header END -->
+   
+</header>
+    <!-- header END -->
 
 
     <div class="container">
