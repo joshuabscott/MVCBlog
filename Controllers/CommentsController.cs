@@ -69,28 +69,46 @@ namespace MVCBlog.Controllers
         // POST: Comments/Create
         // To protect from over-posting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> Create([Bind("PostId")] Comment comment, string userComment)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        var email = HttpContext.User.Identity.Name;
+        //        var bloguserid = _context.Users.FirstOrDefault(u => u.Email == email).Id;
+        //        var bloguser = _context.Users.FirstOrDefault(u => u.Email == email);
+        //        var post = _context.Posts.FirstOrDefault(p => p.Id == comment.PostId);
+
+        //        comment.Created = DateTime.Now;
+        //        comment.Updated = DateTime.Now;
+        //        comment.Body = userComment;
+        //        comment.BlogUserId = bloguserid;
+        //        comment.BlogUser = bloguser;
+        //        comment.Post = post;
+
+        //        _context.Add(comment);
+        //        await _context.SaveChangesAsync();
+        //        //return Redirect($"~/Posts/Details/{comment.PostId}");
+        //        return RedirectToAction("Details", "Posts", new { id = comment.PostId });
+        //    }
+        //    ViewData["BlogUserId"] = new SelectList(_context.Set<BlogUser>(), "Id", "Id", comment.BlogUserId);
+        //    ViewData["PostId"] = new SelectList(_context.Posts, "Id", "Id", comment.PostId);
+        //    return View(comment);
+        //}
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("PostId")] Comment comment, string userComment)
+        public async Task<IActionResult> Create([Bind("PostId")] Comment comment, string commentContent)
         {
             if (ModelState.IsValid)
             {
-                var email = HttpContext.User.Identity.Name;
-                var bloguserid = _context.Users.FirstOrDefault(u => u.Email == email).Id;
-                var bloguser = _context.Users.FirstOrDefault(u => u.Email == email);
-                var post = _context.Posts.FirstOrDefault(p => p.Id == comment.PostId);
-
+                comment.BlogUserId = _userManager.GetUserId(User);
                 comment.Created = DateTime.Now;
-                comment.Updated = DateTime.Now;
-                comment.Body = userComment;
-                comment.BlogUserId = bloguserid;
-                comment.BlogUser = bloguser;
-                comment.Post = post;
-
+                comment.Body = commentContent;
                 _context.Add(comment);
                 await _context.SaveChangesAsync();
-                //return Redirect($"~/Posts/Details/{comment.PostId}");
-                return RedirectToAction("Details", "Posts", new { id = comment.PostId });
+                return RedirectToAction(nameof(Index));
             }
             ViewData["BlogUserId"] = new SelectList(_context.Set<BlogUser>(), "Id", "Id", comment.BlogUserId);
             ViewData["PostId"] = new SelectList(_context.Posts, "Id", "Id", comment.PostId);

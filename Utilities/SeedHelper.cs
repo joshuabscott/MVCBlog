@@ -6,8 +6,6 @@ using Microsoft.AspNetCore.Identity;
 using Npgsql;
 using MVCBlog.Data;
 using MVCBlog.Models;
-using MVCBlog.ViewModels;
-using MVCBlog.Utilities;
 using MVCBlog.Enums;
 
 namespace MVCBlog.Utilities

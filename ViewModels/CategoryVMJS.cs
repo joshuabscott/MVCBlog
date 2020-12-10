@@ -18,7 +18,7 @@ namespace MVCBlog.ViewModels
         //        // Load most last post property
         //        public <Post> LatestPost { get; set; }
         //}
-        public int PageNum { get; set; }
+        public int PageNumber { get; set; }
         public int TotalPosts { get; set; }
     }
 }

@@ -2,7 +2,8 @@
 
 @{
     ViewData["Title"] = "Home Page";
-    var page = Model.PageNum;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var page = Model.PageNumber;
     var older = page - 1;
     var newer = page + 1;
 }
@@ -13,25 +14,29 @@
     <div class="top-category">
         <div class="container-fluid">
             <div class="row">
+
+                <!-- MVC Days -->
                 <div class="col-sm-6 m-b30">
                     <div class="category-box overlay center large overlay-medium">
                         <div class="category-media">
-                            <img src="images/category/category-top/pic1.jpg" alt="">
+                            <img src="~/images/FileNewProject.PNG" alt="">
                         </div>
                         <div class="category-info">
-                            <div class="category-style"><a href="javascript:void(0);">Lifestyle</a></div>
-                            <h1><a href="post-left-sidebar.html">Ready for the Summer</a></h1>
+                            <div class="category-style"><a href="javascript:void(0);">MVC Days</a></div>
+                            <h1><a href="post-left-sidebar.html">Day 1 : File New Project </a></h1>
                             <a href="javascript:void(0);" class="category-title"><i class="la la-arrow-right"></i></a>
                         </div>
                     </div>
                 </div>
+
+                <!-- Learning to code -->
                 <div class="col-sm-6 m-b30">
                     <div class="category-box overlay center large overlay-medium">
                         <div class="category-media">
-                            <img src="images/category/category-top/pic2.jpg" alt="">
+                            <img src="~/images/LearnToCode.PNG" alt="">
                         </div>
                         <div class="category-info">
-                            <div class="category-style"><a href="javascript:void(0);">Fashion</a></div>
+                            <div class="category-style"><a href="javascript:void(0);">Learning Code</a></div>
                             <h1><a href="post-slide-show.html">Trends Tried & Tested.</a></h1>
                             <a href="javascript:void(0);" class="category-title"><i class="la la-arrow-right"></i></a>
                         </div>
@@ -50,37 +55,37 @@
                     <div class="col-lg-3 col-sm-6">
                         <div class="category-box m-b20">
                             <div class="category-media">
-                                <img src="images/category/pic4.jpg" alt="">
+                                <img src="~/images/MVC.PNG" alt="">
                             </div>
                             <div class="category-info type-1">
-                                <a href="javascript:void(0);" class="category-title btn-style">Beauty</a>
+                                <a href="javascript:void(0);" class="category-title btn-style">MVC Days</a>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-3 col-sm-6">
                         <div class="category-box m-b20">
                             <div class="category-media">
-                                <img src="images/category/pic5.jpg" alt="">
+                                <img src="~/images/Microsoft.PNG" alt="">
                             </div>
                             <div class="category-info type-1">
-                                <a href="javascript:void(0);" class="category-title btn-style">Lifestyle</a>
+                                <a href="javascript:void(0);" class="category-title btn-style">Microsoft</a>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-3 col-sm-6">
                         <div class="category-box m-b20">
                             <div class="category-media">
-                                <img src="images/category/pic6.jpg" alt="">
+                                <img src="~/images/Fun Stuff.PNG" alt="">
                             </div>
                             <div class="category-info type-1">
-                                <a href="javascript:void(0);" class="category-title btn-style">Fashion</a>
+                                <a href="javascript:void(0);" class="category-title btn-style">Fun Stuff</a>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-3 col-sm-6">
                         <div class="category-box m-b20">
                             <div class="category-media">
-                                <img src="images/category/pic7.jpg" alt="">
+                                <img src="~/images/travel.PNG" alt="">
                             </div>
                             <div class="category-info type-1">
                                 <a href="javascript:void(0);" class="category-title btn-style">Travel</a>
@@ -90,7 +95,9 @@
                 </div>
             </div>
         </div>
+
         <!-- category end -->
+        <!-- About Us -->
         <div class="section-full bg-white content-inner-2">
             <div class="container">
                 <div class="row">
@@ -103,7 +110,7 @@
                                             <img src="images/blog/blog-left/pic1.jpg" alt="" />
                                         </div>
                                         <div class="blog-card-info">
-                                            <div class="title-sm"><a href="javascript:void(0);">Beauty</a></div>
+                                            <div class="title-sm"><a href="javascript:void(0);">MVC Days</a></div>
                                             <h4 class="title"><a href="post-full-width.html">Makeup for new Look</a></h4>
                                             <p>Aenean sollicitudin, lorem quis bibendum auctor, ninkis elit ipsum nec sagittis sem nibh id elit. Quisque porta finibus est a faucibus.</p>
                                             <div class="d-flex justify-content-between align-items-center">
@@ -125,7 +132,7 @@
                                             <img src="images/blog/blog-left/pic2.jpg" alt="" />
                                         </div>
                                         <div class="blog-card-info">
-                                            <div class="title-sm"><a href="javascript:void(0);">Lifestyle</a></div>
+                                            <div class="title-sm"><a href="javascript:void(0);">Microsoft</a></div>
                                             <h4 class="title"><a href="post-open-gutenberg.html">Sonoma Valley Lancome</a></h4>
                                             <p>Aenean sollicitudin, lorem quis bibendum auctor, ninkis elit ipsum nec sagittis sem nibh id elit. Quisque porta finibus est a faucibus.</p>
                                             <div class="d-flex justify-content-between align-items-center">
@@ -147,7 +154,7 @@
                                             <img src="images/blog/blog-left/pic3.jpg" alt="" />
                                         </div>
                                         <div class="blog-card-info">
-                                            <div class="title-sm"><a href="javascript:void(0);">Travel</a></div>
+                                            <div class="title-sm"><a href="javascript:void(0);"></a></div>
                                             <h4 class="title"><a href="post-navigation.html">Ready for the Summer</a></h4>
                                             <p>Aenean sollicitudin, lorem quis bibendum auctor, ninkis elit ipsum nec sagittis sem nibh id elit. Quisque porta finibus est a faucibus.</p>
                                             <div class="d-flex justify-content-between align-items-center">
@@ -243,6 +250,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <!-- Pagination start -->
                         <div class="pagination-bx clearfix text-center">
                             <ul class="pagination">
@@ -254,12 +262,14 @@
                         </div>
                         <!-- Pagination END -->
                     </div>
+
+                    <!-- Join Email list -->
                     <div class="col-xl-3 col-lg-4 col-md-5 col-sm-12 col-12">
                         <div class="side-bar p-l30 sticky-top">
                             <div class="widget widget-newsletter text-center">
                                 <form class="dzSubscribe dezPlaceAni" action="script/mailchamp.php" method="post">
                                     <div class="news-back form-style">
-                                        <h4>Join</h4>
+                                        <h4>Join Us</h4>
                                         <div class="input-group">
                                             <input name="dzEmail" required="required" type="email" class="form-control" placeholder="Your Email">
                                             <div class="input-group-append">
@@ -270,58 +280,65 @@
                                     </div>
                                 </form>
                             </div>
-                            <div class="widget widget_gallery gallery-grid-2">
-                                <h6 class="widget-title"><span>Instagram</span></h6>
-                                <ul>
-                                    <li>
-                                        <a href="#">
-                                            <div class="dlab-post-thum dlab-img-overlay1 dlab-img-effect">
-                                                <img src="images/gallery/widget-gallery/pic1.jpg" alt="">
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <div class="dlab-post-thum dlab-img-overlay1 dlab-img-effect">
-                                                <img src="images/gallery/widget-gallery/pic2.jpg" alt="">
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <div class="dlab-post-thum dlab-img-overlay1 dlab-img-effect">
-                                                <img src="images/gallery/widget-gallery/pic3.jpg" alt="">
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <div class="dlab-post-thum dlab-img-overlay1 dlab-img-effect">
-                                                <img src="images/gallery/widget-gallery/pic4.jpg" alt="">
-                                            </div>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
+
+                            @*<div class="widget widget_gallery gallery-grid-2">
+                    <h6 class="widget-title"><span>Instagram</span></h6>
+                    <ul>
+                        <li>
+                            <a href="#">
+                                <div class="dlab-post-thum dlab-img-overlay1 dlab-img-effect">
+                                    <img src="images/gallery/widget-gallery/pic1.jpg" alt="">
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="dlab-post-thum dlab-img-overlay1 dlab-img-effect">
+                                    <img src="images/gallery/widget-gallery/pic2.jpg" alt="">
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="dlab-post-thum dlab-img-overlay1 dlab-img-effect">
+                                    <img src="images/gallery/widget-gallery/pic3.jpg" alt="">
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="dlab-post-thum dlab-img-overlay1 dlab-img-effect">
+                                    <img src="images/gallery/widget-gallery/pic4.jpg" alt="">
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>*@
+
                             <div class="widget widget-social">
                                 <h6 class="widget-title"><span>Social</span></h6>
                                 <ul>
-                                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-snapchat-ghost"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-pinterest-p"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+
+                                    <li><a href="https://www.linkedin.com/in/joshgreatscott" target="_blank" class="site-button-link"><i class="fa fa-linkedin"></i></a></li>
+                                    <li><a href="https://twitter.com/JoshuaBscott" target="_blank" class="site-button-link"><i class="fa fa-twitter"></i></a></li>
+                                    <li><a href="https://github.com/joshuabscott" target="_blank" class="site-button-link"><i class="fa fa-github"></i></a></li>
+                                    @*<li><a href="#"><i class="fa fa-twitter"></i></a></li>*@
+                                    @*<li><a href="#"><i class="fa fa-snapchat-ghost"></i></a></li>
+                        <li><a href="#"><i class="fa fa-pinterest-p"></i></a></li>
+                        <li><a href="#"><i class="fa fa-instagram"></i></a></li>*@
                                 </ul>
                                 <div class="advertise text-center m-b20">
                                     <img src="images/add.png" alt="" />
                                 </div>
-                                <div class="fb-social relative">
-                                    <img src="images/default-social.jpg" alt="" />
-                                    <div class="facebook-like">
-                                        <button class="btn radius-xl">Like on facebook</button>
-                                    </div>
-                                </div>
+
+                                @*<div class="fb-social relative">
+                        <img src="images/default-social.jpg" alt="" />
+                        <div class="facebook-like">
+                            <button class="btn radius-xl">Like on facebook</button>
+                        </div>
+                    </div>*@
                             </div>
+
                             <div class="widget widget-stories">
                                 <h6 class="widget-title"><span>Latest Post</span></h6>
                                 <div class="post-carousel owl-carousel owl-theme owl-none owl-btn-3">
@@ -341,13 +358,13 @@
                                 <div class="tagcloud text-center">
                                     <a href="#">Blog</a>
                                     <a href="#">Photography</a>
-                                    <a href="#">Style</a>
-                                    <a href="#">Instagram</a>
-                                    <a href="#">Trend</a>
-                                    <a href="#">Lifestyle</a>
-                                    <a href="#">Fashion</a>
-                                    <a href="#">Travel</a>
-                                    <a href="#">Europe</a>
+                                    <a href="#">Technology</a>
+                                    <a href="#">.Net</a>
+                                    <a href="#">Bootstrap</a>
+                                    <a href="#">TinyMCE</a>
+                                    <a href="#">Morris Charts</a>
+                                    <a href="#">Github</a>
+                                    <a href="#">Heroku</a>
                                 </div>
                             </div>
                         </div>
@@ -356,12 +373,14 @@
             </div>
         </div>
         <!-- About Us End -->
+
+
         <!-- subscribe -->
         <div class="section-full bg-gray subscribe-sc">
             <div class="container">
                 <div class="row align-items-center subscribe-design">
                     <div class="col-lg-7 col-md-7 d-none d-md-block">
-                        <img src="images/subscribe.png" alt="" />
+                        <img src="~/images/SubscribeToMyBlog.PNG" alt="" />
                     </div>
                     <div class="col-lg-5 col-md-5">
                         <form class="dzSubscribe dezPlaceAni" action="script/mailchamp.php" method="post">

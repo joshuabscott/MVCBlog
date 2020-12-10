@@ -53,7 +53,7 @@ namespace MVCBlog.Controllers
                 Blogs = await blogs.ToListAsync(),
                 Posts = await posts.ToListAsync(),
                 Tags = await tags.ToListAsync(),
-                PageNum = page,
+                PageNumber = page,
                 TotalPosts = _context.Posts.ToList().Count
             };
             return View(categories);

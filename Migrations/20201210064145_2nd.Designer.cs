@@ -10,15 +10,15 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace MVCBlog.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201127030449_initial")]
-    partial class initial
+    [Migration("20201210064145_2nd")]
+    partial class _2nd
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn)
-                .HasAnnotation("ProductVersion", "3.1.9")
+                .HasAnnotation("ProductVersion", "3.1.10")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             modelBuilder.Entity("MVCBlog.Models.Blog", b =>
@@ -291,12 +291,10 @@ namespace MVCBlog.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("character varying(128)")
-                        .HasMaxLength(128);
+                        .HasColumnType("text");
 
                     b.Property<string>("ProviderKey")
-                        .HasColumnType("character varying(128)")
-                        .HasMaxLength(128);
+                        .HasColumnType("text");
 
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("text");
@@ -333,12 +331,10 @@ namespace MVCBlog.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("character varying(128)")
-                        .HasMaxLength(128);
+                        .HasColumnType("text");
 
                     b.Property<string>("Name")
-                        .HasColumnType("character varying(128)")
-                        .HasMaxLength(128);
+                        .HasColumnType("text");
 
                     b.Property<string>("Value")
                         .HasColumnType("text");

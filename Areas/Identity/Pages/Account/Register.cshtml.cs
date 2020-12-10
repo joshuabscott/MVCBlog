@@ -61,6 +61,20 @@ namespace MVCBlog.Areas.Identity.Pages.Account
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
+
+            [Required]
+            [StringLength(30, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 2)]
+            [Display(Name = "First Name")]
+            public string FirstName { get; set; }
+
+            [Required]
+            [StringLength(30, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 2)]
+            [Display(Name = "Last Name")]
+            public string LastName { get; set; }
+
+            [StringLength(30, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 2)]
+            [Display(Name = "Display Name")]
+            public string DisplayName { get; set; }
         }
 
         public async Task OnGetAsync(string returnUrl = null)
@@ -75,7 +89,15 @@ namespace MVCBlog.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = new BlogUser { UserName = Input.Email, Email = Input.Email };
+                var user = new BlogUser
+                {
+                    FirstName = Input.FirstName,
+                    LastName = Input.LastName,
+                    DisplayName = Input.DisplayName,
+                    UserName = Input.Email,
+                    Email = Input.Email
+                };
+                //var user = new BlogUser { UserName = Input.Email, Email = Input.Email };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {

@@ -13,9 +13,8 @@ using MVCBlog.Enums;
 using MVCBlog.Data;
 
 namespace MVCBlog.Controllers
-
 {
-    [Authorize(Roles = "Administrator, Moderator")]
+    [Authorize]
     public class BlogsController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -32,6 +31,7 @@ namespace MVCBlog.Controllers
         }
 
         // GET: Blogs/Details/5
+        [Authorize(Roles = "Administrator, Moderator")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)

@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h1>Blogs</h1>
@@ -17,7 +18,7 @@
         <a asp-action="Create">Create New Blog</a>
     </p>*@
 <table class="table">
-    <thead>
+    <thead class="thead-dark">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Name)
@@ -25,7 +26,7 @@
             @*<th>
                     @Html.DisplayNameFor(model => model.Url)
                 </th>*@
-            <th></th>
+        <th>Settings</th>
         </tr>
     </thead>
     <tbody>

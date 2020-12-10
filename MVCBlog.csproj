@@ -19,9 +19,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Views\Home\contact.html" />
     <None Remove="Views\Home\index-2.html" />
     <None Remove="Views\Home\post-standart.html" />
     <None Remove="Views\Home\post-video.html" />
+    <None Remove="Views\Posts\post-with-small-side-image.html" />
   </ItemGroup>
 
   <ItemGroup>

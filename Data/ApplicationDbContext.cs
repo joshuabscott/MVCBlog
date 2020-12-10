@@ -13,11 +13,11 @@ namespace MVCBlog.Data
             : base(options)
         {
         }
-        public DbSet<MVCBlog.Models.Blog> Blogs { get; set; }
-        public DbSet<MVCBlog.Models.BlogUser> BlogUsers { get; set; }
+        public DbSet<Blog> Blogs { get; set; }
+        public DbSet<BlogUser> BlogUsers { get; set; }
 
-        public DbSet<MVCBlog.Models.Post> Posts { get; set; }
-        public DbSet<MVCBlog.Models.Comment> Comments { get; set; }
-        public DbSet<MVCBlog.Models.Tag> Tags { get; set; }
+        public DbSet<Post> Posts { get; set; }
+        public DbSet<Comment> Comments { get; set; }
+        public DbSet<Tag> Tags { get; set; }
     }
 }

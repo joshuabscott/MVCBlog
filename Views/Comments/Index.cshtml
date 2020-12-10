@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h1>Comments</h1>
@@ -14,7 +15,7 @@
 }
 
 <table class="table">
-    <thead>
+    <thead class="thead-dark">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Post)
@@ -28,19 +29,19 @@
             <th>
                 @Html.DisplayNameFor(model => model.Body)
             </th>
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.Created)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Updated)
-            </th>
+            </th>*@
             @*<th>
                 @Html.DisplayNameFor(model => model.Post)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.BlogUser)
             </th>*@
-            <th></th>
+        <th>Settings</th>
         </tr>
     </thead>
     <tbody>
@@ -59,12 +60,12 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Body)
             </td>
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.Created)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Updated)
-            </td>
+            </td>*@
             @*<td>
                 @Html.DisplayFor(modelItem => item.Post.Id)
             </td>

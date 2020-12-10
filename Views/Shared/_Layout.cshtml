@@ -10,7 +10,7 @@
     <!-- FAVICONS ICON -->
     <link rel="icon" href="~/images/favicon.ico" type="image/x-icon" />
     <link rel="shortcut icon" type="image/x-icon" href="~/images/favicon-16x16.png" />
-    
+
     <!-- PAGE TITLE HERE -->
     <title> Great Scott! : by Josh Scott</title>
 
@@ -23,201 +23,210 @@
     <link rel="stylesheet" type="text/css" href="css/templete.css">
     <link class="skin" rel="stylesheet" type="text/css" href="css/skin/skin-1.css">
 
-    <!-- Data tables css -->
-    <!--<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">-->
+    @*<link href="@Url.Content("~/Styles/main.css")" rel="stylesheet" type="text/css" />
+    @RenderSection("Styles", false)*@
+
     <!-- Font Awesome Kit -->
-    <!--<script src="https://kit.fontawesome.com/8b5ae67e5c.js" crossorigin="anonymous"></script>-->
+    <script src="https://kit.fontawesome.com/8b5ae67e5c.js" crossorigin="anonymous"></script>
+
     <!-- TinyMCE  -->
-    <!--<script src="https://cdn.tiny.cloud/1/3lwulzgbibotwwht2k2991x7r701wvjdbqxtg24b43c6z3sk/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>-->
+    <script src="https://cdn.tiny.cloud/1/3lwulzgbibotwwht2k2991x7r701wvjdbqxtg24b43c6z3sk/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+
+    <!-- Data tables css -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
 </head>
 
 
 <body id="bg">
-<div class="page-wraper">
-<div id="loading-area"></div>
-	<!-- header -->
-<header class="site-header mo-left header">
-    <!-- top-bar -->
-    <div class="container text-light bg-black">
-        <div class="top-bar container text-light bg-black">
-            <div class="row d-flex justify-content-between align-items-center">
+    <div class="page-wraper">
+        <div id="loading-area"></div>
+        <!-- header -->
+        <header class="site-header mo-left header">
+            <!-- top-bar -->
+            <div class="container text-light bg-black">
+                <div class="top-bar container text-light bg-black">
+                    <div class="row d-flex justify-content-between align-items-center">
 
-                <!-- Subscribe -->
-                <div class="dlab-topbar-left">
-                    <button class="btn white radius-xl" type="button">Subscribe</button>
-                </div>
-                <!-- website logo -->
-                <div class="logo-header">
-                    <a href="https://thejoshscott.com/" target="_blank"><img src="~/images/gslogo.png" alt="" /></a>
-                </div>
-                <div class="dlab-topbar-right topbar-social">
-                    <ul>
-                        @*<li><a href="#" class="site-button-link text-light"><i class="fa fa-facebook-f"></i></a></li>*@
-                        <li><a href="https://www.linkedin.com/in/joshgreatscott"  class="site-button-link text-light" target="_blank" <!--class="linkedin"--><i class="fa fa-linkedin"></i></a></li>
-                        <li><a href="https://twitter.com/JoshuaBscott" class="site-button-link text-light" target="_blank" <!--class="twitter"--><i class="fa fa-twitter"></i></a></li>
-                        <li><a href="https://github.com/joshuabscott" class="site-button-link text-light" target="_blank" <!--class="github"--><i class="fa fa-github"></i></a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- top-bar end -->
-    <!-- main header -->
-    <div class="sticky-header main-bar-wraper navbar-expand-lg">
-        <div class="main-bar clearfix ">
-            <div class="container">
-                <div class="header-content-bx no-bdr">
-
-                    <!-- website logo -->
-                    <div class="logo-header">
-                        <a href="index.html"><img src="~/images/gslogo.png" alt="" /></a>
-                    </div>
-                    <!-- nav toggle button -->
-                    <button class="navbar-toggler collapsed navicon justify-content-end" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </button>
-                    <!-- main nav -->
-                    <div class="header-nav navbar-collapse collapse justify-content-center" id="navbarNavDropdown">
-                        <div class="logo-header">
-                            <a href="index.html"><img src="~/images/gslogo.png" alt="" /></a>
+                        <!-- Subscribe -->
+                        <div class="dlab-topbar-left">
+                            <button class="btn white radius-xl" type="button">Subscribe</button>
                         </div>
-                        <ul class="nav navbar-nav">
-                            <li class="active"><a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                            <li><a class="nav-link text-dark" asp-area="" asp-controller="Posts" asp-action="Index">Posts</a></li>
-                            <li><a class="nav-link text-dark" asp-area="" asp-controller="Comments" asp-action="Index">Comments</a></li>
-                            <li><a class="nav-link text-dark" href="about-us.html">About</a></li>
-                            <li><a class="nav-link text-dark" href="contact.html">Contact</a></li>
-
-                        </ul>
-                        <div class="social-menu">
+                        <!-- website logo -->
+                        <div class="logo-header">
+                            <a href="https://thejoshscott.com/" target="_blank"><img src="~/images/gslogo.png" alt="" /></a>
+                        </div>
+                        <div class="dlab-topbar-right topbar-social">
                             <ul>
-                                <li><a href="javascript:void(0);"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="javascript:void(0);"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="javascript:void(0);"><i class="fa fa-google-plus"></i></a></li>
-                                <li><a href="javascript:void(0);"><i class="fa fa-facebook"></i></a></li>
+                                @*<li><a href="#" class="site-button-link text-light"><i class="fa fa-facebook-f"></i></a></li>*@
+                                <li><a href="https://www.linkedin.com/in/joshgreatscott" class="site-button-link text-light" target="_blank" <!--class="linkedin"--><i class="fa fa-linkedin"></i></a></li>
+                                <li><a href="https://twitter.com/JoshuaBscott" class="site-button-link text-light" target="_blank" <!--class="twitter"--><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="https://github.com/joshuabscott" class="site-button-link text-light" target="_blank" <!--class="github"--><i class="fa fa-github"></i></a></li>
                             </ul>
                         </div>
-                        <div class="nav-link text-dark">
-                            <partial name="_LoginPartial" />
-                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-    <!-- main header END -->
-   
-</header>
-    <!-- header END -->
+            <!-- top-bar end -->
+            <!-- main header -->
+            <div class="sticky-header main-bar-wraper navbar-expand-lg">
+                <div class="main-bar clearfix ">
+                    <div class="container">
+                        <div class="header-content-bx no-bdr">
 
-
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
-
-
-    <!-- Footer -->
-    <footer class="site-footer">
-        <div class="footer-top">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xl-3 col-lg-2 col-md-6 d-md-none d-lg-block">
-                        <div class="widget">
-                            <img src="~/images/gslogo.png" alt="" />
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-4 col-md-6">
-                        <h6 class="m-b30 footer-title"><span>Recent Post</span></h6>
-                        <div class="widget recent-posts-entry">
-                            <div class="widget-post-bx">
-                                <div class="widget-post clearfix">
-                                    <div class="dlab-post-media"> <img src="images/blog/recent-blog/pic1.jpg" alt=""> </div>
-                                    <div class="dlab-post-info">
-                                        <div class="dlab-post-header">
-                                            <h6 class="post-title"><a href="post-quote.html">Winter Fairytale</a></h6>
-                                        </div>
-                                        <div class="dlab-post-meta">
-                                            <ul>
-                                                <li class="post-date">25 January, 2020</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
+                            <!-- website logo -->
+                            <div class="logo-header">
+                                <a href="index.html"><img src="~/images/gslogo.png" alt="" /></a>
                             </div>
-                            <div class="widget-post-bx">
-                                <div class="widget-post clearfix">
-                                    <div class="dlab-post-media"> <img src="images/blog/recent-blog/pic2.jpg" alt=""> </div>
-                                    <div class="dlab-post-info">
-                                        <div class="dlab-post-header">
-                                            <h6 class="post-title"><a href="post-link.html">Fruit & Flamingos</a></h6>
-                                        </div>
-                                        <div class="dlab-post-meta">
-                                            <ul>
-                                                <li class="post-date">25 January, 2020</li>
-                                            </ul>
-                                        </div>
-                                    </div>
+                            <!-- nav toggle button -->
+                            <button class="navbar-toggler collapsed navicon justify-content-end" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </button>
+                            <!-- main nav -->
+                            <div class="header-nav navbar-collapse collapse justify-content-center" id="navbarNavDropdown">
+                                <div class="logo-header">
+                                    <a href="index.html"><img src="~/images/gslogo.png" alt="" /></a>
                                 </div>
-                            </div>
-                            <div class="widget-post-bx">
-                                <div class="widget-post clearfix">
-                                    <div class="dlab-post-media"> <img src="images/blog/recent-blog/pic3.jpg" alt=""> </div>
-                                    <div class="dlab-post-info">
-                                        <div class="dlab-post-header">
-                                            <h6 class="post-title"><a href="post-gallery.html">Hawai Beaches</a></h6>
-                                        </div>
-                                        <div class="dlab-post-meta">
-                                            <ul>
-                                                <li class="post-date">25 January, 2020</li>
-                                            </ul>
-                                        </div>
-                                    </div>
+                                <ul class="nav navbar-nav">
+                                    <li class="active"><a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                                    <li><a class="nav-link text-dark" asp-area="" asp-controller="Blogs" asp-action="Index">Blogs</a></li>
+                                    <li><a class="nav-link text-dark" asp-area="" asp-controller="Posts" asp-action="Index">Posts</a></li>
+                                    <li><a class="nav-link text-dark" asp-area="" asp-controller="Comments" asp-action="Index">Comments</a></li>
+                                    <li><a class="nav-link text-dark" asp-area="" asp-controller="Tags" asp-action="Index">Tags</a></li>
+                                    @*<li><a class="nav-link text-dark" href="about-us.html">About</a></li>
+                                     <li><a class="nav-link text-dark" href="contact.html">Contact</a></li>*@
+
+                                </ul>
+                                @*<div class="social-menu">
+                                        <ul>
+                                            <li><a href="javascript:void(0);"><i class="fa fa-facebook"></i></a></li>
+                                            <li><a href="javascript:void(0);"><i class="fa fa-twitter"></i></a></li>
+                                            <li><a href="javascript:void(0);"><i class="fa fa-google-plus"></i></a></li>
+                                            <li><a href="javascript:void(0);"><i class="fa fa-facebook"></i></a></li>
+                                        </ul>
+                                    </div>*@
+                                <div class="nav-link text-dark">
+                                    <partial name="_LoginPartial" />
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-3 col-lg-3 col-md-6">
-                        <h6 class="m-b30 footer-title"><span>My Blogs</span></h6>
-                        <a class="video widget relative popup-youtube overlay-black-middle" href="https://www.youtube.com/watch?v=VjlATH_rzYg">
-                            <img src="images/footer-video.jpg" alt="" />
-                            <span class="play-video"><i class="la la-play"></i></span>
-                        </a>
-                    </div>
-                    <div class="col-xl-3 col-lg-3 col-md-12">
-                        <h6 class="m-b30 footer-title"><span>Subscribe</span></h6>
-                        <ul class="d-flex widget-social-ic">
-                            <li><a href="#" class="site-button-link"><i class="fa fa-facebook"></i></a></li>
-                            <li><a href="#" class="site-button-link"><i class="fa fa-twitter"></i></a></li>
-                            <li><a href="#" class="site-button-link"><i class="fa fa-pinterest-p"></i></a></li>
-                            <li><a href="#" class="site-button-link"><i class="fa fa-instagram"></i></a></li>
-                        </ul>
+                </div>
+            </div>
+            <!-- main header END -->
+
+        </header>
+        <!-- header END -->
+
+
+        <div class="container">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
+
+
+        <!-- Footer -->
+        <footer class="site-footer">
+            <div class="footer-top">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-2 col-md-6 d-md-none d-lg-block">
+                            <div class="widget">
+                                <img src="~/images/gslogo.png" alt="" />
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-4 col-md-6">
+                            <h6 class="m-b30 footer-title"><span>Recent Post</span></h6>
+                            <div class="widget recent-posts-entry">
+                                <div class="widget-post-bx">
+                                    <div class="widget-post clearfix">
+                                        <div class="dlab-post-media"> <img src="images/blog/recent-blog/pic1.jpg" alt=""> </div>
+                                        <div class="dlab-post-info">
+                                            <div class="dlab-post-header">
+                                                <h6 class="post-title"><a href="post-quote.html">Winter Fairytale</a></h6>
+                                            </div>
+                                            <div class="dlab-post-meta">
+                                                <ul>
+                                                    <li class="post-date">25 January, 2020</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="widget-post-bx">
+                                    <div class="widget-post clearfix">
+                                        <div class="dlab-post-media"> <img src="images/blog/recent-blog/pic2.jpg" alt=""> </div>
+                                        <div class="dlab-post-info">
+                                            <div class="dlab-post-header">
+                                                <h6 class="post-title"><a href="post-link.html">Fruit & Flamingos</a></h6>
+                                            </div>
+                                            <div class="dlab-post-meta">
+                                                <ul>
+                                                    <li class="post-date">25 January, 2020</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="widget-post-bx">
+                                    <div class="widget-post clearfix">
+                                        <div class="dlab-post-media"> <img src="images/blog/recent-blog/pic3.jpg" alt=""> </div>
+                                        <div class="dlab-post-info">
+                                            <div class="dlab-post-header">
+                                                <h6 class="post-title"><a href="post-gallery.html">Hawai Beaches</a></h6>
+                                            </div>
+                                            <div class="dlab-post-meta">
+                                                <ul>
+                                                    <li class="post-date">25 January, 2020</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-6">
+                            <h6 class="m-b30 footer-title"><span>My Blogs</span></h6>
+                            <a class="video widget relative popup-youtube overlay-black-middle" href="https://www.youtube.com/watch?v=VjlATH_rzYg">
+                                <img src="images/footer-video.jpg" alt="" />
+                                <span class="play-video"><i class="la la-play"></i></span>
+                            </a>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-12">
+                            <h6 class="m-b30 footer-title"><span>Subscribe</span></h6>
+                            <ul class="d-flex widget-social-ic">
+
+                                <li><a href="https://www.linkedin.com/in/joshgreatscott" target="_blank" class="site-button-link"><i class="fa fa-linkedin"></i></a></li>
+                                <li><a href="https://twitter.com/JoshuaBscott" target="_blank" class="site-button-link"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="https://github.com/joshuabscott" target="_blank" class="site-button-link"><i class="fa fa-github"></i></a></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="footer-bottom">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12 text-center">
-                        <span>Copyright © 2020 Great Scott!</span>
+            <div class="footer-bottom">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 text-center">
+                            <span>Copyright © 2020 Great Scott!</span>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </footer>
-    <!-- Footer END-->
-    <button class="scroltop fa fa-chevron-up"></button>
+        </footer>
+        <!-- Footer END-->
+
+        <button class="scroltop fa fa-chevron-up"></button>
     </div>
 
     @* TinyMCE *@
     <script src="//cdn.tiny.cloud/1/5hebe8k5m07qf4mcta3paw6it1x1fve47c5l4qh7m2e7nbhv/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     <script>
+          //This kicks off Tiny MCX
         tinymce.init({
-            selector: '#Content',
+            selector: '#Body',
             branding: false,
             skin: 'fabric',
             content_css: 'fabric',
@@ -226,9 +235,12 @@
             toolbar: 'undo redo | formatselect | bold italic strikethrough forecolor backcolor blockquote | link image media | alignleft aligncenter alignright alignjustify | numlist bullist outdent indent | removeformat',
             height: 400
         });
+        //This kicks off jQuery DataTables
+        $('.table').DataTable();
+        });
     </script>
 
-    <!-- JAVASCRIPT FILES ========================================= -->
+        < !--JAVASCRIPT FILES ========================================= -->
     <script src="js/jquery.min.js"></script><!-- JQUERY.MIN JS -->
     <script src="plugins/bootstrap/js/popper.min.js"></script><!-- BOOTSTRAP.MIN JS -->
     <script src="plugins/bootstrap/js/bootstrap.min.js"></script><!-- BOOTSTRAP.MIN JS -->
@@ -249,6 +261,7 @@
     <script src="~/js/site.js" asp-append-version="true"></script>-->
     <!-- Data Tables ========================================= -->
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
+
     @RenderSection("Scripts", required: false)
 </body>
 </html>
