@@ -1,21 +1,38 @@
-﻿@model MVCBlog.Models.Blog
+﻿@model MVCBlog.ViewModels.BlogPostsViewModel
+@inject MVCBlog.Utilities.ImageHelper imageHelper
 
 @{
     ViewData["Title"] = "Details";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h1>Details</h1>
+<div class="row">
+@foreach (var post in Model.Posts)
+{ 
+    <div class="col">
+        <div class="post-wrapper mb-20">
+            <div class="post-thumb thumb-img-width f-left-thumb">
+                <img src="@imageHelper.DecodeImage(post.Image, post.FileName)" />
+                <div class="post=content f-left-content">
+                    <a href="#" class="mytag tag-propile">MVC Days</a>
+                    <h5 class="lora-font"><a asp-controller="Posts" asp-action="Details" asp-route-id="@post.Id">@post.Title</a></h5>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+</div>
 
 <div>
     <h4>Blog</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.DisplayNameFor(model => model.Blog.Name)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Name)
+            @Html.DisplayFor(model => model.Blog.Name)
         </dd>
         @*<dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.URL)
@@ -26,6 +43,6 @@
     </dl>
 </div>
 <div>
-    <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a <a class="btn btn-info" asp-action="Index">Back to List</a>
+    <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model.Blog.Id">Edit</a> |
+    <a class="btn btn-info" asp-action="Index">Back to List</a>
 </div>

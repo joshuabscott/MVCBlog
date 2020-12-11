@@ -22,7 +22,7 @@ namespace MVCBlog.Controllers
     public class PostsController : Controller
     {
         private readonly ApplicationDbContext _context;
-        private ImageHelper imageHelper = new ImageHelper();
+        private readonly ImageHelper imageHelper = new ImageHelper();
 
         public PostsController(ApplicationDbContext context)
         {
@@ -56,6 +56,12 @@ namespace MVCBlog.Controllers
             foreach (var comment in post.Comments.ToList())
             {
                 comment.BlogUser = await _context.Users.FindAsync(comment.BlogUserId);
+            }
+
+            //Image Helper Decoder
+            if(post.Image != null)
+            {
+                ViewData["Image"] = imageHelper.DecodeImage(post.Image, post.FileName);
             }
             return View(post);
         }

@@ -20,12 +20,11 @@ namespace MVCBlog.Utilities
 
             return output;
         }
+
         public string DecodeImage(byte[] image, string fileName)
         {
             var binary = Convert.ToBase64String(image);
-
             var ext = Path.GetExtension(fileName);
-
             string imageDataURL = $"data:image/{ext};base64,{binary}";
 
             return imageDataURL;

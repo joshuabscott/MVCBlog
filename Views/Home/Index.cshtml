@@ -1,12 +1,15 @@
-﻿@model MVCBlog.ViewModels.CategoryVMJS
+﻿@model MVCBlog.ViewModels.BlogPostsViewModel
 
 @{
-    ViewData["Title"] = "Home Page";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Home";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
     var page = Model.PageNumber;
     var older = page - 1;
     var newer = page + 1;
 }
+
+
+
 
 <!-- Content -->
 <div class="page-content bg-white">
@@ -15,8 +18,38 @@
         <div class="container-fluid">
             <div class="row">
 
+
+                <!-- Blog Entries Column -->
+                <div class="col-md-8">
+                    <!--<h1 class="my-4">What I Learned during Quarantine--> @*<small>during Quarantine</small>*@<!--</h1>-->
+                    @foreach (var post in Model.Posts)
+                    {
+                        <!-- Blog Post -->
+                        <div class="card mb-4">
+                            <img class="card-img-top" src="@post.ImageDataUrl" alt="Card image cap">
+                            @*<img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">*@
+                            <div class="card-body">
+                                <h2 class="card-title">@Html.DisplayFor(data => post.Title)</h2>
+                                <p class="card-text">@Html.DisplayFor(data => post.Abstract)</p>
+                                <a asp-controller="Posts" asp-action="Details" asp-route-id="@post.Id" class="btn btn-primary mb-2">Full Post &rarr;</a>
+                                <br />
+                                @foreach (var tag in Model.Tags)
+                                {
+                                    @if (tag.PostId == post.Id)
+                                    {
+                                        <a asp-controller="Home" asp-action="Tag" asp-route-id="@tag.Name">#@tag.Name</a>
+                                    }
+                                }
+                            </div>
+                            <div class="card-footer text-muted">
+                                Posted on @post.Created.ToString("MMM dd, yyyy") in @Html.DisplayFor(data => post.Blog.Name)
+                            </div>
+                        </div>
+                    }
+                </div>
+
                 <!-- MVC Days -->
-                <div class="col-sm-6 m-b30">
+                @*<div class="col-sm-6 m-b30">
                     <div class="category-box overlay center large overlay-medium">
                         <div class="category-media">
                             <img src="~/images/FileNewProject.PNG" alt="">
@@ -27,10 +60,10 @@
                             <a href="javascript:void(0);" class="category-title"><i class="la la-arrow-right"></i></a>
                         </div>
                     </div>
-                </div>
+                </div>*@
 
                 <!-- Learning to code -->
-                <div class="col-sm-6 m-b30">
+                @*<div class="col-sm-6 m-b30">
                     <div class="category-box overlay center large overlay-medium">
                         <div class="category-media">
                             <img src="~/images/LearnToCode.PNG" alt="">
@@ -41,15 +74,16 @@
                             <a href="javascript:void(0);" class="category-title"><i class="la la-arrow-right"></i></a>
                         </div>
                     </div>
-                </div>
+                </div>*@
             </div>
         </div>
     </div>
     <!-- Slider Banner -->
     <div class="content-block">
-        <!-- About Us -->
+        
+
         <!-- category -->
-        <div class="section-full space-1">
+        @*<div class="section-full space-1">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-3 col-sm-6">
@@ -94,7 +128,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>*@
 
         <!-- category end -->
         <!-- About Us -->
@@ -282,38 +316,38 @@
                             </div>
 
                             @*<div class="widget widget_gallery gallery-grid-2">
-                    <h6 class="widget-title"><span>Instagram</span></h6>
-                    <ul>
-                        <li>
-                            <a href="#">
-                                <div class="dlab-post-thum dlab-img-overlay1 dlab-img-effect">
-                                    <img src="images/gallery/widget-gallery/pic1.jpg" alt="">
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <div class="dlab-post-thum dlab-img-overlay1 dlab-img-effect">
-                                    <img src="images/gallery/widget-gallery/pic2.jpg" alt="">
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <div class="dlab-post-thum dlab-img-overlay1 dlab-img-effect">
-                                    <img src="images/gallery/widget-gallery/pic3.jpg" alt="">
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <div class="dlab-post-thum dlab-img-overlay1 dlab-img-effect">
-                                    <img src="images/gallery/widget-gallery/pic4.jpg" alt="">
-                                </div>
-                            </a>
-                        </li>
-                    </ul>
-                </div>*@
+                                    <h6 class="widget-title"><span>Instagram</span></h6>
+                                    <ul>
+                                        <li>
+                                            <a href="#">
+                                                <div class="dlab-post-thum dlab-img-overlay1 dlab-img-effect">
+                                                    <img src="images/gallery/widget-gallery/pic1.jpg" alt="">
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <div class="dlab-post-thum dlab-img-overlay1 dlab-img-effect">
+                                                    <img src="images/gallery/widget-gallery/pic2.jpg" alt="">
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <div class="dlab-post-thum dlab-img-overlay1 dlab-img-effect">
+                                                    <img src="images/gallery/widget-gallery/pic3.jpg" alt="">
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <div class="dlab-post-thum dlab-img-overlay1 dlab-img-effect">
+                                                    <img src="images/gallery/widget-gallery/pic4.jpg" alt="">
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>*@
 
                             <div class="widget widget-social">
                                 <h6 class="widget-title"><span>Social</span></h6>
@@ -324,19 +358,19 @@
                                     <li><a href="https://github.com/joshuabscott" target="_blank" class="site-button-link"><i class="fa fa-github"></i></a></li>
                                     @*<li><a href="#"><i class="fa fa-twitter"></i></a></li>*@
                                     @*<li><a href="#"><i class="fa fa-snapchat-ghost"></i></a></li>
-                        <li><a href="#"><i class="fa fa-pinterest-p"></i></a></li>
-                        <li><a href="#"><i class="fa fa-instagram"></i></a></li>*@
+                                        <li><a href="#"><i class="fa fa-pinterest-p"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-instagram"></i></a></li>*@
                                 </ul>
                                 <div class="advertise text-center m-b20">
                                     <img src="images/add.png" alt="" />
                                 </div>
 
                                 @*<div class="fb-social relative">
-                        <img src="images/default-social.jpg" alt="" />
-                        <div class="facebook-like">
-                            <button class="btn radius-xl">Like on facebook</button>
-                        </div>
-                    </div>*@
+                                        <img src="images/default-social.jpg" alt="" />
+                                        <div class="facebook-like">
+                                            <button class="btn radius-xl">Like on facebook</button>
+                                        </div>
+                                    </div>*@
                             </div>
 
                             <div class="widget widget-stories">
@@ -373,8 +407,6 @@
             </div>
         </div>
         <!-- About Us End -->
-
-
         <!-- subscribe -->
         <div class="section-full bg-gray subscribe-sc">
             <div class="container">

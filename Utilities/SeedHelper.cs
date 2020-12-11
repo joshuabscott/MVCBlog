@@ -32,7 +32,7 @@ namespace MVCBlog.Utilities
                 var admin = new BlogUser()
                 {
                     UserName = "J@mailinator.com",
-                    Email = "J@mailinator.comJ",
+                    Email = "J@mailinator.com",
                     FirstName = "Josh",
                     LastName = "Scott",
                     EmailConfirmed = true

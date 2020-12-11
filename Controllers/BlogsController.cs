@@ -14,7 +14,7 @@ using MVCBlog.Data;
 
 namespace MVCBlog.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Administrator, Moderator")]
     public class BlogsController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -31,22 +31,28 @@ namespace MVCBlog.Controllers
         }
 
         // GET: Blogs/Details/5
-        [Authorize(Roles = "Administrator, Moderator")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
+            //var vm = BlogPostsViewModel();
+            //var blog = await _context.Blogs.FirstOrDefaultAsync(m => m.Id == id);
+            //var posts = await _context.Posts.Where(p => p.)
 
-            var blog = await _context.Blogs
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var vm = new BlogPostsViewModel();
+            var blog = await _context.Blogs.FirstOrDefaultAsync(m => m.Id == id);
+            var posts = await _context.Posts.Where(p => p.BlogId == blog.Id).ToListAsync();
+            vm.Blog = blog;
+            vm.Posts = posts;
+
             if (blog == null)
             {
                 return NotFound();
             }
 
-            return View(blog);
+            return View(vm);//change to view model from blog
         }
 
         // GET: Blogs/Create

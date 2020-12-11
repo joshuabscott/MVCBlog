@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>@ViewData["Title"] Great Scott! : by Josh Scott</title>
+    <title>@ViewData["Title"]: Great Scott!</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="author" content="Great Scott" />
     <meta name="description" content="A blog about learning to program" />
@@ -12,19 +12,19 @@
     <link rel="shortcut icon" type="image/x-icon" href="~/images/favicon-16x16.png" />
 
     <!-- PAGE TITLE HERE -->
-    <title> Great Scott! : by Josh Scott</title>
+    @*<title> Great Scott! : by Josh Scott</title>*@
 
     <!-- MOBILE SPECIFIC -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    >
+
     <!-- STYLESHEETS -->
-    <link rel="stylesheet" type="text/css" href="css/plugins.css">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-    <link rel="stylesheet" type="text/css" href="css/templete.css">
-    <link class="skin" rel="stylesheet" type="text/css" href="css/skin/skin-1.css">
+    <link rel="stylesheet" type="text/css" href="~/css/plugins.css">
+    <link rel="stylesheet" type="text/css" href="~/css/style.css">
+    <link rel="stylesheet" type="text/css" href="~/css/templete.css">
+    <link class="skin" rel="stylesheet" type="text/css" href="~/css/skin/skin-1.css">
 
     @*<link href="@Url.Content("~/Styles/main.css")" rel="stylesheet" type="text/css" />
-    @RenderSection("Styles", false)*@
+        @RenderSection("Styles", false)*@
 
     <!-- Font Awesome Kit -->
     <script src="https://kit.fontawesome.com/8b5ae67e5c.js" crossorigin="anonymous"></script>
@@ -58,9 +58,9 @@
                         <div class="dlab-topbar-right topbar-social">
                             <ul>
                                 @*<li><a href="#" class="site-button-link text-light"><i class="fa fa-facebook-f"></i></a></li>*@
-                                <li><a href="https://www.linkedin.com/in/joshgreatscott" class="site-button-link text-light" target="_blank" <!--class="linkedin"--><i class="fa fa-linkedin"></i></a></li>
-                                <li><a href="https://twitter.com/JoshuaBscott" class="site-button-link text-light" target="_blank" <!--class="twitter"--><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="https://github.com/joshuabscott" class="site-button-link text-light" target="_blank" <!--class="github"--><i class="fa fa-github"></i></a></li>
+                                <a href="https://www.linkedin.com/in/joshgreatscott" target="_blank" <!--class="linkedin"--><i class="fa fa-linkedin"></i></a>
+                                <a href="https://twitter.com/JoshuaBscott" target="_blank" <!--class="twitter"--><i class="fa fa-twitter"></i></a>
+                                <a href="https://github.com/joshuabscott" target="_blank" <!--class="github"--><i class="fa fa-github"></i></a>
                             </ul>
                         </div>
                     </div>
@@ -83,21 +83,27 @@
                                 <span></span>
                                 <span></span>
                             </button>
+
+
                             <!-- main nav -->
                             <div class="header-nav navbar-collapse collapse justify-content-center" id="navbarNavDropdown">
                                 <div class="logo-header">
                                     <a href="index.html"><img src="~/images/gslogo.png" alt="" /></a>
                                 </div>
-                                <ul class="nav navbar-nav">
-                                    <li class="active"><a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                                    <li><a class="nav-link text-dark" asp-area="" asp-controller="Blogs" asp-action="Index">Blogs</a></li>
-                                    <li><a class="nav-link text-dark" asp-area="" asp-controller="Posts" asp-action="Index">Posts</a></li>
-                                    <li><a class="nav-link text-dark" asp-area="" asp-controller="Comments" asp-action="Index">Comments</a></li>
-                                    <li><a class="nav-link text-dark" asp-area="" asp-controller="Tags" asp-action="Index">Tags</a></li>
-                                    @*<li><a class="nav-link text-dark" href="about-us.html">About</a></li>
-                                     <li><a class="nav-link text-dark" href="contact.html">Contact</a></li>*@
+                                @*<partial name="_LoginPartial" />*@
+                                @if (User.IsInRole("Administrator") || User.IsInRole("Moderator"))
+                                {
+                                    <ul class="nav navbar-nav">
+                                        <li class="active"><a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                                        <li><a class="nav-link text-dark" asp-area="" asp-controller="Blogs" asp-action="Index">Blogs</a></li>
+                                        <li><a class="nav-link text-dark" asp-area="" asp-controller="Posts" asp-action="Index">Posts</a></li>
+                                        <li><a class="nav-link text-dark" asp-area="" asp-controller="Comments" asp-action="Index">Comments</a></li>
+                                        <li><a class="nav-link text-dark" asp-area="" asp-controller="Tags" asp-action="Index">Tags</a></li>
+                                        @*<li><a class="nav-link text-dark" href="about-us.html">About</a></li>
+                                            <li><a class="nav-link text-dark" href="contact.html">Contact</a></li>*@
 
-                                </ul>
+                                    </ul>
+                                }
                                 @*<div class="social-menu">
                                         <ul>
                                             <li><a href="javascript:void(0);"><i class="fa fa-facebook"></i></a></li>
@@ -126,7 +132,6 @@
             </main>
         </div>
 
-
         <!-- Footer -->
         <footer class="site-footer">
             <div class="footer-top">
@@ -137,6 +142,7 @@
                                 <img src="~/images/gslogo.png" alt="" />
                             </div>
                         </div>
+
                         <div class="col-xl-3 col-lg-4 col-md-6">
                             <h6 class="m-b30 footer-title"><span>Recent Post</span></h6>
                             <div class="widget recent-posts-entry">
@@ -187,6 +193,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="col-xl-3 col-lg-3 col-md-6">
                             <h6 class="m-b30 footer-title"><span>My Blogs</span></h6>
                             <a class="video widget relative popup-youtube overlay-black-middle" href="https://www.youtube.com/watch?v=VjlATH_rzYg">
@@ -206,6 +213,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="footer-bottom">
                 <div class="container">
                     <div class="row">
@@ -218,13 +226,13 @@
         </footer>
         <!-- Footer END-->
 
-        <button class="scroltop fa fa-chevron-up"></button>
+        @*<button class="scroltop fa fa-chevron-up"></button>*@
     </div>
 
     @* TinyMCE *@
     <script src="//cdn.tiny.cloud/1/5hebe8k5m07qf4mcta3paw6it1x1fve47c5l4qh7m2e7nbhv/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     <script>
-          //This kicks off Tiny MCX
+        //This kicks off Tiny MCX
         tinymce.init({
             selector: '#Body',
             branding: false,
@@ -237,25 +245,25 @@
         });
         //This kicks off jQuery DataTables
         $('.table').DataTable();
-        });
+            });
     </script>
 
-        < !--JAVASCRIPT FILES ========================================= -->
-    <script src="js/jquery.min.js"></script><!-- JQUERY.MIN JS -->
-    <script src="plugins/bootstrap/js/popper.min.js"></script><!-- BOOTSTRAP.MIN JS -->
-    <script src="plugins/bootstrap/js/bootstrap.min.js"></script><!-- BOOTSTRAP.MIN JS -->
-    <script src="plugins/bootstrap-select/bootstrap-select.min.js"></script><!-- FORM JS -->
-    <script src="plugins/bootstrap-touchspin/jquery.bootstrap-touchspin.js"></script><!-- FORM JS -->
-    <script src="plugins/magnific-popup/magnific-popup.js"></script><!-- MAGNIFIC POPUP JS -->
-    <script src="plugins/counter/waypoints-min.js"></script><!-- WAYPOINTS JS -->
-    <script src="plugins/counter/counterup.min.js"></script><!-- COUNTERUP JS -->
-    <script src="plugins/imagesloaded/imagesloaded.js"></script><!-- IMAGESLOADED -->
-    <script src="plugins/masonry/masonry-3.1.4.js"></script><!-- MASONRY -->
-    <script src="plugins/masonry/masonry.filter.js"></script><!-- MASONRY -->
-    <script src="plugins/owl-carousel/owl.carousel.js"></script><!-- OWL SLIDER -->
-    <script src="js/custom.js"></script><!-- CUSTOM FUCTIONS  -->
-    <script src="js/dz.carousel.js"></script><!-- SORTCODE FUCTIONS -->
-    <script src="js/dz.ajax.js"></script><!-- CONTACT JS  -->
+    <!--JAVASCRIPT FILES ========================================= -->
+    <script src="~/js/jquery.min.js"></script><!-- JQUERY.MIN JS -->
+    <script src="~/plugins/bootstrap/js/popper.min.js"></script><!-- BOOTSTRAP.MIN JS -->
+    <script src="~/plugins/bootstrap/js/bootstrap.min.js"></script><!-- BOOTSTRAP.MIN JS -->
+    <script src="~/plugins/bootstrap-select/bootstrap-select.min.js"></script><!-- FORM JS -->
+    <script src="~/plugins/bootstrap-touchspin/jquery.bootstrap-touchspin.js"></script><!-- FORM JS -->
+    <script src="~/plugins/magnific-popup/magnific-popup.js"></script><!-- MAGNIFIC POPUP JS -->
+    <script src="~/plugins/counter/waypoints-min.js"></script><!-- WAYPOINTS JS -->
+    <script src="~/plugins/counter/counterup.min.js"></script><!-- COUNTERUP JS -->
+    <script src="~/plugins/imagesloaded/imagesloaded.js"></script><!-- IMAGESLOADED -->
+    <script src="~/plugins/masonry/masonry-3.1.4.js"></script><!-- MASONRY -->
+    <script src="~/plugins/masonry/masonry.filter.js"></script><!-- MASONRY -->
+    <script src="~/plugins/owl-carousel/owl.carousel.js"></script><!-- OWL SLIDER -->
+    <script src="~/js/custom.js"></script><!-- CUSTOM FUCTIONS  -->
+    <!--<script src="~/js/dz.carousel.js"></script>--><!-- SORTCODE FUCTIONS -->
+    <script src="~/js/dz.ajax.js"></script><!-- CONTACT JS  -->
     <!--<script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>-->

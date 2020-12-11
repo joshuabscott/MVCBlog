@@ -48,7 +48,7 @@ namespace MVCBlog.Controllers
                 .Skip(page * 5).Take(5);
             var blogs = _context.Blogs;
             var tags = _context.Tags;
-            CategoryVMJS categories = new CategoryVMJS()
+            BlogPostsViewModel categories = new BlogPostsViewModel()
             {
                 Blogs = await blogs.ToListAsync(),
                 Posts = await posts.ToListAsync(),
@@ -71,7 +71,7 @@ namespace MVCBlog.Controllers
                 //return View("Index", await posts.Include(p => p.Blog).ToListAsync());
             }
             //return View("Index", await posts.Include(p => p.Blog).ToListAsync());
-            CategoryVMJS categories = new CategoryVMJS()
+            BlogPostsViewModel categories = new BlogPostsViewModel()
             {
                 Blogs = await blogs.ToListAsync(),
                 Posts = await posts.ToListAsync(),
@@ -86,7 +86,7 @@ namespace MVCBlog.Controllers
             var posts = _context.Posts.Where(p => p.BlogId == Int32.Parse(id) && p.IsPublished == true).Include(p => p.Blog);
             var blogs = _context.Blogs;
             var tags = _context.Tags;
-            CategoryVMJS categories = new CategoryVMJS()
+            BlogPostsViewModel categories = new BlogPostsViewModel()
             {
                 Blogs = await blogs.ToListAsync(),
                 Posts = await posts.ToListAsync(),
@@ -100,7 +100,7 @@ namespace MVCBlog.Controllers
             var name = RouteData.Values["id"].ToString();
             var posts = _context.Tags.Where(t => t.Name == name).Select(t => t.Post);
             var blogs = _context.Blogs;
-            CategoryVMJS categories = new CategoryVMJS()
+            BlogPostsViewModel categories = new BlogPostsViewModel()
             {
                 Blogs = await blogs.ToListAsync(),
                 Posts = await posts.ToListAsync(),

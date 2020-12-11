@@ -11,6 +11,7 @@
   <ItemGroup>
     <Compile Remove="Utilities\BlogHelper.cs" />
     <Compile Remove="Utilities\ConnectionHelper.cs" />
+    <Compile Remove="ViewModels\CategoryVMJS.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -24,6 +25,7 @@
     <None Remove="Views\Home\post-standart.html" />
     <None Remove="Views\Home\post-video.html" />
     <None Remove="Views\Posts\post-with-small-side-image.html" />
+    <None Remove="Views\Shared\index-2.html" />
   </ItemGroup>
 
   <ItemGroup>
