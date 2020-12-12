@@ -23,14 +23,8 @@
     <link rel="stylesheet" type="text/css" href="~/css/templete.css">
     <link class="skin" rel="stylesheet" type="text/css" href="~/css/skin/skin-1.css">
 
-    @*<link href="@Url.Content("~/Styles/main.css")" rel="stylesheet" type="text/css" />
-        @RenderSection("Styles", false)*@
-
     <!-- Font Awesome Kit -->
     <script src="https://kit.fontawesome.com/8b5ae67e5c.js" crossorigin="anonymous"></script>
-
-    <!-- TinyMCE  -->
-    <script src="https://cdn.tiny.cloud/1/3lwulzgbibotwwht2k2991x7r701wvjdbqxtg24b43c6z3sk/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 
     <!-- Data tables css -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
@@ -55,18 +49,18 @@
                         <div class="logo-header">
                             <a href="https://thejoshscott.com/" target="_blank"><img src="~/images/gslogo.png" alt="" /></a>
                         </div>
-                        <div class="dlab-topbar-right topbar-social">
+                        <div class="dlab-topbar-right topbar-social text-light bg-black">
                             <ul>
-                                @*<li><a href="#" class="site-button-link text-light"><i class="fa fa-facebook-f"></i></a></li>*@
-                                <a href="https://www.linkedin.com/in/joshgreatscott" target="_blank" <!--class="linkedin"--><i class="fa fa-linkedin"></i></a>
-                                <a href="https://twitter.com/JoshuaBscott" target="_blank" <!--class="twitter"--><i class="fa fa-twitter"></i></a>
-                                <a href="https://github.com/joshuabscott" target="_blank" <!--class="github"--><i class="fa fa-github"></i></a>
+                                <li><a href="https://www.linkedin.com/in/joshgreatscott" class="site-button-link"><i class="fa fa-linkedin"></i></a></li>
+                                <li><a href="https://twitter.com/JoshuaBscott" class="site-button-link"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="https://github.com/joshuabscott" class="site-button-link"><i class="fa fa-github"></i></a></li>
                             </ul>
                         </div>
                     </div>
                 </div>
             </div>
             <!-- top-bar end -->
+
             <!-- main header -->
             <div class="sticky-header main-bar-wraper navbar-expand-lg">
                 <div class="main-bar clearfix ">
@@ -264,9 +258,9 @@
     <script src="~/js/custom.js"></script><!-- CUSTOM FUCTIONS  -->
     <!--<script src="~/js/dz.carousel.js"></script>--><!-- SORTCODE FUCTIONS -->
     <script src="~/js/dz.ajax.js"></script><!-- CONTACT JS  -->
-    <!--<script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>-->
+    @*<script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>*@
+    <script src="~/js/site.js" asp-append-version="true"></script>
     <!-- Data Tables ========================================= -->
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
 

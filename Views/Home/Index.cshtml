@@ -1,4 +1,6 @@
-﻿@model MVCBlog.ViewModels.BlogPostsViewModel
+﻿@using MVCBlog.Utilities
+@inject ImageHelper imagehelper
+@model MVCBlog.ViewModels.BlogPostsViewModel
 
 @{
     ViewData["Title"] = "Home";
@@ -7,8 +9,6 @@
     var older = page - 1;
     var newer = page + 1;
 }
-
-
 
 
 <!-- Content -->
@@ -139,72 +139,32 @@
                         <div class="loadmore-content">
                             <div class="row">
                                 <div class="col-12">
-                                    <div class="blog-card post-left">
+
+                                    @*<div class="blog-card post-left">
                                         <div class="blog-card-media">
-                                            <img src="images/blog/blog-left/pic1.jpg" alt="" />
+                                            <img src="@MVCBlog.Utilities.ImageHelper.GetImage(item)"/>
                                         </div>
                                         <div class="blog-card-info">
-                                            <div class="title-sm"><a href="javascript:void(0);">MVC Days</a></div>
-                                            <h4 class="title"><a href="post-full-width.html">Makeup for new Look</a></h4>
-                                            <p>Aenean sollicitudin, lorem quis bibendum auctor, ninkis elit ipsum nec sagittis sem nibh id elit. Quisque porta finibus est a faucibus.</p>
+                                            <div class="title-sm"><a href="javascript:void(0);">@item.Title</a></div>
+                                            <h4 class="title"><a href="post-full-width.html">@item.Title</a></h4>
+                                            <p>@item.Abstract</p>
                                             <div class="d-flex justify-content-between align-items-center">
                                                 <ul class="social-link-round">
                                                     <li class="link-ic"><a href="javascript:void(0);" class="btn-link share"><i class="la la-share-alt"></i></a></li>
                                                     <li><a href="javascript:void(0);" class="btn-link"><i class="fa fa-twitter"></i></a></li>
                                                     <li><a href="javascript:void(0);" class="btn-link"><i class="fa fa-pinterest-p"></i></a></li>
                                                     <li><a href="javascript:void(0);" class="btn-link"><i class="fa fa-facebook"></i></a></li>
-                                                    <li><a href="javascript:void(0);" class="btn-link"><i class="fa fa-instagram"></i></a></li>
+                                                   
                                                 </ul>
                                                 <div class="">
                                                     <a href="post-full-width.html" class="btn-link readmore"><i class="la la-arrow-right"></i></a>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="blog-card post-left">
-                                        <div class="blog-card-media">
-                                            <img src="images/blog/blog-left/pic2.jpg" alt="" />
-                                        </div>
-                                        <div class="blog-card-info">
-                                            <div class="title-sm"><a href="javascript:void(0);">Microsoft</a></div>
-                                            <h4 class="title"><a href="post-open-gutenberg.html">Sonoma Valley Lancome</a></h4>
-                                            <p>Aenean sollicitudin, lorem quis bibendum auctor, ninkis elit ipsum nec sagittis sem nibh id elit. Quisque porta finibus est a faucibus.</p>
-                                            <div class="d-flex justify-content-between align-items-center">
-                                                <ul class="social-link-round">
-                                                    <li class="link-ic"><a href="javascript:void(0);" class="btn-link share"><i class="la la-share-alt"></i></a></li>
-                                                    <li><a href="javascript:void(0);" class="btn-link"><i class="fa fa-twitter"></i></a></li>
-                                                    <li><a href="javascript:void(0);" class="btn-link"><i class="fa fa-pinterest-p"></i></a></li>
-                                                    <li><a href="javascript:void(0);" class="btn-link"><i class="fa fa-facebook"></i></a></li>
-                                                    <li><a href="javascript:void(0);" class="btn-link"><i class="fa fa-instagram"></i></a></li>
-                                                </ul>
-                                                <div class="">
-                                                    <a href="post-open-gutenberg.html" class="btn-link readmore"><i class="la la-arrow-right"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="blog-card post-left">
-                                        <div class="blog-card-media">
-                                            <img src="images/blog/blog-left/pic3.jpg" alt="" />
-                                        </div>
-                                        <div class="blog-card-info">
-                                            <div class="title-sm"><a href="javascript:void(0);"></a></div>
-                                            <h4 class="title"><a href="post-navigation.html">Ready for the Summer</a></h4>
-                                            <p>Aenean sollicitudin, lorem quis bibendum auctor, ninkis elit ipsum nec sagittis sem nibh id elit. Quisque porta finibus est a faucibus.</p>
-                                            <div class="d-flex justify-content-between align-items-center">
-                                                <ul class="social-link-round">
-                                                    <li class="link-ic"><a href="javascript:void(0);" class="btn-link share"><i class="la la-share-alt"></i></a></li>
-                                                    <li><a href="javascript:void(0);" class="btn-link"><i class="fa fa-twitter"></i></a></li>
-                                                    <li><a href="javascript:void(0);" class="btn-link"><i class="fa fa-pinterest-p"></i></a></li>
-                                                    <li><a href="javascript:void(0);" class="btn-link"><i class="fa fa-facebook"></i></a></li>
-                                                    <li><a href="javascript:void(0);" class="btn-link"><i class="fa fa-instagram"></i></a></li>
-                                                </ul>
-                                                <div class="">
-                                                    <a href="post-navigation.html" class="btn-link readmore"><i class="la la-arrow-right"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    </div>*@
+
+                                    
+
                                     <div class="blog-card full center overlay">
                                         <div class="blog-card-media">
                                             <img src="images/blog/default/thum1.jpg" alt="" />

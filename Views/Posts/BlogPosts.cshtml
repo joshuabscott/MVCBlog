@@ -8,6 +8,8 @@
 <h1>The Blog: @ViewData["BlogName"]</h1>
 <p>Number of Posts: @ViewData["Count"]</p>
 
+<h1> The Blog: @ViewData["BlogName"] has @Model.Count() Posts</h1>  @*//10/22/2020*@
+
 <p>
     <a class="btn btn-primary" asp-controller="Posts" asp-action="Create" asp-route-id="@ViewData["BlogId"]">Create New</a>
 </p>
@@ -68,13 +70,13 @@
                 </td>
                 <td>
                     @*<a  class="btn btn-primary" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a  class="btn btn-primary" asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <a  class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a>*@
-                     @if (User.IsInRole("Administrator") || User.IsInRole("Moderator"))
-                    @*{
-                        <a class="btn btn-primary" asp-action="AssignUsers" asp-route-id="@item.Id">Assign</a>
-                    }*@
-                    <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                        <a  class="btn btn-primary" asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                        <a  class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a>*@
+                    @if (User.IsInRole("Administrator") || User.IsInRole("Moderator"))
+                        @*{
+                                <a class="btn btn-primary" asp-action="AssignUsers" asp-route-id="@item.Id">Assign</a>
+                            }*@
+                        <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.Id">Details</a>
                     @if (User.IsInRole("Administrator") || User.IsInRole("Moderator"))
                     {
                         <a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.Id">Edit</a>

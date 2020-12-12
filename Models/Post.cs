@@ -18,7 +18,11 @@ namespace MVCBlog.Models
         //Describe the things that a blog post have
        
         public string Title { get; set; }
+
+        //[StringLength(120, MinimumLength =6)]
         public string Abstract { get; set; }
+
+        //[StringLength(500, MinimumLength = 120)]
         public string Body { get; set; }
 
         public string Slug { get; set; }
@@ -47,7 +51,7 @@ namespace MVCBlog.Models
         #endregion
         public Post()
         {
-            Comments = new HashSet<Comment>();
+            Comments = new HashSet<Comment>();  //10/20/2020
             Tags = new HashSet<Tag>();
         }  
     }

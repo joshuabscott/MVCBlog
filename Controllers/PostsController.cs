@@ -66,7 +66,7 @@ namespace MVCBlog.Controllers
             return View(post);
         }
 
-        // GET: Posts/Create
+        // GET: Posts/Create /BlogPosts/BlogId 10/22/2020  ---- See New Blog Post Action below , line 136
         [Authorize(Roles = "Administrator")]
         public IActionResult Create(int? id)
         {
@@ -85,7 +85,7 @@ namespace MVCBlog.Controllers
                 {
                     BlogId = (int)id
                 };
-                ViewData["BlogName"] = blog.Name;
+                ViewData["BlogName"] = blog.Name; 
                 ViewData["BlogId"] = id;
                 return View(newPost);
             }
@@ -97,7 +97,7 @@ namespace MVCBlog.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Administrator")]
+        [Authorize(Roles = "Administrator")]      //The Bind I have a model with multiple inputs on a form, we have a single model that has all the properties needed, instead of different perimeters for each input. Creates a map from front end to move data to backend
         public async Task<IActionResult> Create([Bind("Id,BlogId,Title,Abstract,Content,Slug,IsPublished,Image,Created,Updated,ImageDataUrl")] Post post, IFormFile image)
         {
         //    if (ModelState.IsValid)
@@ -117,16 +117,15 @@ namespace MVCBlog.Controllers
         //    }
         //    ViewData["BlogId"] = new SelectList(_context.Blogs, "Id", "Name", post.BlogId);
         //    return View(post);
+
         if (ModelState.IsValid)   //Update method to receive & store image
             {
-                post.Created = DateTime.Now;
+                post.Created = DateTime.Now;       //post is our parameter, this came in from a Form Post. To create a brand new post, stamp with a date time before sending to DB
                 if (image != null)
                 {
                     post.FileName = image.FileName;
-
                     post.Image = imageHelper.EncodeImage(image);
                 }
-
                     _context.Add(post);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -134,7 +133,7 @@ namespace MVCBlog.Controllers
             return View(post);
         }
 
-        //New BlogPosts Action
+        //New BlogPosts Action     
         [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> BlogPosts(int? id)
         {
