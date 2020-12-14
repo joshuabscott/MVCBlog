@@ -19,7 +19,7 @@ using MVCBlog.Enums;
 namespace MVCBlog.Controllers
 {
     [Authorize]
-    public class PostsController : Controller
+    public class PostsController : Controller //public accessible anywhere in the application
     {
         private readonly ApplicationDbContext _context;
         private readonly ImageHelper imageHelper = new ImageHelper();
@@ -35,9 +35,11 @@ namespace MVCBlog.Controllers
         {
             var applicationDbContext = _context.Posts.Include(p => p.Blog);
             return View(await applicationDbContext.ToListAsync());
+            //return View(await _context.Posts.ToListAsync());
         }
 
         // GET: Posts/Details/5
+        [Authorize(Roles = "Administrator, Moderator")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -99,26 +101,27 @@ namespace MVCBlog.Controllers
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Administrator")]      //The Bind I have a model with multiple inputs on a form, we have a single model that has all the properties needed, instead of different perimeters for each input. Creates a map from front end to move data to backend
         public async Task<IActionResult> Create([Bind("Id,BlogId,Title,Abstract,Content,Slug,IsPublished,Image,Created,Updated,ImageDataUrl")] Post post, IFormFile image)
+            //remove Id from the bind
         {
-        //    if (ModelState.IsValid)
-        //    {
-        //        post.Created = DateTime.Now;
-        //        post.Updated = DateTime.Now;
-        //        post.Slug = Regex.Replace(post.Title.ToLower(), @"\s", "-");
-        //        //Write image to db
-        //        if (image != null)
-        //        {
-        //            var imageHelper = new ImageHelper();
-        //            imageHelper.WriteImage(post, image);
-        //        }
-        //        _context.Add(post);
-        //        await _context.SaveChangesAsync();
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    ViewData["BlogId"] = new SelectList(_context.Blogs, "Id", "Name", post.BlogId);
-        //    return View(post);
+            if (ModelState.IsValid)
+            {
+                //post.Created = DateTime.Now;
+                //post.Updated = DateTime.Now;
+                //post.Slug = Regex.Replace(post.Title.ToLower(), @"\s", "-");
+                ////Write image to db
+                //if (image != null)
+                //{
+                //    var imageHelper = new ImageHelper();
+                //    imageHelper.WriteImage(post, image);
+                //}
+                _context.Add(post);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            ViewData["BlogId"] = new SelectList(_context.Blogs, "Id", "Name", post.BlogId);
+            return View(post);
 
-        if (ModelState.IsValid)   //Update method to receive & store image
+            if (ModelState.IsValid)   //Update method to receive & store image-------------------------why does it say this is Unreachable code
             {
                 post.Created = DateTime.Now;       //post is our parameter, this came in from a Form Post. To create a brand new post, stamp with a date time before sending to DB
                 if (image != null)
@@ -155,7 +158,7 @@ namespace MVCBlog.Controllers
             return View(blogPosts);
         }
 
-        // GET: Posts/Edit/5
+        // GET: Posts/Edit/5    Scaffolded Code
         [Authorize(Roles = "Administrator, Moderator")]
         public async Task<IActionResult> Edit(int? id)
         {
@@ -209,14 +212,7 @@ namespace MVCBlog.Controllers
             }
             return View(post);
         }
-        //{
-        //    if (id != post.Id)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    if (ModelState.IsValid)
-        //    {
+     
         //        try
         //        {
         //            if (image != null)

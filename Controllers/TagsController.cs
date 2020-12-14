@@ -51,7 +51,7 @@ namespace MVCBlog.Controllers
         // GET: Tags/Create
         public IActionResult Create()
         {
-            ViewData["PostId"] = new SelectList(_context.Posts, "Id", "Id");
+            ViewData["PostId"] = new SelectList(_context.Posts, "Id", "Title");
             return View();
         }
 

@@ -30,7 +30,6 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
 </head>
 
-
 <body id="bg">
     <div class="page-wraper">
         <div id="loading-area"></div>
@@ -45,10 +44,12 @@
                         <div class="dlab-topbar-left">
                             <button class="btn white radius-xl" type="button">Subscribe</button>
                         </div>
+
                         <!-- website logo -->
                         <div class="logo-header">
                             <a href="https://thejoshscott.com/" target="_blank"><img src="~/images/gslogo.png" alt="" /></a>
                         </div>
+
                         <div class="dlab-topbar-right topbar-social text-light bg-black">
                             <ul>
                                 <li><a href="https://www.linkedin.com/in/joshgreatscott" class="site-button-link"><i class="fa fa-linkedin"></i></a></li>
@@ -60,7 +61,6 @@
                 </div>
             </div>
             <!-- top-bar end -->
-
             <!-- main header -->
             <div class="sticky-header main-bar-wraper navbar-expand-lg">
                 <div class="main-bar clearfix ">
@@ -71,13 +71,13 @@
                             <div class="logo-header">
                                 <a href="index.html"><img src="~/images/gslogo.png" alt="" /></a>
                             </div>
+
                             <!-- nav toggle button -->
                             <button class="navbar-toggler collapsed navicon justify-content-end" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                                 <span></span>
                                 <span></span>
                                 <span></span>
                             </button>
-
 
                             <!-- main nav -->
                             <div class="header-nav navbar-collapse collapse justify-content-center" id="navbarNavDropdown">
@@ -89,13 +89,13 @@
                                 {
                                     <ul class="nav navbar-nav">
                                         <li class="active"><a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+
                                         <li><a class="nav-link text-dark" asp-area="" asp-controller="Blogs" asp-action="Index">Blogs</a></li>
                                         <li><a class="nav-link text-dark" asp-area="" asp-controller="Posts" asp-action="Index">Posts</a></li>
                                         <li><a class="nav-link text-dark" asp-area="" asp-controller="Comments" asp-action="Index">Comments</a></li>
                                         <li><a class="nav-link text-dark" asp-area="" asp-controller="Tags" asp-action="Index">Tags</a></li>
                                         @*<li><a class="nav-link text-dark" href="about-us.html">About</a></li>
                                             <li><a class="nav-link text-dark" href="contact.html">Contact</a></li>*@
-
                                     </ul>
                                 }
                                 @*<div class="social-menu">
@@ -140,6 +140,7 @@
                         <div class="col-xl-3 col-lg-4 col-md-6">
                             <h6 class="m-b30 footer-title"><span>Recent Post</span></h6>
                             <div class="widget recent-posts-entry">
+
                                 <div class="widget-post-bx">
                                     <div class="widget-post clearfix">
                                         <div class="dlab-post-media"> <img src="images/blog/recent-blog/pic1.jpg" alt=""> </div>
@@ -155,6 +156,7 @@
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="widget-post-bx">
                                     <div class="widget-post clearfix">
                                         <div class="dlab-post-media"> <img src="images/blog/recent-blog/pic2.jpg" alt=""> </div>
@@ -170,6 +172,7 @@
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="widget-post-bx">
                                     <div class="widget-post clearfix">
                                         <div class="dlab-post-media"> <img src="images/blog/recent-blog/pic3.jpg" alt=""> </div>
@@ -189,7 +192,7 @@
                         </div>
 
                         <div class="col-xl-3 col-lg-3 col-md-6">
-                            <h6 class="m-b30 footer-title"><span>My Blogs</span></h6>
+                            <h6 class="m-b30 footer-title"><span>Great Scott! Blog</span></h6>
                             <a class="video widget relative popup-youtube overlay-black-middle" href="https://www.youtube.com/watch?v=VjlATH_rzYg">
                                 <img src="images/footer-video.jpg" alt="" />
                                 <span class="play-video"><i class="la la-play"></i></span>
@@ -198,7 +201,6 @@
                         <div class="col-xl-3 col-lg-3 col-md-12">
                             <h6 class="m-b30 footer-title"><span>Subscribe</span></h6>
                             <ul class="d-flex widget-social-ic">
-
                                 <li><a href="https://www.linkedin.com/in/joshgreatscott" target="_blank" class="site-button-link"><i class="fa fa-linkedin"></i></a></li>
                                 <li><a href="https://twitter.com/JoshuaBscott" target="_blank" class="site-button-link"><i class="fa fa-twitter"></i></a></li>
                                 <li><a href="https://github.com/joshuabscott" target="_blank" class="site-button-link"><i class="fa fa-github"></i></a></li>
@@ -219,28 +221,8 @@
             </div>
         </footer>
         <!-- Footer END-->
-
         @*<button class="scroltop fa fa-chevron-up"></button>*@
     </div>
-
-    @* TinyMCE *@
-    <script src="//cdn.tiny.cloud/1/5hebe8k5m07qf4mcta3paw6it1x1fve47c5l4qh7m2e7nbhv/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-    <script>
-        //This kicks off Tiny MCX
-        tinymce.init({
-            selector: '#Body',
-            branding: false,
-            skin: 'fabric',
-            content_css: 'fabric',
-            toolbar_mode: 'floating',
-            plugins: 'advlist anchor autolink charmap code codesample directionality fullpage help hr image imagetools insertdatetime link lists media nonbreaking pagebreak preview print searchreplace table template textpattern toc visualblocks visualchars wordcount',
-            toolbar: 'undo redo | formatselect | bold italic strikethrough forecolor backcolor blockquote | link image media | alignleft aligncenter alignright alignjustify | numlist bullist outdent indent | removeformat',
-            height: 400
-        });
-        //This kicks off jQuery DataTables
-        $('.table').DataTable();
-            });
-    </script>
 
     <!--JAVASCRIPT FILES ========================================= -->
     <script src="~/js/jquery.min.js"></script><!-- JQUERY.MIN JS -->
@@ -255,14 +237,38 @@
     <script src="~/plugins/masonry/masonry-3.1.4.js"></script><!-- MASONRY -->
     <script src="~/plugins/masonry/masonry.filter.js"></script><!-- MASONRY -->
     <script src="~/plugins/owl-carousel/owl.carousel.js"></script><!-- OWL SLIDER -->
+
     <script src="~/js/custom.js"></script><!-- CUSTOM FUCTIONS  -->
     <!--<script src="~/js/dz.carousel.js"></script>--><!-- SORTCODE FUCTIONS -->
     <script src="~/js/dz.ajax.js"></script><!-- CONTACT JS  -->
     @*<script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>*@
-    <script src="~/js/site.js" asp-append-version="true"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>*@
+
     <!-- Data Tables ========================================= -->
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
+
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+
+    @* TinyMCE *@
+    <script src="https://cdn.tiny.cloud/1/3lwulzgbibotwwht2k2991x7r701wvjdbqxtg24b43c6z3sk/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>
+        //This starts TinyMCE
+        tinymce.init({
+            selector: '#Body',
+            branding: false,
+            skin: 'fabric',
+            content_css: 'fabric',
+            toolbar_mode: 'floating',
+            plugins: 'advlist anchor autolink charmap code codesample directionality fullpage help hr image imagetools insertdatetime link lists media nonbreaking pagebreak preview print searchreplace table template textpattern toc visualblocks visualchars wordcount',
+            toolbar: 'undo redo | formatselect | bold italic strikethrough forecolor backcolor blockquote | link image media | alignleft aligncenter alignright alignjustify | numlist bullist outdent indent | removeformat',
+            height: 600
+            
+        });
+        //This kicks off jQuery DataTables
+        $('.table').DataTable();
+       
+    </script>
 
     @RenderSection("Scripts", required: false)
 </body>

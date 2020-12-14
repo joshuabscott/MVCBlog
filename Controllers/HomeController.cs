@@ -29,7 +29,7 @@ namespace MVCBlog.Controllers
             _context = context;
             _logger = logger;
         }
-
+        //Index??
         public async Task<IActionResult> Index(int page)
         {
             var posted = _context.Posts.Where(p => p.IsPublished).ToList().Count;
@@ -58,7 +58,7 @@ namespace MVCBlog.Controllers
             };
             return View(categories);
         }
-
+        //Results????????
         public async Task<IActionResult> Results(string SearchString)
         {
             var posts = from p in _context.Posts
@@ -79,7 +79,7 @@ namespace MVCBlog.Controllers
             };
             return View("Index", categories);
         }
-
+        //Do I have Categories
         public async Task<IActionResult> Categories()
         {
             var id = RouteData.Values["id"].ToString();
@@ -94,7 +94,7 @@ namespace MVCBlog.Controllers
             };
             return View("Index", categories);
         }
-
+        //For Tags
         public async Task<IActionResult> Tag()
         {
             var name = RouteData.Values["id"].ToString();
@@ -108,11 +108,11 @@ namespace MVCBlog.Controllers
             };
             return View("Index", categories);
         }
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
+        //Privacy - not needed
+        //public IActionResult Privacy()
+        //{
+        //    return View();
+        //}
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
@@ -121,14 +121,6 @@ namespace MVCBlog.Controllers
         }
     }
 }
-//Tue
-
-
-
-
-
-
-
 
 //    public class HomeController : Controller
 //    {

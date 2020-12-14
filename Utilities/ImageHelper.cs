@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
+using MVCBlog.Models;
 
 namespace MVCBlog.Utilities
 {
@@ -29,24 +30,30 @@ namespace MVCBlog.Utilities
 
             return imageDataURL;
         }
+        public static string GetImage(Post post)
+        {
+            var binary = Convert.ToBase64String(post.Image);
+            var ext = Path.GetExtension(post.FileName);
+            string imageData = $"data:image/{ext};base64,{binary}";
+            return imageData;
+        }
     }
 }
 
-//    public class ImageHelper
+//public class ImageHelper
+//{
+//    public void WriteImage(Post post, IFormFile image)
 //    {
-//        public void WriteImage(Post post, IFormFile image)
-//        {
-//            post.FileName = image.FileName;
-//            var ms = new MemoryStream();
-//            image.CopyTo(ms);
-//            byte[] imageBytes = ms.ToArray();
-//            //post.Image = ms.ToArray();
-//            ms.Close();
-//            ms.Dispose();
-//            //var binary = Convert.ToBase64String(post.Image);
-//            var binary = Convert.ToBase64String(imageBytes);
-//            var ext = Path.GetExtension(post.FileName);
-//            post.ImageDataUrl = $"data:image/{ext};base64,{binary}";
-//        }
+//        post.FileName = image.FileName;
+//        var ms = new MemoryStream();
+//        image.CopyTo(ms);
+//        byte[] imageBytes = ms.ToArray();
+//        //post.Image = ms.ToArray();
+//        ms.Close();
+//        ms.Dispose();
+//        //var binary = Convert.ToBase64String(post.Image);
+//        var binary = Convert.ToBase64String(imageBytes);
+//        var ext = Path.GetExtension(post.FileName);
+//        post.ImageDataUrl = $"data:image/{ext};base64,{binary}";
 //    }
 //}
