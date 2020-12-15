@@ -37,22 +37,15 @@ namespace MVCBlog.Controllers
             {
                 return NotFound();
             }
-            //var vm = BlogPostsViewModel();
-            //var blog = await _context.Blogs.FirstOrDefaultAsync(m => m.Id == id);
-            //var posts = await _context.Posts.Where(p => p.)
 
-            var vm = new BlogPostsViewModel();
-            var blog = await _context.Blogs.FirstOrDefaultAsync(m => m.Id == id);
-            var posts = await _context.Posts.Where(p => p.BlogId == blog.Id).ToListAsync();
-            vm.Blog = blog;
-            vm.Posts = posts;
-
+            var blog = await _context.Blogs
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (blog == null)
             {
                 return NotFound();
             }
 
-            return View(vm);//change to view model from blog
+            return View(blog);
         }
 
         // GET: Blogs/Create
@@ -67,7 +60,7 @@ namespace MVCBlog.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Administrator")]
-        public async Task<IActionResult> Create([Bind("Id,Name,Url")] Blog blog)
+        public async Task<IActionResult> Create([Bind("Id,Name,URL")] Blog blog)
         {
             if (ModelState.IsValid)
             {
@@ -99,7 +92,7 @@ namespace MVCBlog.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Url")] Blog blog)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,URL")] Blog blog)
         {
             if (id != blog.Id)
             {

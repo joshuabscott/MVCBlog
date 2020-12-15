@@ -19,10 +19,9 @@ using MVCBlog.Enums;
 namespace MVCBlog.Controllers
 {
     [Authorize]
-    public class PostsController : Controller //public accessible anywhere in the application
+    public class PostsController : Controller
     {
         private readonly ApplicationDbContext _context;
-        private readonly ImageHelper imageHelper = new ImageHelper();
 
         public PostsController(ApplicationDbContext context)
         {
@@ -35,11 +34,9 @@ namespace MVCBlog.Controllers
         {
             var applicationDbContext = _context.Posts.Include(p => p.Blog);
             return View(await applicationDbContext.ToListAsync());
-            //return View(await _context.Posts.ToListAsync());
         }
 
         // GET: Posts/Details/5
-        [Authorize(Roles = "Administrator, Moderator")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -54,21 +51,15 @@ namespace MVCBlog.Controllers
             {
                 return NotFound();
             }
-            // for each comment load blogUser
+            // for each comment load author
             foreach (var comment in post.Comments.ToList())
             {
                 comment.BlogUser = await _context.Users.FindAsync(comment.BlogUserId);
             }
-
-            //Image Helper Decoder
-            if(post.Image != null)
-            {
-                ViewData["Image"] = imageHelper.DecodeImage(post.Image, post.FileName);
-            }
             return View(post);
         }
 
-        // GET: Posts/Create /BlogPosts/BlogId 10/22/2020  ---- See New Blog Post Action below , line 136
+        // GET: Posts/Create
         [Authorize(Roles = "Administrator")]
         public IActionResult Create(int? id)
         {
@@ -87,7 +78,7 @@ namespace MVCBlog.Controllers
                 {
                     BlogId = (int)id
                 };
-                ViewData["BlogName"] = blog.Name; 
+                ViewData["BlogName"] = blog.Name;
                 ViewData["BlogId"] = id;
                 return View(newPost);
             }
@@ -99,45 +90,29 @@ namespace MVCBlog.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Administrator")]      //The Bind I have a model with multiple inputs on a form, we have a single model that has all the properties needed, instead of different perimeters for each input. Creates a map from front end to move data to backend
-        public async Task<IActionResult> Create([Bind("Id,BlogId,Title,Abstract,Content,Slug,IsPublished,Image,Created,Updated,ImageDataUrl")] Post post, IFormFile image)
-            //remove Id from the bind
+        [Authorize(Roles = "Administrator")]
+        public async Task<IActionResult> Create([Bind("Id,BlogId,Title,Abstract,Body,Slug,IsPublished,Image,Created,Updated,ImageDataUrl")] Post post, IFormFile image)
         {
             if (ModelState.IsValid)
             {
-                //post.Created = DateTime.Now;
-                //post.Updated = DateTime.Now;
-                //post.Slug = Regex.Replace(post.Title.ToLower(), @"\s", "-");
-                ////Write image to db
-                //if (image != null)
-                //{
-                //    var imageHelper = new ImageHelper();
-                //    imageHelper.WriteImage(post, image);
-                //}
+                post.Created = DateTime.Now;
+                post.Updated = DateTime.Now;
+                post.Slug = Regex.Replace(post.Title.ToLower(), @"\s", "-");
+                //Write image to db
+                if (image != null)
+                {
+                    var imageHelper = new ImageHelper();
+                    imageHelper.TheImageHelper(post, image);
+                }
                 _context.Add(post);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             ViewData["BlogId"] = new SelectList(_context.Blogs, "Id", "Name", post.BlogId);
             return View(post);
-
-            if (ModelState.IsValid)   //Update method to receive & store image-------------------------why does it say this is Unreachable code
-            {
-                post.Created = DateTime.Now;       //post is our parameter, this came in from a Form Post. To create a brand new post, stamp with a date time before sending to DB
-                if (image != null)
-                {
-                    post.FileName = image.FileName;
-                    post.Image = imageHelper.EncodeImage(image);
-                }
-                    _context.Add(post);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(post);
         }
 
-        //New BlogPosts Action     
-        [Authorize(Roles = "Administrator")]
+        [Authorize(Roles = "Administrator, Moderator")]
         public async Task<IActionResult> BlogPosts(int? id)
         {
             if (id == null)
@@ -150,7 +125,7 @@ namespace MVCBlog.Controllers
             {
                 return NotFound();
             }
-            ViewData["Count"] = blog.Posts.Count();
+
             ViewData["BlogName"] = blog.Name;
             ViewData["BlogId"] = blog.Id;
 
@@ -158,7 +133,7 @@ namespace MVCBlog.Controllers
             return View(blogPosts);
         }
 
-        // GET: Posts/Edit/5    Scaffolded Code
+        // GET: Posts/Edit/5
         [Authorize(Roles = "Administrator, Moderator")]
         public async Task<IActionResult> Edit(int? id)
         {
@@ -182,7 +157,7 @@ namespace MVCBlog.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Administrator, Moderator")]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,BlogId,Title,Abstract,Content,Slug,IsPublished,Image,Created,Updated,ImageDataUrl")] Post post, IFormFile image)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,BlogId,Title,Abstract,Body,Slug,IsPublished,Image,Created,Updated,ImageDataUrl")] Post post, IFormFile image)
         {
             if (id != post.Id)
             {
@@ -193,6 +168,11 @@ namespace MVCBlog.Controllers
             {
                 try
                 {
+                    if (image != null)
+                    {
+                        var imageHelper = new ImageHelper();
+                        imageHelper.TheImageHelper(post, image);
+                    }
                     post.Updated = DateTime.Now;
                     _context.Update(post);
                     await _context.SaveChangesAsync();
@@ -210,36 +190,9 @@ namespace MVCBlog.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["BlogId"] = new SelectList(_context.Blogs, "Id", "Id", post.BlogId);
             return View(post);
         }
-     
-        //        try
-        //        {
-        //            if (image != null)
-        //            {
-        //                var imageHelper = new ImageHelper();
-        //                imageHelper.WriteImage(post, image);
-        //            }
-        //            post.Updated = DateTime.Now;
-        //            _context.Update(post);
-        //            await _context.SaveChangesAsync();
-        //        }
-        //        catch (DbUpdateConcurrencyException)
-        //        {
-        //            if (!PostExists(post.Id))
-        //            {
-        //                return NotFound();
-        //            }
-        //            else
-        //            {
-        //                throw;
-        //            }
-        //        }
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    ViewData["BlogId"] = new SelectList(_context.Blogs, "Id", "Id", post.BlogId);
-        //    return View(post);
-        //}
 
         // GET: Posts/Delete/5
         [Authorize(Roles = "Administrator, Moderator")]

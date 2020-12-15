@@ -1,6 +1,6 @@
 ﻿@using MVCBlog.Utilities
 @inject ImageHelper imagehelper
-@model MVCBlog.ViewModels.BlogPostsViewModel
+@model MVCBlog.ViewModels.BlogPostsVM
 
 @{
     ViewData["Title"] = "Home";
@@ -25,31 +25,32 @@
                     @foreach (var post in Model.Posts)
                     {
                         <!-- Blog Post -->
-                        <div class="card mb-4">
-                            <img class="card-img-top" src="@post.ImageDataUrl" alt="Card image cap">
-                            @*<img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">*@
-                            <div class="card-body">
-                                <h2 class="card-title">@Html.DisplayFor(data => post.Title)</h2>
-                                <p class="card-text">@Html.DisplayFor(data => post.Abstract)</p>
-                                <a asp-controller="Posts" asp-action="Details" asp-route-id="@post.Id" class="btn btn-primary mb-2">Full Post &rarr;</a>
-                                <br />
-                                @foreach (var tag in Model.Tags)
-                                {
-                                    @if (tag.PostId == post.Id)
-                                    {
-                                        <a asp-controller="Home" asp-action="Tag" asp-route-id="@tag.Name">#@tag.Name</a>
-                                    }
-                                }
-                            </div>
-                            <div class="card-footer text-muted">
-                                Posted on @post.Created.ToString("MMM dd, yyyy") in @Html.DisplayFor(data => post.Blog.Name)
-                            </div>
-                        </div>
+                <div class="card mb-4">
+                    <img class="card-img-top" src="@post.ImageDataUrl" alt="Card image cap">
+                    @*<img class="card-img-top" src="~/images/Fun Stuff.PNG" alt="Card image cap">*@
+                   
+                    <div class="card-body">
+                        <h2 class="card-title">@Html.DisplayFor(data => post.Title)</h2>
+                        <p class="card-text">@Html.DisplayFor(data => post.Abstract)</p>
+                        <a asp-controller="Posts" asp-action="Details" asp-route-id="@post.Id" class="btn btn-primary mb-2">Full Post &rarr;</a>
+                        <br />
+                        @foreach (var tag in Model.Tags)
+                        {
+                            @if (tag.PostId == post.Id)
+                            {
+                                <a asp-controller="Home" asp-action="Tag" asp-route-id="@tag.Name">#@tag.Name</a>
+                            }
+                        }
+                    </div>
+                    <div class="card-footer text-muted">
+                        Posted on @post.Created.ToString("MMM dd, yyyy") in @Html.DisplayFor(data => post.Blog.Name)
+                    </div>
+                </div>
                     }
                 </div>
 
                 <!-- MVC Days -->
-                <div class="col-sm-6 m-b30">
+                <!--<div class="col-sm-6 m-b30">
                     <div class="category-box overlay center large overlay-medium">
                         <div class="category-media">
                             <img src="~/images/FileNewProject.PNG" alt="">
@@ -60,10 +61,10 @@
                             <a href="javascript:void(0);" class="category-title"><i class="la la-arrow-right"></i></a>
                         </div>
                     </div>
-                </div>
+                </div>-->
 
                 <!-- Learning to code -->
-                <div class="col-sm-6 m-b30">
+                @*<div class="col-sm-6 m-b30">
                     <div class="category-box overlay center large overlay-medium">
                         <div class="category-media">
                             <img src="~/images/LearnToCode.PNG" alt="">
@@ -74,7 +75,8 @@
                             <a href="javascript:void(0);" class="category-title"><i class="la la-arrow-right"></i></a>
                         </div>
                     </div>
-                </div>
+                </div>*@
+
             </div>
         </div>
     </div>
@@ -165,7 +167,7 @@
 
                                     
 
-                                    <div class="blog-card full center overlay">
+                                    @*<div class="blog-card full center overlay">
                                         <div class="blog-card-media">
                                             <img src="images/blog/default/thum1.jpg" alt="" />
                                         </div>
@@ -196,7 +198,8 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div>*@
+
                                     <div class="blog-card post-left">
                                         <div class="blog-card-media">
                                             <img src="images/blog/blog-left/pic5.jpg" alt="" />

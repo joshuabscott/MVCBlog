@@ -6,7 +6,7 @@ using MVCBlog.Models;
 
 namespace MVCBlog.ViewModels
 {
-    public class BlogPostsViewModel
+    public class BlogPostsVM
     {
         public Blog Blog { get; set; }
         public ICollection<Blog> Blogs { get; set; }

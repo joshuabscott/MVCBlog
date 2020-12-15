@@ -27,7 +27,7 @@ namespace MVCBlog.Utilities
 
         public static async Task SeedAdmin(UserManager<BlogUser> userManager)
         {
-            if (await userManager.FindByEmailAsync("mackenzie@weaver.com") == null)
+            if (await userManager.FindByEmailAsync("J@mailinator.com") == null)
             {
                 var admin = new BlogUser()
                 {
@@ -37,14 +37,14 @@ namespace MVCBlog.Utilities
                     LastName = "Scott",
                     EmailConfirmed = true
                 };
-                await userManager.CreateAsync(admin, "!1Qqazwsxedc");
+                await userManager.CreateAsync(admin, "!1Qwerty");
                 await userManager.AddToRoleAsync(admin, Roles.Administrator.ToString());
             }
         }
 
         public static async Task SeedModerator(UserManager<BlogUser> userManager)
         {
-            if (await userManager.FindByEmailAsync("jason@twitchell.com") == null)
+            if (await userManager.FindByEmailAsync("W@mailinator.com") == null)
             {
                 var moderator = new BlogUser()
                 {
@@ -54,7 +54,7 @@ namespace MVCBlog.Utilities
                     LastName = "West",
                     EmailConfirmed = true
                 };
-                await userManager.CreateAsync(moderator, "!1Qqazwsxedc");
+                await userManager.CreateAsync(moderator, "!1Qwerty");
                 await userManager.AddToRoleAsync(moderator, Roles.Moderator.ToString());
             }
         }

@@ -1,11 +1,8 @@
 ﻿@using MVCBlog.Models
 @model IEnumerable<Post>
-@using MVCBlog.Utilities
 
 @{
     ViewData["Title"] = "Posts";
-    //Layout = "~/Views/Shared/_Layout.cshtml";
-    var imageHelper = new ImageHelper();
 }
 
 <h1>Posts</h1>
@@ -21,17 +18,15 @@
     <thead class="thead-dark">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Image)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Title)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Abstract)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Body)      @*Tiny Cloud??*@
-            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.Body)*@
+            @*Tiny Cloud??*@
+            <!--</th>-->
             @*<th>
                     @Html.DisplayNameFor(model => model.Slug)
                 </th>*@
@@ -42,9 +37,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Created)
             </th>
-            @*<th>
-                    @Html.DisplayNameFor(model => model.Updated)
-                </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.Updated)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Blog)
             </th>
@@ -56,21 +51,12 @@
         {
             <tr>
                 <td>
-                    @if (!String.IsNullOrWhiteSpace(item.FileName))
-                    {
-                        <img src="@imageHelper.DecodeImage(item.Image, item.FileName)" />
-                    }
-                </td>
-
-                <td>
                     @Html.DisplayFor(modelItem => item.Title)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Abstract)
                 </td>
-                <td>
-                    @Html.Raw(item.Body)     @*Tiny Cloud??*@
-                </td>
+
                 @*<td>
                         @Html.DisplayFor(modelItem => item.Slug)
                     </td>
@@ -83,9 +69,9 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Created)
                 </td>
-                @*<td>
-                        @Html.DisplayFor(modelItem => item.Updated)
-                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.Updated)
+                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Blog.Name)
                 </td>

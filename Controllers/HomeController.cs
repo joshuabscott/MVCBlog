@@ -29,7 +29,7 @@ namespace MVCBlog.Controllers
             _context = context;
             _logger = logger;
         }
-        //Index??
+
         public async Task<IActionResult> Index(int page)
         {
             var posted = _context.Posts.Where(p => p.IsPublished).ToList().Count;
@@ -48,7 +48,7 @@ namespace MVCBlog.Controllers
                 .Skip(page * 5).Take(5);
             var blogs = _context.Blogs;
             var tags = _context.Tags;
-            BlogPostsViewModel categories = new BlogPostsViewModel()
+            BlogPostsVM categories = new BlogPostsVM()
             {
                 Blogs = await blogs.ToListAsync(),
                 Posts = await posts.ToListAsync(),
@@ -58,7 +58,7 @@ namespace MVCBlog.Controllers
             };
             return View(categories);
         }
-        //Results????????
+
         public async Task<IActionResult> Results(string SearchString)
         {
             var posts = from p in _context.Posts
@@ -71,7 +71,7 @@ namespace MVCBlog.Controllers
                 //return View("Index", await posts.Include(p => p.Blog).ToListAsync());
             }
             //return View("Index", await posts.Include(p => p.Blog).ToListAsync());
-            BlogPostsViewModel categories = new BlogPostsViewModel()
+            BlogPostsVM categories = new BlogPostsVM()
             {
                 Blogs = await blogs.ToListAsync(),
                 Posts = await posts.ToListAsync(),
@@ -79,14 +79,14 @@ namespace MVCBlog.Controllers
             };
             return View("Index", categories);
         }
-        //Do I have Categories
+
         public async Task<IActionResult> Categories()
         {
             var id = RouteData.Values["id"].ToString();
             var posts = _context.Posts.Where(p => p.BlogId == Int32.Parse(id) && p.IsPublished == true).Include(p => p.Blog);
             var blogs = _context.Blogs;
             var tags = _context.Tags;
-            BlogPostsViewModel categories = new BlogPostsViewModel()
+            BlogPostsVM categories = new BlogPostsVM()
             {
                 Blogs = await blogs.ToListAsync(),
                 Posts = await posts.ToListAsync(),
@@ -94,13 +94,13 @@ namespace MVCBlog.Controllers
             };
             return View("Index", categories);
         }
-        //For Tags
+
         public async Task<IActionResult> Tag()
         {
             var name = RouteData.Values["id"].ToString();
             var posts = _context.Tags.Where(t => t.Name == name).Select(t => t.Post);
             var blogs = _context.Blogs;
-            BlogPostsViewModel categories = new BlogPostsViewModel()
+            BlogPostsVM categories = new BlogPostsVM()
             {
                 Blogs = await blogs.ToListAsync(),
                 Posts = await posts.ToListAsync(),
@@ -108,11 +108,11 @@ namespace MVCBlog.Controllers
             };
             return View("Index", categories);
         }
-        //Privacy - not needed
-        //public IActionResult Privacy()
-        //{
-        //    return View();
-        //}
+
+        public IActionResult Privacy()
+        {
+            return View();
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
@@ -121,6 +121,9 @@ namespace MVCBlog.Controllers
         }
     }
 }
+
+
+
 
 //    public class HomeController : Controller
 //    {
@@ -148,10 +151,6 @@ namespace MVCBlog.Controllers
 //        }
 //    }
 //}
-
-
-
-
 
 
 //    public class HomeController : Controller

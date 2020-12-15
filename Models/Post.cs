@@ -44,9 +44,6 @@ namespace MVCBlog.Models
         //In Microsoft doc this is public  list<Type> Types
         public virtual ICollection<Comment> Comments { get; set; }
         public virtual ICollection<Tag> Tags { get; set; }
-        //public List<Comment>  Comments { get; set; }
-        // public List<Tag> Tags { get; set; }
-        // // var post = new Post();
 
         #endregion
         public Post()

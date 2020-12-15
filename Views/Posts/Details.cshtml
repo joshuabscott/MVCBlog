@@ -2,7 +2,6 @@
 
 @{
     ViewData["Title"] = "Details";
-    var imageHelper = new MVCBlog.Utilities.ImageHelper();
 }
 
 <header class="masthead">
@@ -23,8 +22,6 @@
         </div>
     </div>
 </header>
-
-<img src="@imageHelper.DecodeImage(Model.Image, Model.FileName)" class="img-fluid" alt="Responsive image">
 
 <!-- Post Content -->
 <article>
@@ -56,26 +53,100 @@
     </div>
 }
 
-<!-- Sidebar Widgets Column -->
-<div class="col-md-4">
 
-    <!-- Search Widget -->
-    <div class="card my-4">
-        <h5 class="card-header">Search</h5>
-        <div class="card-body">
-            <form asp-controller="Home" asp-action="Results" method="get">
-                <div class="input-group">
-                    <input name="SearchString" type="text" class="form-control" placeholder="Search for...">
-                    <span class="input-group-append">
-                        <button type="submit" class="btn btn-secondary">Go!</button>
-                    </span>
-                </div>
-            </form>
-        </div>
+
+
+@foreach (var tag in Model.Tags)
+{
+    @tag
+}
+
+<hr>
+
+<!-- Date/Time -->
+<p>Posted on @Model.Created.ToString("MMMM dd, yyyy")</p>
+
+<hr>
+
+<!-- Preview Image -->
+<img class="img-fluid rounded" src="@Model.ImageDataUrl" alt="@Model.FileName">
+
+<hr>
+
+<!-- Post Content -->
+@Html.Raw(Model.Body)
+
+<hr>
+
+
+
+<h5>@Model.Comments.Count comments</h5>
+<!-- Comments Form -->
+<div class="card my-4">
+    <h5 class="card-header">Leave a Comment:</h5>
+    <div class="card-body">
+        <form asp-controller="Comments" asp-action="Create">
+            @Html.Hidden("PostId", Model.Id) @* primary key of post *@
+            <div class="form-group">
+                <textarea name="userComment" class="form-control" rows="3" placeholder="Add a comment..."></textarea>
+            </div>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <button type="submit" class="btn btn-primary">Submit</button>
+            }
+            else
+            {
+                @*<button class="btn noHover" disabled>Submit</button>*@
+                <a class="btn btn-primary" asp-area="Identity" asp-page="/Account/Login">Login</a>
+            }
+        </form>
     </div>
-
 </div>
 
+<div id="commentsection">
+    <!-- Single Comment -->
+    @foreach (var comment in Model.Comments.OrderByDescending(c => c.Created))
+    {
+        <div class="media mb-4">
+            @*<img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">*@
+            <div class="media-body ml-4">
+                <h5 class="mt-0">
+                    @comment.BlogUser.FirstName @comment.BlogUser.LastName
+                    <span style="font-size: 1rem; font-weight: 500; opacity: 0.65;">
+                        @comment.Created.ToString("MMM dd")
+                        @*@comment.Author <-- Email of commenter*@
+                        @*@User.Identity.Name <-- Email of user*@
+                        @if (User.Identity.Name == comment.BlogUser.Email)
+                        {
+                            <button class="editAnchor" onclick="ToggleEdit(@comment.Id)">Edit</button>
+                        }
+                    </span>
+
+                </h5>
+                <div class="align-items-center">
+                    <p id="comment-@comment.Id" class="mb-1">@Html.Raw(comment.Body)</p>
+                </div>
+                @* hidden form until "edit" clicked *@
+                <form id="editForm-@comment.Id" class="editForm" asp-controller="Comments" asp-action="Edit" asp-route-id="@comment.Id" style="display:none">
+                    @Html.Hidden("Created", comment.Created)
+                    @Html.Hidden("AuthorId", comment.BlogUserId)
+                    @Html.Hidden("Author", comment.BlogUser)
+
+                    @Html.Hidden("Updated", DateTime.Now)
+                    @Html.Hidden("PostId", Model.Id)
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" name="content" value="@Html.Raw(comment.Body)">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="submit">Submit</button>
+                        </div>
+                    </div>
+                    @*<input type="text" name="content" value="@Html.Raw(comment.Content)" style="width: 300px" />*@
+                    @*<button class="btn btn-primary btn-sm mb-1" type="submit">Submit</button>*@
+                </form>
+            </div>
+        </div>
+    }
+</div>
 
 <div>
     <a class="btn btn-info" asp-controller="Posts" asp-action="Index">Back to List</a>
