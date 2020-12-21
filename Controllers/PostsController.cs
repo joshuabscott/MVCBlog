@@ -1,24 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.IO;
 using System.Threading.Tasks;
-using System.Text.RegularExpressions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using System.Text.RegularExpressions;
 using Microsoft.AspNetCore.Http;
+using System.IO;
 using Microsoft.AspNetCore.Authorization;
-using Npgsql;
 using MVCBlog.Data;
-using MVCBlog.Models;
-using MVCBlog.ViewModels;
 using MVCBlog.Utilities;
+using MVCBlog.Models;
 using MVCBlog.Enums;
 
 namespace MVCBlog.Controllers
 {
-    [Authorize]
     public class PostsController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -91,7 +88,7 @@ namespace MVCBlog.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Administrator")]
-        public async Task<IActionResult> Create([Bind("Id,BlogId,Title,Abstract,Body,Slug,IsPublished,Image,Created,Updated,ImageDataUrl")] Post post, IFormFile image)
+        public async Task<IActionResult> Create([Bind("Id,BlogId,Title,Abstract,Content,Slug,IsPublished,Image,Created,Updated,ImageDataUrl")] Post post, IFormFile image)
         {
             if (ModelState.IsValid)
             {
@@ -157,7 +154,7 @@ namespace MVCBlog.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Administrator, Moderator")]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,BlogId,Title,Abstract,Body,Slug,IsPublished,Image,Created,Updated,ImageDataUrl")] Post post, IFormFile image)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,BlogId,Title,Abstract,Content,Slug,IsPublished,Image,Created,Updated,ImageDataUrl")] Post post, IFormFile image)
         {
             if (id != post.Id)
             {

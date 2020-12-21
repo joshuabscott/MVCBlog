@@ -90,22 +90,15 @@
                                     <ul class="nav navbar-nav">
                                         <li class="active"><a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
 
-                                        <li><a class="nav-link text-dark" asp-area="" asp-controller="Blogs" asp-action="Index">Blogs</a></li>
-                                        <li><a class="nav-link text-dark" asp-area="" asp-controller="Posts" asp-action="Index">Posts</a></li>
-                                        <li><a class="nav-link text-dark" asp-area="" asp-controller="Comments" asp-action="Index">Comments</a></li>
-                                        <li><a class="nav-link text-dark" asp-area="" asp-controller="Tags" asp-action="Index">Tags</a></li>
+                                        <li><a class="nav-link text-dark"  asp-controller="Blogs" asp-action="Index">Blogs</a></li>
+                                        <li><a class="nav-link text-dark"  asp-controller="Posts" asp-action="Index">Posts</a></li>
+                                        <li><a class="nav-link text-dark"  asp-controller="Comments" asp-action="Index">Comments</a></li>
+                                        <li><a class="nav-link text-dark"  asp-controller="Tags" asp-action="Index">Tags</a></li>
                                         @*<li><a class="nav-link text-dark" href="about-us.html">About</a></li>
                                             <li><a class="nav-link text-dark" href="contact.html">Contact</a></li>*@
                                     </ul>
                                 }
-                                @*<div class="social-menu">
-                                        <ul>
-                                            <li><a href="javascript:void(0);"><i class="fa fa-facebook"></i></a></li>
-                                            <li><a href="javascript:void(0);"><i class="fa fa-twitter"></i></a></li>
-                                            <li><a href="javascript:void(0);"><i class="fa fa-google-plus"></i></a></li>
-                                            <li><a href="javascript:void(0);"><i class="fa fa-facebook"></i></a></li>
-                                        </ul>
-                                    </div>*@
+                              
                                 <div class="nav-link text-dark">
                                     <partial name="_LoginPartial" />
                                 </div>
@@ -237,7 +230,7 @@
     <script src="~/plugins/masonry/masonry-3.1.4.js"></script><!-- MASONRY -->
     <script src="~/plugins/masonry/masonry.filter.js"></script><!-- MASONRY -->
     <script src="~/plugins/owl-carousel/owl.carousel.js"></script><!-- OWL SLIDER -->
-
+    <script src="~/js/site.js"></script>
     <script src="~/js/custom.js"></script><!-- CUSTOM FUCTIONS  -->
     <!--<script src="~/js/dz.carousel.js"></script>--><!-- SORTCODE FUCTIONS -->
     <script src="~/js/dz.ajax.js"></script><!-- CONTACT JS  -->
@@ -247,7 +240,7 @@
     <!-- Data Tables ========================================= -->
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
 
-    <script src="~/js/site.js" asp-append-version="true"></script>
+    @*<script src="~/js/site.js" asp-append-version="true"></script>*@
 
 
     @* TinyMCE *@
