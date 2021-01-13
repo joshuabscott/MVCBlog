@@ -40,7 +40,7 @@ namespace MVCBlog.Models
         #endregion
 
         #region Navigation
-        public virtual Blog Blog { get; set; }
+        public virtual Blog Blogs { get; set; }
         //In Microsoft doc this is public  list<Type> Types
         public virtual ICollection<Comment> Comments { get; set; }
         public virtual ICollection<Tag> Tags { get; set; }

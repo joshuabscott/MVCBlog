@@ -2174,8 +2174,8 @@ label {
 /*radio & checkbox*/
 input[type=checkbox],
 input[type=radio] {
-    display: ;
-    opacity: 0;
+    display: block;
+    opacity: 1;
     margin-left: 1px !important;
 	position: absolute;
 }

@@ -26,7 +26,7 @@ namespace MVCBlog.Controllers
         [Authorize(Roles = "Administrator, Moderator")]
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Tags.Include(t => t.Post);
+            var applicationDbContext = _context.Tags.Include(t => t.Posts);
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -40,7 +40,7 @@ namespace MVCBlog.Controllers
             }
 
             var tag = await _context.Tags
-                .Include(t => t.Post)
+                .Include(t => t.Posts)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (tag == null)
             {
@@ -141,7 +141,7 @@ namespace MVCBlog.Controllers
             }
 
             var tag = await _context.Tags
-                .Include(t => t.Post)
+                .Include(t => t.Posts)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (tag == null)
             {

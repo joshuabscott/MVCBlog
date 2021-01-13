@@ -42,7 +42,7 @@ namespace MVCBlog.Controllers
             var posts = _context.Posts
                 .Where(p => p.IsPublished)
                 .OrderByDescending(p => p.Created)
-                .Include(p => p.Blog)
+                .Include(p => p.Blogs)
                 .Skip(page * 5).Take(5);
             var blogs = _context.Blogs;
             var tags = _context.Tags;
@@ -81,7 +81,7 @@ namespace MVCBlog.Controllers
         public async Task<IActionResult> Categories()
         {
             var id = RouteData.Values["id"].ToString();
-            var posts = _context.Posts.Where(p => p.BlogId == Int32.Parse(id) && p.IsPublished == true).Include(p => p.Blog);
+            var posts = _context.Posts.Where(p => p.BlogId == Int32.Parse(id) && p.IsPublished == true).Include(p => p.Blogs);
             var blogs = _context.Blogs;
             var tags = _context.Tags;
             BlogPostsVM categories = new BlogPostsVM()
@@ -96,7 +96,7 @@ namespace MVCBlog.Controllers
         public async Task<IActionResult> Tag()
         {
             var name = RouteData.Values["id"].ToString();
-            var posts = _context.Tags.Where(t => t.Name == name).Select(t => t.Post);
+            var posts = _context.Tags.Where(t => t.Name == name).Select(t => t.Posts);
             var blogs = _context.Blogs;
             BlogPostsVM categories = new BlogPostsVM()
             {

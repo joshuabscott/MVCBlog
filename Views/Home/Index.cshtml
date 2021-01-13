@@ -22,7 +22,9 @@
                     <div class="card-body">
                         <h2 class="card-title">@Html.DisplayFor(data => post.Title)</h2>
                         <p class="card-text">@Html.DisplayFor(data => post.Abstract)</p>
-                        <a asp-controller="Posts" asp-action="Details" asp-route-id="@post.Id">@post.Title" class="btn btn-primary mb-2">Read More &rarr;</a>
+                        <a asp-controller="Posts" asp-action="Details" asp-route-id="@post.Id" class="btn btn-primary mb-2">
+                            Read More &rarr;
+                        </a>
                         <br />
                         @foreach (var tag in Model.Tags)
                         {
@@ -33,7 +35,7 @@
                         }
                     </div>
                     <div class="card-footer text-muted">
-                        Posted on @post.Created.ToString("MMM dd, yyyy") in @Html.DisplayFor(data => post.Blog.Name)
+                        Posted on @post.Created.ToString("MMM dd, yyyy") in @Html.DisplayFor(data => post.Blogs.Name)
                     </div>
                 </div>
             }

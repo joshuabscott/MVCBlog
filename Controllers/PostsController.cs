@@ -29,7 +29,7 @@ namespace MVCBlog.Controllers
         [Authorize(Roles = "Administrator, Moderator")]
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Posts.Include(p => p.Blog);
+            var applicationDbContext = _context.Posts.Include(p => p.Blogs);
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -41,7 +41,7 @@ namespace MVCBlog.Controllers
                 return NotFound();
             }
             var post = await _context.Posts
-                .Include(p => p.Blog)
+                .Include(p => p.Blogs)
                 .Include(p => p.Comments)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (post == null)
@@ -201,7 +201,7 @@ namespace MVCBlog.Controllers
             }
 
             var post = await _context.Posts
-                .Include(p => p.Blog)
+                .Include(p => p.Blogs)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (post == null)
             {

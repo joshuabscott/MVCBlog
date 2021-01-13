@@ -19,7 +19,7 @@ namespace MVCBlog.Models
         #endregion
 
         #region Navigation
-        public virtual Post Post { get; set; }
+        public virtual Post Posts { get; set; }
         #endregion
     }
 }
