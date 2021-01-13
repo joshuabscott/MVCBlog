@@ -53,9 +53,6 @@
     </div>
 }
 
-
-
-
 @foreach (var tag in Model.Tags)
 {
     @tag
@@ -78,8 +75,6 @@
 
 <hr>
 
-
-
 <h5>@Model.Comments.Count comments</h5>
 <!-- Comments Form -->
 <div class="card my-4">
@@ -88,15 +83,15 @@
         <form asp-controller="Comments" asp-action="Create">
             @Html.Hidden("PostId", Model.Id) @* primary key of post *@
             <div class="form-group">
-                <textarea name="userComment" class="form-control" rows="3" placeholder="Add a comment..."></textarea>
+                <textarea name="Content" class="form-control" rows="3" placeholder="Add a comment..."></textarea>
             </div>
+
             @if (User.Identity.IsAuthenticated)
             {
                 <button type="submit" class="btn btn-primary">Submit</button>
             }
             else
             {
-                @*<button class="btn noHover" disabled>Submit</button>*@
                 <a class="btn btn-primary" asp-area="Identity" asp-page="/Account/Login">Login</a>
             }
         </form>
@@ -108,14 +103,13 @@
     @foreach (var comment in Model.Comments.OrderByDescending(c => c.Created))
     {
         <div class="media mb-4">
-            @*<img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">*@
+
             <div class="media-body ml-4">
                 <h5 class="mt-0">
                     @comment.BlogUser.FirstName @comment.BlogUser.LastName
                     <span style="font-size: 1rem; font-weight: 500; opacity: 0.65;">
                         @comment.Created.ToString("MMM dd")
-                        @*@comment.Author <-- Email of commenter*@
-                        @*@User.Identity.Name <-- Email of user*@
+
                         @if (User.Identity.Name == comment.BlogUser.Email)
                         {
                             <button class="editAnchor" onclick="ToggleEdit(@comment.Id)">Edit</button>
@@ -126,6 +120,7 @@
                 <div class="align-items-center">
                     <p id="comment-@comment.Id" class="mb-1">@Html.Raw(comment.Body)</p>
                 </div>
+
                 @* hidden form until "edit" clicked *@
                 <form id="editForm-@comment.Id" class="editForm" asp-controller="Comments" asp-action="Edit" asp-route-id="@comment.Id" style="display:none">
                     @Html.Hidden("Created", comment.Created)
@@ -140,8 +135,7 @@
                             <button class="btn btn-primary" type="submit">Submit</button>
                         </div>
                     </div>
-                    @*<input type="text" name="content" value="@Html.Raw(comment.Content)" style="width: 300px" />*@
-                    @*<button class="btn btn-primary btn-sm mb-1" type="submit">Submit</button>*@
+
                 </form>
             </div>
         </div>
@@ -154,4 +148,3 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
-

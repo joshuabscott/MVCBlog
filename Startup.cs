@@ -43,8 +43,6 @@ namespace MVCBlog
                 .AddDefaultUI()
                 .AddDefaultTokenProviders();
 
-            services.AddScoped<ImageHelper, ImageHelper>();
-
             //These services are for the Email
             //services.Configure<MailSettings>(Configuration.GetSection("MailSettings"));
             //services.AddTransient<IEmailSender, EmailService>();

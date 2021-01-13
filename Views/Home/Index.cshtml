@@ -13,9 +13,10 @@
         <!-- Blog Entries Column -->
         <div class="col-md-8">
             <h1 class="my-4">Blog Blog Blog</h1>
+
+            <!-- Blog Post -->
             @foreach (var post in Model.Posts)
             {
-                <!-- Blog Post -->
                 <div class="card mb-4">
                     <img class="card-img-top" src="@post.ImageDataUrl" alt="Card image cap">
                     @*<img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">*@
@@ -39,6 +40,7 @@
                     </div>
                 </div>
             }
+
             <!-- Pagination -->
             <ul class="pagination justify-content-center mb-4">
                 <li class="page-item">

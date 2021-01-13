@@ -8,21 +8,28 @@ using MVCBlog.Models;
 
 namespace MVCBlog.Utilities
 {
-    public class ImageHelper
+    public static class ImageHelper //when you write a class there is now a "type" of ImageUtility
     {
-        public void TheImageHelper(Post post, IFormFile image)
+        public static byte[] EncodeImage(IFormFile image)  //PutImage
         {
-            post.FileName = image.FileName;
+            // This is entry level code that turn our image into a storable format in the DB
             var ms = new MemoryStream();
-            image.CopyTo(ms);
-            byte[] imageBytes = ms.ToArray();
-            //post.Image = ms.ToArray();
-            ms.Close();
-            ms.Dispose();
-            //var binary = Convert.ToBase64String(post.Image);
-            var binary = Convert.ToBase64String(imageBytes);
-            var ext = Path.GetExtension(post.FileName);
-            post.ImageDataUrl = $"data:image/{ext};base64,{binary}";
+            image.CopyTo(ms);   //image is going to st
+            var output = ms.ToArray();
+
+            ms.Close();     //MS = Memory Stream clean up,  garbage collecting
+            ms.Dispose();   //MS = Memory Stream clean up,  garbage collecting
+
+            return output;
         }
+
+        public static string DecodeImage(Post post)  //GetImage
+        {
+            var binary = Convert.ToBase64String(post.Image);
+            var ext = Path.GetExtension(post.FileName);
+            string imageDataURL = $"data:image/{ext};base64,{binary}";
+            return imageDataURL;
+        }
+
     }
 }

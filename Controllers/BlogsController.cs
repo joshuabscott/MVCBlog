@@ -14,7 +14,7 @@ using MVCBlog.Data;
 
 namespace MVCBlog.Controllers
 {
-    [Authorize(Roles = "Administrator, Moderator")]
+    //[Authorize(Roles = "Administrator, Moderator")]
     public class BlogsController : Controller
     {
         private readonly ApplicationDbContext _context;
