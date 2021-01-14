@@ -13,7 +13,7 @@ namespace MVCBlog.Models
 
         #region Post Properties
 
-        public int PostId { get; set; }
+        public int PostId { get; set; }     //Foreign Key to Parent
         public string Name { get; set; }
 
         #endregion

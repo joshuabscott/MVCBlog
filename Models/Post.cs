@@ -16,16 +16,11 @@ namespace MVCBlog.Models
 
         #region Post Properties
         //Describe the things that a blog post have
-       
         public string Title { get; set; }
-
-        //[StringLength(120, MinimumLength =6)]
         public string Abstract { get; set; }
-
-        //[StringLength(500, MinimumLength = 120)]
         public string Body { get; set; }
 
-        public string Slug { get; set; }
+        public string Slug { get; set; }        //Use the Title to Identity instead of the Id, will cover - ?? //routing engine and SEO??
         public bool IsPublished { get; set; }
 
         [Display(Name = "File Name")]
@@ -36,7 +31,6 @@ namespace MVCBlog.Models
         public DateTimeOffset Created { get; set; }
         public DateTimeOffset? Updated { get; set; }
         // In Microsoft doc this is public type type
-
         #endregion
 
         #region Navigation
@@ -44,8 +38,8 @@ namespace MVCBlog.Models
         //In Microsoft doc this is public  list<Type> Types
         public virtual ICollection<Comment> Comments { get; set; }
         public virtual ICollection<Tag> Tags { get; set; }
-
         #endregion
+
         public Post()
         {
             Comments = new HashSet<Comment>();  //10/20/2020
