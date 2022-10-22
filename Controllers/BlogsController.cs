@@ -27,6 +27,9 @@ namespace MVCBlog.Controllers
         // GET: Blogs
         public async Task<IActionResult> Index()
         {
+            // MODIFY #1 Blog Controller/Views series / Index Action/View
+            //var applicationDbContext = _context.Blogs.Include(b => b.BlogUser);
+            //return View(await applicationDbContext.ToListAsync());
             return View(await _context.Blogs.ToListAsync());
         }
 
@@ -39,6 +42,7 @@ namespace MVCBlog.Controllers
             }
 
             var blog = await _context.Blogs
+                //.Include(b => b.BlogUser)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (blog == null)
             {
