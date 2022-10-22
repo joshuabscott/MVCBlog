@@ -93,7 +93,7 @@ namespace MVCBlog.Controllers
             }
             else
             {
-                var blog = await _context.Blogs.FindAsync(id);// add Line
+                var blog = _context.Blogs.FindAsync(id);// add Line
                 if (blog == null)// add Line
                 {
                     return NotFound();// add Line
